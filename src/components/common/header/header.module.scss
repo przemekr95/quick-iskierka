@@ -6,6 +6,48 @@
   top: 0;
   z-index: 1000;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  
+  // Transparent header for home page
+  &.transparent {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    box-shadow: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    .logo a {
+      color: white;
+    }
+    
+    .logoText {
+      background: linear-gradient(135deg, #ffffff, #e6f3ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .navLink {
+      color: white;
+      
+      &:hover {
+        color: #e6f3ff;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      
+      &.active {
+        color: #e6f3ff;
+        background-color: rgba(255, 255, 255, 0.15);
+        
+        &::after {
+          background: linear-gradient(135deg, #ffffff, #e6f3ff);
+        }
+      }
+    }
+    
+    .line {
+      background-color: white;
+    }
+  }
 }
 
 .container {

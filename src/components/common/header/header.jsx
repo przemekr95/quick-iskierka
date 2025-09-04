@@ -44,8 +44,10 @@ const Header = () => {
     return location.pathname === path
   }
 
+  const isHomePage = location.pathname === '/'
+
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isHomePage ? styles.transparent : ''}`}>
       <div className={styles.container}>
         <div className={styles.logo}>
           <Link to='/' aria-label='Iskierka - strona główna'>
