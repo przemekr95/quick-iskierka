@@ -1,51 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useMobileMenu } from '../../../hooks/useMobileMenu'
+import { useNavigation } from '../../../hooks/useNavigation'
+import NavLink from '../../atomic/nav-link/nav-link'
+import { NAVIGATION_ITEMS } from '../../../constants/navigation'
 import styles from './header.module.scss'
 
+// TODO
+
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const location = useLocation()
-
-  // Close menu when route changes
-  useEffect(() => {
-    setIsMenuOpen(false)
-  }, [location])
-
-  // Close menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = event => {
-      if (isMenuOpen && !event.target.closest(`.${styles.header}`)) {
-        setIsMenuOpen(false)
-      }
-    }
-
-    document.addEventListener('click', handleClickOutside)
-    return () => document.removeEventListener('click', handleClickOutside)
-  }, [isMenuOpen])
-
-  // Prevent scrolling when menu is open on mobile
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-
-    return () => {
-      document.body.style.overflow = 'unset'
-    }
-  }, [isMenuOpen])
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
-
-  const isActiveLink = path => {
-    return location.pathname === path
-  }
+  const { isMenuOpen, toggleMenu } = useMobileMenu()
+  const { isActiveLink, isHomePage } = useNavigation()
 
   return (
-    <header className={styles.header}>
+    <header
+      className={`${styles.header} ${isHomePage ? styles.transparent : ''}`}
+      data-header
+    >
       <div className={styles.container}>
         <div className={styles.logo}>
           <Link to='/' aria-label='Iskierka - strona główna'>
@@ -55,34 +26,17 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className={styles.desktopNav} aria-label='Nawigacja główna'>
-          <Link
-            to='/'
-            className={`${styles.navLink} ${isActiveLink('/') ? styles.active : ''}`}
-            aria-current={isActiveLink('/') ? 'page' : undefined}
-          >
-            Home
-          </Link>
-          <Link
-            to='/klub'
-            className={`${styles.navLink} ${isActiveLink('/klub') ? styles.active : ''}`}
-            aria-current={isActiveLink('/klub') ? 'page' : undefined}
-          >
-            Klub
-          </Link>
-          <Link
-            to='/druzyna'
-            className={`${styles.navLink} ${isActiveLink('/druzyna') ? styles.active : ''}`}
-            aria-current={isActiveLink('/druzyna') ? 'page' : undefined}
-          >
-            Drużyna
-          </Link>
-          <Link
-            to='/kontakt'
-            className={`${styles.navLink} ${isActiveLink('/kontakt') ? styles.active : ''}`}
-            aria-current={isActiveLink('/kontakt') ? 'page' : undefined}
-          >
-            Kontakt
-          </Link>
+          {NAVIGATION_ITEMS.map(({ path, label }) => (
+            <NavLink
+              key={path}
+              to={path}
+              className={styles.navLink}
+              activeClassName={styles.active}
+              isActive={isActiveLink(path)}
+            >
+              {label}
+            </NavLink>
+          ))}
         </nav>
 
         {/* Mobile Menu Button */}
@@ -105,34 +59,17 @@ const Header = () => {
           aria-label='Nawigacja mobilna'
         >
           <div className={styles.mobileNavContent}>
-            <Link
-              to='/'
-              className={`${styles.mobileNavLink} ${isActiveLink('/') ? styles.active : ''}`}
-              aria-current={isActiveLink('/') ? 'page' : undefined}
-            >
-              Home
-            </Link>
-            <Link
-              to='/klub'
-              className={`${styles.mobileNavLink} ${isActiveLink('/klub') ? styles.active : ''}`}
-              aria-current={isActiveLink('/klub') ? 'page' : undefined}
-            >
-              Klub
-            </Link>
-            <Link
-              to='/druzyna'
-              className={`${styles.mobileNavLink} ${isActiveLink('/druzyna') ? styles.active : ''}`}
-              aria-current={isActiveLink('/druzyna') ? 'page' : undefined}
-            >
-              Drużyna
-            </Link>
-            <Link
-              to='/kontakt'
-              className={`${styles.mobileNavLink} ${isActiveLink('/kontakt') ? styles.active : ''}`}
-              aria-current={isActiveLink('/kontakt') ? 'page' : undefined}
-            >
-              Kontakt
-            </Link>
+            {NAVIGATION_ITEMS.map(({ path, label }) => (
+              <NavLink
+                key={path}
+                to={path}
+                className={styles.mobileNavLink}
+                activeClassName={styles.active}
+                isActive={isActiveLink(path)}
+              >
+                {label}
+              </NavLink>
+            ))}
           </div>
         </nav>
 
@@ -140,13 +77,24 @@ const Header = () => {
         {isMenuOpen && (
           <div
             className={styles.overlay}
-            onClick={() => setIsMenuOpen(false)}
+            onClick={toggleMenu}
             aria-hidden='true'
           />
         )}
       </div>
     </header>
   )
+}
+
+// Header component doesn't receive props, but we can add PropTypes for future extensibility
+Header.propTypes = {
+  // Future props can be added here
+  // className: PropTypes.string,
+  // variant: PropTypes.oneOf(['default', 'transparent']),
+}
+
+Header.defaultProps = {
+  // Default props can be added here in the future
 }
 
 export default Header

@@ -1,5 +1,32 @@
 @import '~@przemekr95/quick-design-tokens/dist/scss/index.scss';
 
+.homePage {
+  // Remove default margins/padding from main content
+  margin: 0;
+  padding: 0;
+}
+
+// Content Section (below hero)
+.contentSection {
+  padding: 4rem 0;
+  background: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.matchItem {
+  background: white;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+// Legacy styles (keep for compatibility)
 .heading_text {
   font-size: $font-size-3xl-font-size;
   color: $color-primary;

@@ -1,5 +1,13 @@
 @import '~@przemekr95/quick-design-tokens/dist/scss/index.scss';
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family:
