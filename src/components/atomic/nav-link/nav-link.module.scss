@@ -1,0 +1,26 @@
+/* NavLink component styles */
+.navLink {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &.active {
+    color: inherit;
+  }
+}
+
+/* Override any global link styles */
+.navLink:visited {
+  color: inherit;
+}
+
+.navLink:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}

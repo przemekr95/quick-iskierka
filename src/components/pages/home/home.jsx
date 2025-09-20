@@ -1,70 +1,49 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useSchedule } from '../../../hooks/useSchedule'
+import { useResponsiveBackground } from '../../../hooks/useResponsiveBackground'
+import HeroSection from '../../atomic/hero-section/hero-section'
+import LoadingSpinner from '../../atomic/loading-spinner/loading-spinner'
+import ErrorMessage from '../../atomic/error-message/error-message'
 import styles from './home.module.scss'
 
 const Home = () => {
   const { schedule, loading, error } = useSchedule()
-  const [backgroundImage, setBackgroundImage] = useState('')
+  const { backgroundImage, fallbackGradient } = useResponsiveBackground()
+  const navigate = useNavigate()
 
-  // Set responsive background image based on screen size
-  useEffect(() => {
-    const updateBackgroundImage = () => {
-      const width = window.innerWidth
-      let imagePath = ''
+  const handleLearnMore = () => {
+    navigate('/klub')
+  }
 
-      if (width <= 768) {
-        imagePath = '/images/backgrounds/heroImage-mobile.jpg'
-      } else if (width <= 1024) {
-        imagePath = '/images/backgrounds/heroImage-tablet.jpg'
-      } else {
-        imagePath = '/images/backgrounds/heroImage-desktop.jpg'
-      }
-
-      setBackgroundImage(imagePath)
-    }
-
-    // Set initial image
-    updateBackgroundImage()
-
-    // Update on window resize
-    window.addEventListener('resize', updateBackgroundImage)
-
-    return () => window.removeEventListener('resize', updateBackgroundImage)
-  }, [])
+  const handleViewTeam = () => {
+    navigate('/druzyna')
+  }
 
   if (loading) {
-    return <div>Ładowanie terminarz...</div>
+    return <LoadingSpinner message='Ładowanie terminarz...' />
   }
 
   if (error) {
-    return <div>Błąd: {error}</div>
+    return <ErrorMessage message={`Błąd: ${error}`} showRetry={true} />
   }
 
   return (
     <div className={styles.homePage}>
-      {/* Hero Section - Full Screen */}
-      <section className={styles.heroSection}>
-        <div
-          className={styles.heroBackground}
-          style={{
-            backgroundImage: backgroundImage
-              ? `url(${backgroundImage})`
-              : 'linear-gradient(135deg, #0066cc, #004499)',
-          }}
-        ></div>
-        <div className={styles.heroContent}>
-          <div className={styles.heroText}>
-            <h1 className={styles.heroTitle}>MUKS Iskierka Tarnów</h1>
-            <p className={styles.heroSubtitle}>
-              Pasja • Determinacja • Siatkówka
-            </p>
-            <div className={styles.heroButtons}>
-              <button className={styles.ctaButton}>Poznaj Klub</button>
-              <button className={styles.secondaryButton}>Zobacz Drużynę</button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection
+        backgroundImage={backgroundImage}
+        fallbackGradient={fallbackGradient}
+        title='MUKS Iskierka Tarnów'
+        subtitle='Pasja • Determinacja • Siatkówka'
+        primaryButton={{
+          text: 'Poznaj Klub',
+          onClick: handleLearnMore,
+        }}
+        secondaryButton={{
+          text: 'Zobacz Drużynę',
+          onClick: handleViewTeam,
+        }}
+      />
 
       {/* Additional Content */}
       <section className={styles.contentSection}>
@@ -85,6 +64,17 @@ const Home = () => {
       </section>
     </div>
   )
+}
+
+// Home component doesn't receive props but we add PropTypes for future extensibility
+Home.propTypes = {
+  // Future props can be added here
+  // initialData: PropTypes.object,
+  // theme: PropTypes.oneOf(['light', 'dark']),
+}
+
+Home.defaultProps = {
+  // Default props can be added here in the future
 }
 
 export default Home

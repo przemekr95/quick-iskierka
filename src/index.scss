@@ -36,16 +36,4 @@ code {
 
 .main-content {
   flex: 1;
-  
-  // Special handling for home page to allow full-screen hero
-  &:has([class*="homePage"]) {
-    padding: 0;
-    margin: 0;
-  }
-}
-
-// Alternative approach using CSS custom properties
-.main-content.full-screen {
-  padding: 0;
-  margin: 0;
 }
