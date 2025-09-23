@@ -2,11 +2,54 @@
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
+
+  // Scrolled state - blue background
+  &.scrolled {
+    background: rgba(0, 102, 204, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 102, 204, 0.2);
+    border-bottom: 1px solid rgba(0, 102, 204, 0.3);
+
+    .logo a {
+      color: white;
+    }
+
+    .logoText {
+      background: linear-gradient(135deg, #ffffff, #e6f3ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .navLink {
+      color: white;
+
+      &:hover {
+        color: #e6f3ff;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      &.active {
+        color: #e6f3ff;
+        background-color: rgba(255, 255, 255, 0.15);
+
+        &::after {
+          background: linear-gradient(135deg, #ffffff, #e6f3ff);
+        }
+      }
+    }
+
+    .line {
+      background-color: white;
+    }
+  }
 
   // Transparent header for home page
   &.transparent {

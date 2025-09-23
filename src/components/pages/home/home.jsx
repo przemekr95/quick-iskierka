@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSchedule } from '../../../hooks/useSchedule'
-import { useResponsiveBackground } from '../../../hooks/useResponsiveBackground'
+import { HERO_IMAGE } from '../../../constants/images'
 import HeroSection from '../../atomic/hero-section/hero-section'
 import LoadingSpinner from '../../atomic/loading-spinner/loading-spinner'
 import ErrorMessage from '../../atomic/error-message/error-message'
@@ -9,7 +9,6 @@ import styles from './home.module.scss'
 
 const Home = () => {
   const { schedule, loading, error } = useSchedule()
-  const { backgroundImage, fallbackGradient } = useResponsiveBackground()
   const navigate = useNavigate()
 
   const handleLearnMore = () => {
@@ -31,8 +30,7 @@ const Home = () => {
   return (
     <div className={styles.homePage}>
       <HeroSection
-        backgroundImage={backgroundImage}
-        fallbackGradient={fallbackGradient}
+        backgroundImage={HERO_IMAGE}
         title='MUKS Iskierka Tarnów'
         subtitle='Pasja • Determinacja • Siatkówka'
         primaryButton={{

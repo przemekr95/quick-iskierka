@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useMobileMenu } from '../../../hooks/useMobileMenu'
 import { useNavigation } from '../../../hooks/useNavigation'
+import { useScrolled } from '../../../hooks/useScrolled'
 import NavLink from '../../atomic/nav-link/nav-link'
 import { NAVIGATION_ITEMS } from '../../../constants/navigation'
 import styles from './header.module.scss'
@@ -11,12 +12,24 @@ import styles from './header.module.scss'
 const Header = () => {
   const { isMenuOpen, toggleMenu } = useMobileMenu()
   const { isActiveLink, isHomePage } = useNavigation()
+  const isScrolled = useScrolled(50)
+
+  const getHeaderClasses = () => {
+    let classes = [styles.header]
+
+    if (isHomePage) {
+      if (!isScrolled) {
+        classes.push(styles.transparent)
+      } else {
+        classes.push(styles.scrolled)
+      }
+    }
+
+    return classes.join(' ')
+  }
 
   return (
-    <header
-      className={`${styles.header} ${isHomePage ? styles.transparent : ''}`}
-      data-header
-    >
+    <header className={getHeaderClasses()} data-header>
       <div className={styles.container}>
         <div className={styles.logo}>
           <Link to='/' aria-label='Iskierka - strona główna'>

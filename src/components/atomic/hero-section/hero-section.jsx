@@ -6,7 +6,6 @@ import styles from './hero-section.module.scss'
 
 const HeroSection = ({
   backgroundImage,
-  fallbackGradient,
   title,
   subtitle,
   primaryButton,
@@ -16,11 +15,7 @@ const HeroSection = ({
     <section className={styles.heroSection}>
       <div
         className={styles.heroBackground}
-        style={{
-          backgroundImage: backgroundImage
-            ? `url(${backgroundImage})`
-            : fallbackGradient,
-        }}
+        style={{ backgroundImage: `url(${backgroundImage})` }}
         aria-label='Hero background image'
       />
       <div className={styles.heroContent}>
@@ -55,7 +50,6 @@ const HeroSection = ({
 
 HeroSection.propTypes = {
   backgroundImage: PropTypes.string,
-  fallbackGradient: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   primaryButton: PropTypes.shape({
