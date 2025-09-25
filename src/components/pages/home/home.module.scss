@@ -6,8 +6,8 @@
   padding: 0;
 }
 
-// Content Section (below hero)
-.contentSection {
+// Schedule Section
+.scheduleSection {
   padding: 4rem 0;
   background: #f8f9fa;
 }
@@ -18,16 +18,73 @@
   padding: 0 1.5rem;
 }
 
-.matchItem {
-  background: white;
-  padding: 1rem;
-  margin: 0.5rem 0;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.scheduleList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
-// Legacy styles (keep for compatibility)
-.heading_text {
-  font-size: $font-size-3xl-font-size;
-  color: $color-primary;
+.matchItem {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+  }
+}
+
+.scheduleSection h2 {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.noMatches {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+
+  p {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.6;
+  }
+}
+
+// Legacy styles cleanup
+.contentSection {
+  display: none; // Remove old content section
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .scheduleList {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .matchItem {
+    padding: 1rem;
+  }
+
+  .scheduleSection {
+    padding: 2rem 0;
+  }
 }

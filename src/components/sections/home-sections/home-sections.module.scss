@@ -1,0 +1,24 @@
+@import '~@przemekr95/quick-design-tokens/dist/scss/index.scss';
+
+.homeSections {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  
+  // Alternate background colors for visual separation
+  & > section:nth-child(odd) {
+    background-color: #ffffff;
+  }
+  
+  & > section:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+}
+
+// Ensure seamless transitions between sections - no gaps at all
+.homeSections section {
+  margin: 0;
+  border: none;
+  padding: 0;
+  display: block;
+}
