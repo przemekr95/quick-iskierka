@@ -2,10 +2,12 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSchedule } from '../../../hooks/useSchedule'
 import { HERO_IMAGE } from '../../../constants/images'
+import { SPONSORS_DATA } from '../../../constants/sponsors'
 import HeroSection from '../../atomic/hero-section/hero-section'
 import LoadingSpinner from '../../atomic/loading-spinner/loading-spinner'
 import ErrorMessage from '../../atomic/error-message/error-message'
 import HomeSections from '../../sections/home-sections/home-sections'
+import SponsorsCarousel from '../../sections/sponsors-carousel/sponsors-carousel'
 import styles from './home.module.scss'
 
 // TODO
@@ -48,6 +50,9 @@ const Home = () => {
 
       {/* Content Sections */}
       <HomeSections />
+
+      {/* Sponsors Carousel */}
+      <SponsorsCarousel sponsors={SPONSORS_DATA} />
 
       {/* Schedule Section */}
       <section className={styles.scheduleSection}>
