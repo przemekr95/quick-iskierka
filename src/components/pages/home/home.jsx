@@ -5,7 +5,10 @@ import { HERO_IMAGE } from '../../../constants/images'
 import HeroSection from '../../atomic/hero-section/hero-section'
 import LoadingSpinner from '../../atomic/loading-spinner/loading-spinner'
 import ErrorMessage from '../../atomic/error-message/error-message'
+import HomeSections from '../../sections/home-sections/home-sections'
 import styles from './home.module.scss'
+
+// TODO
 
 const Home = () => {
   const { schedule, loading, error } = useSchedule()
@@ -43,19 +46,27 @@ const Home = () => {
         }}
       />
 
-      {/* Additional Content */}
-      <section className={styles.contentSection}>
+      {/* Content Sections */}
+      <HomeSections />
+
+      {/* Schedule Section */}
+      <section className={styles.scheduleSection}>
         <div className={styles.container}>
-          <h2>Aktualności</h2>
-          <p>Tutaj będą najnowsze informacje o klubie...</p>
-          {schedule && schedule.length > 0 && (
-            <div>
-              <h3>Najbliższe mecze:</h3>
+          <h2>Najbliższe mecze</h2>
+          {schedule && schedule.length > 0 ? (
+            <div className={styles.scheduleList}>
               {schedule.slice(0, 3).map((match, index) => (
                 <div key={index} className={styles.matchItem}>
                   <p>{match.title || 'Mecz'}</p>
                 </div>
               ))}
+            </div>
+          ) : (
+            <div className={styles.noMatches}>
+              <p>
+                Brak zaplanowanych meczów. Śledź nasze social media po najnowsze
+                informacje!
+              </p>
             </div>
           )}
         </div>

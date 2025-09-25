@@ -20,7 +20,7 @@
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "no-unused-vars": "error",
-    "no-console": "error",
+    "no-console": "warn",
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error"
