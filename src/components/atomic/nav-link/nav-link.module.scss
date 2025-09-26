@@ -1,26 +1,199 @@
-/* NavLink component styles */
+/* Navigation Link Styles */
 .navLink {
-  position: relative;
   text-decoration: none;
-  color: inherit;
-  transition: color 0.3s ease;
+  color: white;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.8rem 0.5rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  // Base underline setup
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
+    border-radius: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+  }
+
+  // Hover effect with loading animation
+  &:hover {
+    color: white;
+    
+    &::after {
+      width: 100%;
+      opacity: 0.8;
+    }
+  }
+
+  &:focus {
+    outline: none;
+    color: white;
+    
+    &::after {
+      width: 100%;
+      opacity: 0.8;
+    }
+  }
+
+  // Active state with full opacity underline
+  &.active {
+    color: white;
+    
+    &::after {
+      width: 100%;
+      opacity: 1;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    }
+  }
+}
+
+// Theme variants for different header states
+.transparent {
+  color: rgba(255, 255, 255, 0.9);
+
+  // No need to override ::after - it's already white by default
 
   &:hover {
-    color: inherit;
-    text-decoration: none;
+    color: white;
+  }
+
+  &:focus {
+    color: white;
   }
 
   &.active {
-    color: inherit;
+    color: white;
+    
+    &::after {
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    }
   }
 }
 
-/* Override any global link styles */
-.navLink:visited {
-  color: inherit;
+.scrolled {
+  color: rgba(248, 250, 252, 0.9);
+
+  &::after {
+    background: linear-gradient(90deg, #60a5fa, #3b82f6);
+  }
+
+  &:hover {
+    color: #f8fafc;
+  }
+
+  &:focus {
+    color: #f8fafc;
+  }
+
+  &.active {
+    color: #f8fafc;
+  }
 }
 
-.navLink:focus {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
+// Mobile navigation variant
+.mobile {
+  color: #333;
+  font-size: 1.1rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  justify-content: center;
+
+  &:hover {
+    color: #1e293b;
+    background-color: rgba(59, 130, 246, 0.05);
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+      border-radius: 1px;
+      opacity: 0.6;
+    }
+  }
+
+  &:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+    color: #1e293b;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+      border-radius: 1px;
+      opacity: 0.6;
+    }
+  }
+
+  &.active {
+    color: #3b82f6;
+    font-weight: 600;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 32px;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+      border-radius: 1px;
+      opacity: 1;
+    }
+  }
+}
+
+// Facebook icon styling
+.navLink svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+// Accessibility improvements
+@media (prefers-reduced-motion: reduce) {
+  .navLink {
+    transition: none;
+    
+    &::after {
+      transition: none;
+    }
+  }
+}
+
+// High contrast support
+@media (prefers-contrast: high) {
+  .navLink {
+    &.active::after {
+      background: #000000;
+      height: 3px;
+    }
+  }
+  
+  .scrolled.active::after {
+    background: #ffffff;
+    height: 3px;
+  }
 }

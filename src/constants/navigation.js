@@ -1,11 +1,21 @@
 // TODO
 
-export const NAVIGATION_ITEMS = [
+export const LEFT_NAVIGATION = [
+  {
+    href: 'https://facebook.com/iskierkatarnow',
+    label: 'Aktualności',
+    icon: 'facebook',
+    target: '_blank',
+    type: 'external',
+  },
   {
     path: '/',
-    label: 'Home',
-    exact: true,
+    label: 'Strona główna',
+    type: 'internal',
   },
+]
+
+export const RIGHT_NAVIGATION = [
   {
     path: '/klub',
     label: 'Klub',
@@ -24,12 +34,24 @@ export const NAVIGATION_ITEMS = [
 ]
 
 /**
+ * Get all navigation items
+ * @returns {Array} All navigation items from both left and right navigation
+ */
+export const getAllNavigationItems = () => {
+  return [
+    ...LEFT_NAVIGATION.filter(item => item.type === 'internal'),
+    ...RIGHT_NAVIGATION,
+  ]
+}
+
+/**
  * Get navigation item by path
  * @param {string} path - The path to find
  * @returns {Object|null} Navigation item or null if not found
  */
 export const getNavigationItem = path => {
-  return NAVIGATION_ITEMS.find(item => item.path === path) || null
+  const allItems = getAllNavigationItems()
+  return allItems.find(item => item.path === path) || null
 }
 
 /**
@@ -45,5 +67,3 @@ export const getPageTitle = path => {
     ? 'MUKS Iskierka Tarnów - Klub Siatkarski'
     : `${item.label} - MUKS Iskierka Tarnów`
 }
-
-export default NAVIGATION_ITEMS
