@@ -1,199 +1,140 @@
-/* Navigation Link Styles */
-.navLink {
-  text-decoration: none;
-  color: white;
-  font-weight: 500;
-  font-size: 0.95rem;
-  padding: 0.8rem 0.5rem;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
 
-  // Base underline setup
+@mixin nav-underline($color1: $color-surface, $color2: $color-surface, $opacity: 0.8) {
   &::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
-    border-radius: 1px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: $spacing-1;
+    background: linear-gradient(90deg, rgba($color1, $opacity), rgba($color2, $opacity * 0.8));
+    border-radius: $spacing-1;
+    transition: all 0.3s ease;
     opacity: 0;
   }
-
-  // Hover effect with loading animation
-  &:hover {
-    color: white;
-    
-    &::after {
-      width: 100%;
-      opacity: 0.8;
-    }
+  
+  &:hover::after,
+  &:focus::after {
+    width: 100%;
+    opacity: $opacity;
   }
-
-  &:focus {
-    outline: none;
-    color: white;
-    
-    &::after {
-      width: 100%;
-      opacity: 0.8;
-    }
-  }
-
-  // Active state with full opacity underline
-  &.active {
-    color: white;
-    
-    &::after {
-      width: 100%;
-      opacity: 1;
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
-    }
+  
+  &.active::after {
+    width: 100%;
+    opacity: 1;
   }
 }
 
-// Theme variants for different header states
-.transparent {
-  color: rgba(255, 255, 255, 0.9);
-
-  // No need to override ::after - it's already white by default
-
-  &:hover {
-    color: white;
-  }
-
+.navLink {
+  text-decoration: none;
+  color: $color-surface;
+  font-size: $font-sm;
+  line-height: $line-sm;
+  font-family: $font-family-primary;
+  font-weight: $font-weight-medium;
+  padding: $spacing-3 $spacing-2;
+  gap: $spacing-2;
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  
+  @include nav-underline($color-surface, $color-surface, 0.8);
+  
   &:focus {
-    color: white;
+    outline: none;
   }
+  
+  &:focus-visible {
+    outline: 2px solid rgba($color-surface, 0.8);
+    outline-offset: 2px;
+    border-radius: $spacing-1;
+  }
+}
 
+.transparent {
+  color: rgba($color-surface, 0.9);
+  
   &.active {
-    color: white;
-    
-    &::after {
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
-    }
+    @include nav-underline($color-primary, $color-secondary, 1);
   }
 }
 
 .scrolled {
-  color: rgba(248, 250, 252, 0.9);
-
-  &::after {
-    background: linear-gradient(90deg, #60a5fa, #3b82f6);
-  }
-
-  &:hover {
-    color: #f8fafc;
-  }
-
-  &:focus {
-    color: #f8fafc;
-  }
-
-  &.active {
-    color: #f8fafc;
-  }
+  color: $color-muted;
+  @include nav-underline($color-primary, $color-secondary, 1);
 }
 
-// Mobile navigation variant
 .mobile {
-  color: #333;
-  font-size: 1.1rem;
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
+  text-decoration: none;
+  color: $color-text;
+  font-size: $font-md;
+  line-height: $line-md;
+  font-family: $font-family-primary;
+  padding: $spacing-4 $spacing-5;
+  border-radius: $spacing-3;
   text-align: center;
   justify-content: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
 
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: $spacing-2;
+    left: 50%;
+    transform: translateX(-50%);
+    width: $spacing-8;
+    height: $spacing-1;
+    background: linear-gradient(90deg, $color-primary, $color-secondary);
+    border-radius: $spacing-1;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+  }
+  
   &:hover {
-    color: #1e293b;
-    background-color: rgba(59, 130, 246, 0.05);
+    color: $color-accent;
+    background-color: rgba($color-primary, 0.05);
     
     &::after {
-      content: '';
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 32px;
-      height: 2px;
-      background: linear-gradient(90deg, #3b82f6, #1d4ed8);
-      border-radius: 1px;
       opacity: 0.6;
     }
   }
-
+  
   &:focus {
-    outline: 2px solid #3b82f6;
-    outline-offset: 2px;
-    color: #1e293b;
+    outline: $spacing-1 solid $color-primary;
+    outline-offset: $spacing-1;
+    color: $color-accent;
     
     &::after {
-      content: '';
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 32px;
-      height: 2px;
-      background: linear-gradient(90deg, #3b82f6, #1d4ed8);
-      border-radius: 1px;
       opacity: 0.6;
     }
   }
-
+  
   &.active {
-    color: #3b82f6;
-    font-weight: 600;
+    color: $color-primary;
+    font-weight: $font-weight-semibold;
     
     &::after {
-      content: '';
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 32px;
-      height: 2px;
-      background: linear-gradient(90deg, #3b82f6, #1d4ed8);
-      border-radius: 1px;
       opacity: 1;
     }
   }
 }
 
-// Facebook icon styling
 .navLink svg {
-  width: 18px;
-  height: 18px;
+  width: $spacing-5;
+  height: $spacing-5;
   flex-shrink: 0;
 }
 
-// Accessibility improvements
 @media (prefers-reduced-motion: reduce) {
-  .navLink {
-    transition: none;
-    
-    &::after {
-      transition: none;
-    }
-  }
+  * { transition: none !important; }
 }
 
-// High contrast support
 @media (prefers-contrast: high) {
-  .navLink {
-    &.active::after {
-      background: #000000;
-      height: 3px;
-    }
-  }
-  
-  .scrolled.active::after {
-    background: #ffffff;
-    height: 3px;
-  }
+  .navLink.active::after { background: $color-text; height: 6px; }
+  .scrolled.active::after { background: $color-surface; height: 3px; }
 }

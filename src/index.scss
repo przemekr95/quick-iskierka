@@ -1,4 +1,5 @@
-@import '~@przemekr95/quick-design-tokens/dist/scss/index.scss';
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/classes' as *;
 
 * {
   box-sizing: border-box;
