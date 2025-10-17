@@ -1,0 +1,171 @@
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+
+// Screen reader only content
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Mobile Menu Button - hidden on desktop
+.menuButton {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px; // equivalent to $spacing-11 (44px)
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: $spacing-2;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: rgba($color-primary, 0.08);
+  }
+
+  &:focus {
+    outline: $spacing-1 solid rgba($color-surface, 0.5);
+    outline-offset: $spacing-1;
+    border-radius: $spacing-2;
+  }
+}
+
+.line {
+  width: $spacing-6;
+  height: $spacing-1;
+  background-color: $color-text;
+  border-radius: $spacing-1;
+  transition: all 0.3s ease;
+  margin: $spacing-1 0;
+
+  .menuButton.menuOpen & {
+    &:nth-child(1) {
+      transform: rotate(45deg) translate($spacing-1, $spacing-1);
+    }
+
+    &:nth-child(2) {
+      opacity: 0;
+    }
+
+    &:nth-child(3) {
+      transform: rotate(-45deg) translate($spacing-2, -$spacing-2);
+    }
+  }
+}
+
+// Mobile Navigation
+.mobileNav {
+  position: fixed;
+  top: 70px; // $spacing-18 equivalent
+  left: 100%;
+  width: 100%;
+  height: calc(100vh - 70px);
+  background: rgba($color-surface, 0.98);
+  backdrop-filter: blur($spacing-5);
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 999;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+
+  &.mobileNavOpen {
+    left: 0;
+    visibility: visible;
+    pointer-events: auto;
+    opacity: 1;
+  }
+}
+
+.mobileNavContent {
+  padding: $spacing-8 $spacing-6;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+// Facebook icon styling
+.facebookIcon {
+  width: $spacing-5;
+  height: $spacing-5;
+  flex-shrink: 0;
+}
+
+.overlay {
+  position: fixed;
+  top: 70px; // $spacing-18 equivalent
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 70px);
+  background-color: rgba($color-text, 0.3);
+  z-index: 998;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Responsive Design - show only on mobile
+@media (max-width: 768px) {
+  .menuButton {
+    display: flex;
+  }
+
+  .mobileNav {
+    top: 60px; // $spacing-15 equivalent
+    height: calc(100vh - 60px);
+  }
+
+  .overlay {
+    top: 60px; // $spacing-15 equivalent
+    height: calc(100vh - 60px);
+  }
+}
+
+@media (max-width: 480px) {
+  .mobileNavContent {
+    padding: $spacing-6 $spacing-4;
+  }
+}
+
+// Transparent state line styling in mobile menu
+.transparent {
+  .line {
+    background-color: $color-surface;
+    box-shadow: 0 1px $spacing-1 rgba($color-text, 0.3);
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .menuButton {
+    border: $spacing-1 solid $color-text;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .line,
+  .mobileNav {
+    transition: none;
+  }
+
+  .overlay {
+    animation: none;
+  }
+}

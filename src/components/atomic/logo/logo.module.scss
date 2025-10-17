@@ -1,0 +1,118 @@
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+
+.logo {
+  flex-shrink: 0;
+}
+
+.logoLink {
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: $spacing-4;
+  color: $color-surface; // Use white color from tokens
+
+  &:hover {
+    color: $color-surface; // Keep white color on hover
+  }
+
+  &:focus {
+    outline: $spacing-1 solid rgba($color-surface, 0.5);
+    outline-offset: $spacing-1;
+    border-radius: $spacing-2;
+    color: $color-surface; // Keep white color on focus
+  }
+
+  &:visited {
+    color: $color-surface; // Keep white color for visited state
+  }
+
+  &:active {
+    color: $color-surface; // Keep white color for active state
+  }
+}
+
+.logoImage {
+  height: 50px; // $spacing-12 equivalent
+  width: auto;
+  transition: all 0.3s ease;
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: $line-sm;
+}
+
+.clubName {
+  font-size: $font-lg;
+  font-weight: $font-weight-bold;
+  font-family: $font-family-primary;
+  color: $color-surface; // Use white color from tokens
+  transition: all 0.3s ease;
+}
+
+.cityName {
+  font-size: $font-sm;
+  font-weight: $font-weight-regular;
+  font-family: $font-family-primary;
+  color: $color-surface; // Use white color from tokens
+  transition: all 0.3s ease;
+}
+
+// Variants
+.logo.compact {
+  .logoImage {
+    height: 40px;
+  }
+  
+  .clubName {
+    font-size: $font-md;
+  }
+  
+  .cityName {
+    font-size: $font-xs;
+  }
+}
+
+.logo.mobile {
+  .logoText {
+    font-size: $font-lg;
+  }
+}
+
+.logo.transparent {
+  .logoImage {
+    filter: drop-shadow(0 $spacing-1 $spacing-2 rgba($color-text, 0.3));
+  }
+
+  .clubName,
+  .cityName {
+    color: $color-surface !important; // White text on transparent background
+    text-shadow: 0 $spacing-1 $spacing-2 rgba($color-text, 0.3);
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .logoText {
+    font-size: $font-lg;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoLink {
+    gap: $spacing-3;
+  }
+  
+  .logoImage {
+    height: 40px;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .logoLink {
+    transition: none;
+  }
+}

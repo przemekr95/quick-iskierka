@@ -1,0 +1,40 @@
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+
+// Desktop navigation container
+.desktopNav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: $spacing-8;
+}
+
+// Left Navigation
+.leftNav {
+  display: flex;
+  gap: $spacing-6;
+  align-items: center;
+  flex: 1;
+}
+
+// Right Navigation
+.rightNav {
+  display: flex;
+  gap: $spacing-6;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+// Facebook icon styling
+.facebookIcon {
+  width: $spacing-5;
+  height: $spacing-5;
+  flex-shrink: 0;
+}
+
+// Responsive Design - hide on mobile
+@media (max-width: 768px) {
+  .desktopNav {
+    display: none;
+  }
+}
