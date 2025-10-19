@@ -1,32 +1,39 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { LOGO_CONFIG } from '../../../constants/header'
 import styles from './logo.module.scss'
 
-// TODO
-
-const Logo = ({ variant = 'default', className = '', linkProps = {} }) => {
-  const logoClasses = [styles.logo, styles[variant], className]
-    .filter(Boolean)
-    .join(' ')
+const Logo = ({
+  variant = LOGO_CONFIG.DEFAULT_VARIANT,
+  className = '',
+  linkProps = {},
+}) => {
+  const logoClasses = useMemo(
+    () => [styles.logo, styles[variant], className].filter(Boolean).join(' '),
+    [variant, className]
+  )
 
   return (
     <div className={logoClasses}>
       <Link
-        to='/'
-        aria-label='Iskierka - strona główna'
+        to={LOGO_CONFIG.HOME_PATH}
+        aria-label={LOGO_CONFIG.ARIA_LABELS.LINK}
         {...linkProps}
         className={styles.logoLink}
       >
         <img
-          src='/images/logo/iskierkaTarnow_white.png'
-          alt='MUKS Iskierka Tarnów - Logo klubu siatkarskiego'
+          src={LOGO_CONFIG.IMAGE_PATH}
+          alt={LOGO_CONFIG.ARIA_LABELS.IMAGE}
           className={styles.logoImage}
           loading='eager'
+          width='50'
+          height='50'
+          decoding='sync'
         />
-        <div className={styles.logoText}>
-          <span className={styles.clubName}>MUKS Iskierka</span>
-          <span className={styles.cityName}>Tarnów</span>
+        <div className={styles.logoText} aria-hidden='true'>
+          <span className={styles.clubName}>{LOGO_CONFIG.CLUB_INFO.NAME}</span>
+          <span className={styles.cityName}>{LOGO_CONFIG.CLUB_INFO.CITY}</span>
         </div>
       </Link>
     </div>
@@ -34,11 +41,8 @@ const Logo = ({ variant = 'default', className = '', linkProps = {} }) => {
 }
 
 Logo.propTypes = {
-  /** Logo variant style */
-  variant: PropTypes.oneOf(['default', 'compact', 'mobile']),
-  /** Additional CSS classes */
+  variant: PropTypes.oneOf(Object.values(LOGO_CONFIG.VARIANTS)),
   className: PropTypes.string,
-  /** Additional props for Link component */
   linkProps: PropTypes.object,
 }
 

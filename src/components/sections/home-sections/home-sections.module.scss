@@ -2,12 +2,12 @@
   width: 100%;
   margin: 0;
   padding: 0;
-  
+
   // Alternate background colors for visual separation
   & > section:nth-child(odd) {
     background-color: #ffffff;
   }
-  
+
   & > section:nth-child(even) {
     background-color: #f8f9fa;
   }

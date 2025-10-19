@@ -46,6 +46,7 @@ const Header = ({
         className={headerClasses}
         role='banner'
         aria-label={HEADER_CONFIG.ARIA_LABELS.BANNER}
+        data-header
       >
         <div className={styles.container}>
           <NavigationDesktop
@@ -57,6 +58,8 @@ const Header = ({
             isActiveLink={isActiveLink}
             isMenuOpen={isMenuOpen}
             toggleMenu={toggleMenu}
+            getThemeClass={getThemeClass}
+            showLogo={true}
           />
         </div>
       </header>

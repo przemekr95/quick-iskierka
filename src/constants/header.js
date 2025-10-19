@@ -12,3 +12,24 @@ export const HEADER_THEMES = {
   SCROLLED: 'scrolled',
   FILLED: 'filled',
 }
+
+export const LOGO_CONFIG = {
+  DEFAULT_VARIANT: 'default',
+  HOME_PATH: '/',
+  IMAGE_PATH: '/images/logo/iskierkaTarnow_white.png',
+  CLUB_INFO: {
+    NAME: 'MUKS Iskierka',
+    CITY: 'Tarnów',
+    FULL_NAME: 'MUKS Iskierka Tarnów',
+  },
+  ARIA_LABELS: {
+    LINK: 'Iskierka - strona główna',
+    IMAGE: 'MUKS Iskierka Tarnów - Logo klubu',
+  },
+  VARIANTS: {
+    DEFAULT: 'default',
+    COMPACT: 'compact',
+    MOBILE: 'mobile',
+    TRANSPARENT: 'transparent',
+  },
+}

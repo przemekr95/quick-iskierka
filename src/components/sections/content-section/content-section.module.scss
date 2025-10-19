@@ -99,13 +99,13 @@
 // Layout variants
 .contentSection.image-right {
   .container {
-    grid-template-areas: "text image";
+    grid-template-areas: 'text image';
   }
-  
+
   .textContent {
     grid-area: text;
   }
-  
+
   .imageContent {
     grid-area: image;
   }
@@ -113,13 +113,13 @@
 
 .contentSection.image-left {
   .container {
-    grid-template-areas: "image text";
+    grid-template-areas: 'image text';
   }
-  
+
   .textContent {
     grid-area: text;
   }
-  
+
   .imageContent {
     grid-area: image;
   }
@@ -157,9 +157,9 @@
   .contentSection.image-right,
   .contentSection.image-left {
     .container {
-      grid-template-areas: 
-        "text"
-        "image";
+      grid-template-areas:
+        'text'
+        'image';
     }
   }
 }

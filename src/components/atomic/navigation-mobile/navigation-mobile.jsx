@@ -1,132 +1,191 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback, useRef } from 'react'
 import PropTypes from 'prop-types'
 import NavLink from '../nav-link/nav-link'
+import Logo from '../logo/logo'
 import {
   LEFT_NAVIGATION,
   RIGHT_NAVIGATION,
 } from '../../../constants/navigation'
+import { LOGO_CONFIG } from '../../../constants/header'
 import styles from './navigation-mobile.module.scss'
 
-// TODO
+const NavigationMobile = ({
+  isActiveLink,
+  isMenuOpen,
+  toggleMenu,
+  getThemeClass,
+  showLogo = true,
+}) => {
+  const menuButtonRef = useRef(null)
+  const firstMenuItemRef = useRef(null)
 
-const NavigationMobile = ({ isActiveLink, isMenuOpen, toggleMenu }) => {
-  // Accessibility: Handle escape key and body scroll lock
-  useEffect(() => {
-    const handleKeyDown = event => {
+  const currentTheme = getThemeClass()
+
+  const handleToggleMenu = () => {
+    toggleMenu()
+  }
+
+  const handleKeyDown = useCallback(
+    event => {
       if (event.key === 'Escape' && isMenuOpen) {
         toggleMenu()
+        if (menuButtonRef.current) {
+          menuButtonRef.current.focus()
+        }
       }
-    }
+    },
+    [isMenuOpen, toggleMenu]
+  )
 
+  useEffect(() => {
     if (isMenuOpen) {
       document.addEventListener('keydown', handleKeyDown)
-      // Prevent body scroll when menu is open
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
+
+      const timer = setTimeout(() => {
+        if (firstMenuItemRef.current) {
+          firstMenuItemRef.current.focus()
+        }
+      }, 150)
+
+      return () => {
+        document.removeEventListener('keydown', handleKeyDown)
+        clearTimeout(timer)
+      }
     }
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = 'unset'
     }
-  }, [isMenuOpen, toggleMenu])
+  }, [isMenuOpen, handleKeyDown])
+
+  const renderExternalLink = (item, isFirst = false) => (
+    <NavLink
+      key={item.href}
+      href={item.href}
+      external={true}
+      target={item.target}
+      className={styles.mobileNavLink}
+      aria-label={`${item.label} - otwiera w nowej karcie`}
+      rel='noopener noreferrer'
+      ref={isFirst ? firstMenuItemRef : null}
+    >
+      <svg
+        className={styles.socialIcon}
+        viewBox='0 0 24 24'
+        fill='currentColor'
+        aria-hidden='true'
+        focusable='false'
+      >
+        <title>{item.label} icon</title>
+        <path d='M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z' />
+      </svg>
+      <span>{item.label}</span>
+    </NavLink>
+  )
+
+  const renderInternalLink = (item, isFirst = false) => (
+    <NavLink
+      key={item.path}
+      to={item.path}
+      className={styles.mobileNavLink}
+      isActive={isActiveLink(item.path)}
+      aria-current={isActiveLink(item.path) ? 'page' : undefined}
+      ref={isFirst ? firstMenuItemRef : null}
+    >
+      {item.label}
+    </NavLink>
+  )
 
   return (
-    <>
-      {/* Screen reader announcements for mobile menu */}
+    <div className={styles.mobileNavContainer}>
       <div aria-live='polite' aria-atomic='true' className={styles.srOnly}>
-        {isMenuOpen ? 'Menu mobilne jest otwarte' : ''}
+        {isMenuOpen ? 'Menu mobilne zostało otwarte' : ''}
       </div>
 
-      {/* Mobile Menu Button */}
-      <button
-        className={`${styles.menuButton} ${isMenuOpen ? styles.menuOpen : ''}`}
-        onClick={toggleMenu}
-        aria-expanded={isMenuOpen}
-        aria-controls='mobile-menu'
-        aria-label={isMenuOpen ? 'Zamknij menu' : 'Otwórz menu'}
-      >
-        <span className={styles.line}></span>
-        <span className={styles.line}></span>
-        <span className={styles.line}></span>
-      </button>
+      <div className={styles.mobileHeader}>
+        {showLogo && (
+          <div className={styles.logoContainer}>
+            <Logo variant={LOGO_CONFIG.VARIANTS.MOBILE} />
+          </div>
+        )}
 
-      {/* Mobile Navigation */}
+        <button
+          ref={menuButtonRef}
+          className={`${styles.menuButton} ${currentTheme} ${isMenuOpen ? styles.menuOpen : ''}`}
+          onClick={handleToggleMenu}
+          aria-expanded={isMenuOpen}
+          aria-controls='mobile-navigation'
+          aria-label={
+            isMenuOpen ? 'Zamknij menu nawigacji' : 'Otwórz menu nawigacji'
+          }
+          type='button'
+        >
+          <span className={styles.hamburgerLine} aria-hidden='true'></span>
+          <span className={styles.hamburgerLine} aria-hidden='true'></span>
+          <span className={styles.hamburgerLine} aria-hidden='true'></span>
+        </button>
+      </div>
+
       <nav
-        id='mobile-menu'
+        id='mobile-navigation'
         className={`${styles.mobileNav} ${isMenuOpen ? styles.mobileNavOpen : ''}`}
         aria-label='Nawigacja mobilna'
+        role='navigation'
+        aria-hidden={!isMenuOpen}
       >
         <div className={styles.mobileNavContent}>
-          {LEFT_NAVIGATION.map(item => {
-            if (item.type === 'external') {
-              return (
-                <NavLink
-                  key={item.href}
-                  href={item.href}
-                  external={true}
-                  target={item.target}
-                  className={styles.mobile}
-                  aria-label={`${item.label} - otwiera w nowej karcie`}
-                >
-                  <svg
-                    className={styles.facebookIcon}
-                    viewBox='0 0 24 24'
-                    fill='currentColor'
-                    aria-hidden='true'
-                    focusable='false'
-                  >
-                    <path d='M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z' />
-                  </svg>
-                  {item.label}
-                </NavLink>
-              )
-            }
-            return (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                className={styles.mobile}
-                isActive={isActiveLink(item.path)}
-              >
-                {item.label}
-              </NavLink>
-            )
-          })}
+          <div className={styles.menuLogoContainer}>
+            <Logo variant={LOGO_CONFIG.VARIANTS.MOBILE} />
+          </div>
+          <section className={styles.socialSection}>
+            <ul className={styles.socialList} role='list'>
+              {LEFT_NAVIGATION.map(item => (
+                <li key={item.href || item.path} role='listitem'>
+                  {item.type === 'external'
+                    ? renderExternalLink(item, false)
+                    : renderInternalLink(item, false)}
+                </li>
+              ))}
+            </ul>
+          </section>
 
-          {RIGHT_NAVIGATION.map(({ path, label }) => (
-            <NavLink
-              key={path}
-              to={path}
-              className={styles.mobile}
-              isActive={isActiveLink(path)}
-            >
-              {label}
-            </NavLink>
-          ))}
+          <section className={styles.mainSection}>
+            <ul className={styles.mainNavList} role='list'>
+              {RIGHT_NAVIGATION.map((item, index) => (
+                <li key={item.path} role='listitem'>
+                  <NavLink
+                    to={item.path}
+                    className={styles.mobileNavLink}
+                    isActive={isActiveLink(item.path)}
+                    aria-current={isActiveLink(item.path) ? 'page' : undefined}
+                    ref={index === 0 ? firstMenuItemRef : null}
+                  >
+                    {item.label}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div
           className={styles.overlay}
-          onClick={toggleMenu}
+          onClick={handleToggleMenu}
           aria-hidden='true'
         />
       )}
-    </>
+    </div>
   )
 }
 
 NavigationMobile.propTypes = {
-  /** Function to check if link is active */
   isActiveLink: PropTypes.func.isRequired,
-  /** Mobile menu open state */
   isMenuOpen: PropTypes.bool.isRequired,
-  /** Function to toggle mobile menu */
   toggleMenu: PropTypes.func.isRequired,
+  getThemeClass: PropTypes.func.isRequired,
+  showLogo: PropTypes.bool,
 }
 
 export default NavigationMobile

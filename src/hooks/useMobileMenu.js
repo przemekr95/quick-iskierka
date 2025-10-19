@@ -9,39 +9,36 @@ export const useMobileMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
 
-  // Close menu when route changes
   useEffect(() => {
     setIsMenuOpen(false)
   }, [location])
 
-  // Close menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = event => {
-      // Only check if menu is open and click is outside header
-      if (isMenuOpen && !event.target.closest('[data-header]')) {
-        setIsMenuOpen(false)
-      }
-    }
-
-    if (isMenuOpen) {
-      document.addEventListener('click', handleClickOutside)
-      return () => document.removeEventListener('click', handleClickOutside)
-    }
-  }, [isMenuOpen])
-
-  // Prevent scrolling when menu is open on mobile
   useEffect(() => {
     const body = document.body
-    const originalOverflow = body.style.overflow
+    const html = document.documentElement
 
     if (isMenuOpen) {
-      body.style.overflow = 'hidden'
-    } else {
-      body.style.overflow = originalOverflow || 'unset'
-    }
+      const originalBodyOverflow = body.style.overflow
+      const originalHtmlOverflow = html.style.overflow
 
-    return () => {
-      body.style.overflow = originalOverflow || 'unset'
+      body.classList.add('scroll-lock')
+      html.classList.add('scroll-lock')
+
+      body.style.setProperty('overflow', 'hidden', 'important')
+      html.style.setProperty('overflow', 'hidden', 'important')
+
+      const preventTouch = e => {
+        e.preventDefault()
+      }
+      document.addEventListener('touchmove', preventTouch, { passive: false })
+
+      return () => {
+        body.classList.remove('scroll-lock')
+        html.classList.remove('scroll-lock')
+        body.style.overflow = originalBodyOverflow
+        html.style.overflow = originalHtmlOverflow
+        document.removeEventListener('touchmove', preventTouch)
+      }
     }
   }, [isMenuOpen])
 
