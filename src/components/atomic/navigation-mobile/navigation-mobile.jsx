@@ -39,44 +39,40 @@ const NavigationMobile = ({
     [isMenuOpen, handleCloseMenu]
   )
 
+  const handleFocusTrap = useCallback(event => {
+    if (event.key === 'Tab') {
+      const focusableElements = []
+
+      if (menuButtonRef.current) {
+        focusableElements.push(menuButtonRef.current)
+      }
+
+      const menuElement = document.getElementById('mobile-navigation')
+      if (menuElement) {
+        const menuFocusable = menuElement.querySelectorAll(
+          'a[href], [tabindex]:not([tabindex="-1"])'
+        )
+        focusableElements.push(...Array.from(menuFocusable))
+      }
+
+      if (focusableElements.length === 0) return
+
+      const firstElement = focusableElements[0]
+      const lastElement = focusableElements[focusableElements.length - 1]
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault()
+        lastElement.focus()
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault()
+        firstElement.focus()
+      }
+    }
+  }, [])
+
   useEffect(() => {
     if (isMenuOpen) {
       document.addEventListener('keydown', handleKeyDown)
-
-      const handleFocusTrap = event => {
-        if (event.key === 'Tab') {
-          const focusableElements = []
-
-          if (menuButtonRef.current) {
-            focusableElements.push(menuButtonRef.current)
-          }
-
-          const menuElement = document.getElementById('mobile-navigation')
-          if (menuElement) {
-            const menuFocusable = menuElement.querySelectorAll(
-              'a[href], [tabindex]:not([tabindex="-1"])'
-            )
-            focusableElements.push(...Array.from(menuFocusable))
-          }
-
-          if (focusableElements.length === 0) return
-
-          const firstElement = focusableElements[0]
-          const lastElement = focusableElements[focusableElements.length - 1]
-
-          if (event.shiftKey && document.activeElement === firstElement) {
-            event.preventDefault()
-            lastElement.focus()
-          } else if (
-            !event.shiftKey &&
-            document.activeElement === lastElement
-          ) {
-            event.preventDefault()
-            firstElement.focus()
-          }
-        }
-      }
-
       document.addEventListener('keydown', handleFocusTrap)
 
       if (menuButtonRef.current) {
@@ -88,7 +84,7 @@ const NavigationMobile = ({
         document.removeEventListener('keydown', handleFocusTrap)
       }
     }
-  }, [isMenuOpen, handleKeyDown])
+  }, [isMenuOpen, handleKeyDown, handleFocusTrap])
 
   const renderExternalLink = item => (
     <NavLink

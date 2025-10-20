@@ -20,17 +20,16 @@ export const useScrollLock = isLocked => {
 
       body.classList.add('scroll-lock')
       html.classList.add('scroll-lock')
+      body.style.top = `-${scrollYRef.current}px`
+    }
 
-      body.style.setProperty('overflow', 'hidden', 'important')
-      html.style.setProperty('overflow', 'hidden', 'important')
-      body.style.setProperty('top', `-${scrollYRef.current}px`, 'important')
-
-      return () => {
+    return () => {
+      if (body.classList.contains('scroll-lock')) {
         body.classList.remove('scroll-lock')
         html.classList.remove('scroll-lock')
         body.style.overflow = originalBodyOverflowRef.current
         html.style.overflow = originalHtmlOverflowRef.current
-        body.style.top = ''
+        body.style.removeProperty('top')
 
         window.scrollTo(0, scrollYRef.current)
       }
