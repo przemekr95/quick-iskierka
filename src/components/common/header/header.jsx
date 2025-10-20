@@ -32,6 +32,11 @@ const Header = ({
     [isScrolled, isHomePage]
   )
 
+  const getThemeToken = useCallback(
+    () => (!isHomePage || isScrolled ? 'scrolled' : 'transparent'),
+    [isScrolled, isHomePage]
+  )
+
   return (
     <>
       <a
@@ -51,7 +56,7 @@ const Header = ({
         <div className={styles.container}>
           <NavigationDesktop
             isActiveLink={isActiveLink}
-            getThemeClass={getThemeClass}
+            getThemeToken={getThemeToken}
             showLogo={true}
           />
           <NavigationMobile

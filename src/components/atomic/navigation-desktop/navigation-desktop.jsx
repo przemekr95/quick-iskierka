@@ -11,17 +11,17 @@ import styles from './navigation-desktop.module.scss'
 
 const NavigationDesktop = ({
   isActiveLink,
-  getThemeClass,
+  getThemeToken,
   showLogo = true,
 }) => {
   const logoVariant = useMemo(() => {
-    const themeClass = getThemeClass()
-    return themeClass && themeClass.includes('transparent')
+    const themeToken = getThemeToken()
+    return themeToken === 'transparent'
       ? LOGO_CONFIG.VARIANTS.TRANSPARENT
       : LOGO_CONFIG.VARIANTS.DEFAULT
-  }, [getThemeClass])
+  }, [getThemeToken])
 
-  const currentTheme = useMemo(() => getThemeClass(), [getThemeClass])
+  const currentTheme = useMemo(() => getThemeToken(), [getThemeToken])
 
   const renderExternalLink = useCallback(
     item => (
@@ -30,7 +30,7 @@ const NavigationDesktop = ({
         href={item.href}
         external={true}
         target={item.target}
-        className={currentTheme}
+        theme={currentTheme}
         aria-label={`${item.label} - otwiera w nowej karcie`}
         rel='noopener noreferrer'
       >
@@ -45,7 +45,7 @@ const NavigationDesktop = ({
           <title>{item.label} icon</title>
           <path d='M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z' />
         </svg>
-        <span className='sr-only'>{item.label}</span>
+        <span className={styles['sr-only']}>{item.label}</span>
       </NavLink>
     ),
     [currentTheme]
@@ -56,7 +56,7 @@ const NavigationDesktop = ({
       <NavLink
         key={item.path}
         to={item.path}
-        className={currentTheme}
+        theme={currentTheme}
         isActive={isActiveLink(item.path)}
       >
         {item.label}
@@ -66,16 +66,8 @@ const NavigationDesktop = ({
   )
 
   return (
-    <div
-      className={styles.desktopNav}
-      role='navigation'
-      aria-label='Nawigacja główna strony'
-    >
-      <nav
-        className={styles.leftNav}
-        aria-label='Media społecznościowe'
-        role='navigation'
-      >
+    <div className={styles.desktopNav}>
+      <nav className={styles.leftNav} aria-label='Media społecznościowe'>
         <ul className={styles.socialList} role='list'>
           {LEFT_NAVIGATION.map(item => (
             <li key={item.href || item.path} role='listitem'>
@@ -93,17 +85,13 @@ const NavigationDesktop = ({
         </div>
       )}
 
-      <nav
-        className={styles.rightNav}
-        aria-label='Nawigacja główna'
-        role='navigation'
-      >
+      <nav className={styles.rightNav} aria-label='Nawigacja główna'>
         <ul className={styles.mainNavList} role='list'>
           {RIGHT_NAVIGATION.map(({ path, label }) => (
             <li key={path} role='listitem'>
               <NavLink
                 to={path}
-                className={currentTheme}
+                theme={currentTheme}
                 isActive={isActiveLink(path)}
               >
                 {label}
@@ -118,7 +106,7 @@ const NavigationDesktop = ({
 
 NavigationDesktop.propTypes = {
   isActiveLink: PropTypes.func.isRequired,
-  getThemeClass: PropTypes.func.isRequired,
+  getThemeToken: PropTypes.func.isRequired,
   showLogo: PropTypes.bool,
 }
 

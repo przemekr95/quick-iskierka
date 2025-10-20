@@ -20,23 +20,31 @@ export const useMobileMenu = () => {
     if (isMenuOpen) {
       const originalBodyOverflow = body.style.overflow
       const originalHtmlOverflow = html.style.overflow
+      const scrollY = window.scrollY
 
       body.classList.add('scroll-lock')
       html.classList.add('scroll-lock')
 
       body.style.setProperty('overflow', 'hidden', 'important')
       html.style.setProperty('overflow', 'hidden', 'important')
+      body.style.setProperty('top', `-${scrollY}px`, 'important')
 
       const preventTouch = e => {
-        e.preventDefault()
+        const menu = document.getElementById('mobile-navigation')
+        if (!menu || !menu.contains(e.target)) {
+          e.preventDefault()
+        }
       }
       document.addEventListener('touchmove', preventTouch, { passive: false })
 
       return () => {
+        // Remove classes and restore styles
         body.classList.remove('scroll-lock')
         html.classList.remove('scroll-lock')
         body.style.overflow = originalBodyOverflow
         html.style.overflow = originalHtmlOverflow
+        body.style.top = ''
+        window.scrollTo(0, scrollY)
         document.removeEventListener('touchmove', preventTouch)
       }
     }

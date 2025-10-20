@@ -21,12 +21,15 @@ body {
   max-width: 100vw;
 }
 
-body.scroll-lock,
-html.scroll-lock {
+body.scroll-lock {
   overflow: hidden !important;
   position: fixed !important;
   width: 100% !important;
   height: 100% !important;
+}
+
+html.scroll-lock {
+  overflow: hidden !important;
 }
 
 code {

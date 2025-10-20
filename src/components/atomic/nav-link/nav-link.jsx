@@ -9,6 +9,7 @@ const NavLink = ({
   children,
   className = '',
   activeClassName = '',
+  theme = '',
   isActive = false,
   external = false,
   target,
@@ -17,6 +18,7 @@ const NavLink = ({
 }) => {
   const linkClasses = [
     styles.navLink,
+    theme && styles[theme] ? styles[theme] : '',
     className,
     isActive ? styles.active : '',
     isActive && activeClassName ? activeClassName : '',
@@ -63,6 +65,7 @@ NavLink.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   activeClassName: PropTypes.string,
+  theme: PropTypes.oneOf(['transparent', 'scrolled']),
   isActive: PropTypes.bool,
   external: PropTypes.bool,
   target: PropTypes.oneOf(['_blank', '_self', '_parent', '_top']),

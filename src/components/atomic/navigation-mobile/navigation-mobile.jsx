@@ -130,7 +130,6 @@ const NavigationMobile = ({
         id='mobile-navigation'
         className={`${styles.mobileNav} ${isMenuOpen ? styles.mobileNavOpen : ''}`}
         aria-label='Nawigacja mobilna'
-        role='navigation'
         aria-hidden={!isMenuOpen}
       >
         <div className={styles.mobileNavContent}>
