@@ -49,12 +49,6 @@
     -webkit-backdrop-filter: blur($spacing-5);
     border-bottom: 1px solid rgba($color-primary, 0.2);
     box-shadow: 0 $spacing-2 $spacing-8 rgba($color-text, 0.2);
-
-    .logo {
-      .logoText {
-        color: $color-surface;
-      }
-    }
   }
 
   &.transparent {
@@ -62,21 +56,6 @@
     backdrop-filter: none;
     box-shadow: none;
     border-bottom: none;
-
-    .logoImage {
-      filter: drop-shadow(0 $spacing-1 $spacing-2 rgba($color-text, 0.3));
-    }
-
-    .clubName,
-    .cityName {
-      color: $color-surface;
-      text-shadow: 0 $spacing-1 $spacing-2 rgba($color-text, 0.3);
-    }
-
-    .line {
-      background-color: $color-surface;
-      box-shadow: 0 1px $spacing-1 rgba($color-text, 0.3);
-    }
   }
 
   &.filled {
@@ -85,12 +64,6 @@
     -webkit-backdrop-filter: blur($spacing-5);
     border-bottom: 1px solid rgba($color-primary, 0.2);
     box-shadow: 0 $spacing-2 $spacing-8 rgba($color-text, 0.2);
-
-    .logo {
-      .logoText {
-        color: $color-surface;
-      }
-    }
   }
 }
 

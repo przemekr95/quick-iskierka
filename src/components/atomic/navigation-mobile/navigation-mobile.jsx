@@ -13,33 +13,62 @@ const NavigationMobile = ({
   isActiveLink,
   isMenuOpen,
   toggleMenu,
-  getThemeClass,
   showLogo = true,
 }) => {
   const menuButtonRef = useRef(null)
   const firstMenuItemRef = useRef(null)
 
-  const currentTheme = getThemeClass()
-
   const handleToggleMenu = () => {
     toggleMenu()
   }
 
+  const handleCloseMenu = useCallback(() => {
+    toggleMenu()
+    setTimeout(() => {
+      if (menuButtonRef.current) {
+        menuButtonRef.current.focus()
+      }
+    }, 100)
+  }, [toggleMenu])
+
   const handleKeyDown = useCallback(
     event => {
       if (event.key === 'Escape' && isMenuOpen) {
-        toggleMenu()
-        if (menuButtonRef.current) {
-          menuButtonRef.current.focus()
-        }
+        handleCloseMenu()
       }
     },
-    [isMenuOpen, toggleMenu]
+    [isMenuOpen, handleCloseMenu]
   )
 
   useEffect(() => {
     if (isMenuOpen) {
       document.addEventListener('keydown', handleKeyDown)
+
+      const handleFocusTrap = event => {
+        if (event.key === 'Tab') {
+          const menuElement = document.getElementById('mobile-navigation')
+          if (!menuElement) return
+
+          const focusableElements = menuElement.querySelectorAll(
+            'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+          )
+          const firstElement = focusableElements[0]
+          const lastElement = focusableElements[focusableElements.length - 1]
+
+          if (event.shiftKey && document.activeElement === firstElement) {
+            event.preventDefault()
+            lastElement?.focus()
+          } else if (
+            !event.shiftKey &&
+            document.activeElement === lastElement
+          ) {
+            event.preventDefault()
+            firstElement?.focus()
+          }
+        }
+      }
+
+      document.addEventListener('keydown', handleFocusTrap)
 
       const timer = setTimeout(() => {
         if (firstMenuItemRef.current) {
@@ -49,6 +78,7 @@ const NavigationMobile = ({
 
       return () => {
         document.removeEventListener('keydown', handleKeyDown)
+        document.removeEventListener('keydown', handleFocusTrap)
         clearTimeout(timer)
       }
     }
@@ -111,7 +141,7 @@ const NavigationMobile = ({
 
         <button
           ref={menuButtonRef}
-          className={`${styles.menuButton} ${currentTheme} ${isMenuOpen ? styles.menuOpen : ''}`}
+          className={`${styles.menuButton} ${isMenuOpen ? styles.menuOpen : ''}`}
           onClick={handleToggleMenu}
           aria-expanded={isMenuOpen}
           aria-controls='mobile-navigation'
@@ -171,7 +201,7 @@ const NavigationMobile = ({
       {isMenuOpen && (
         <div
           className={styles.overlay}
-          onClick={handleToggleMenu}
+          onClick={handleCloseMenu}
           aria-hidden='true'
         />
       )}
@@ -183,7 +213,6 @@ NavigationMobile.propTypes = {
   isActiveLink: PropTypes.func.isRequired,
   isMenuOpen: PropTypes.bool.isRequired,
   toggleMenu: PropTypes.func.isRequired,
-  getThemeClass: PropTypes.func.isRequired,
   showLogo: PropTypes.bool,
 }
 

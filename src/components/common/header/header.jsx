@@ -27,11 +27,6 @@ const Header = ({
     return `${baseClass} ${themeClass}`
   }, [isHomePage, isScrolled])
 
-  const getThemeClass = useCallback(
-    () => (!isHomePage || isScrolled ? styles.scrolled : styles.transparent),
-    [isScrolled, isHomePage]
-  )
-
   const getThemeToken = useCallback(
     () => (!isHomePage || isScrolled ? 'scrolled' : 'transparent'),
     [isScrolled, isHomePage]
@@ -63,7 +58,6 @@ const Header = ({
             isActiveLink={isActiveLink}
             isMenuOpen={isMenuOpen}
             toggleMenu={toggleMenu}
-            getThemeClass={getThemeClass}
             showLogo={true}
           />
         </div>
