@@ -8,12 +8,13 @@ export const useScrollLock = isLocked => {
   const scrollYRef = useRef(0)
   const originalBodyOverflowRef = useRef('')
   const originalHtmlOverflowRef = useRef('')
+  const wasLockedRef = useRef(false)
 
   useEffect(() => {
     const body = document.body
     const html = document.documentElement
 
-    if (isLocked) {
+    if (isLocked && !wasLockedRef.current) {
       originalBodyOverflowRef.current = body.style.overflow
       originalHtmlOverflowRef.current = html.style.overflow
       scrollYRef.current = window.scrollY
@@ -21,16 +22,25 @@ export const useScrollLock = isLocked => {
       body.classList.add('scroll-lock')
       html.classList.add('scroll-lock')
       body.style.top = `-${scrollYRef.current}px`
+    } else if (!isLocked && wasLockedRef.current) {
+      body.classList.remove('scroll-lock')
+      html.classList.remove('scroll-lock')
+      body.style.overflow = originalBodyOverflowRef.current
+      html.style.overflow = originalHtmlOverflowRef.current
+      body.style.removeProperty('top')
+
+      window.scrollTo(0, scrollYRef.current)
     }
 
+    wasLockedRef.current = isLocked
+
     return () => {
-      if (body.classList.contains('scroll-lock')) {
+      if (wasLockedRef.current && body.classList.contains('scroll-lock')) {
         body.classList.remove('scroll-lock')
         html.classList.remove('scroll-lock')
         body.style.overflow = originalBodyOverflowRef.current
         html.style.overflow = originalHtmlOverflowRef.current
         body.style.removeProperty('top')
-
         window.scrollTo(0, scrollYRef.current)
       }
     }

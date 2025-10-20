@@ -30,61 +30,58 @@ const NavigationMobile = ({
     }, 100)
   }, [toggleMenu])
 
-  const handleKeyDown = useCallback(
+  const handleMenuKeyDown = useCallback(
     event => {
       if (event.key === 'Escape' && isMenuOpen) {
         handleCloseMenu()
+        return
+      }
+
+      if (event.key === 'Tab') {
+        const focusableElements = []
+
+        if (menuButtonRef.current) {
+          focusableElements.push(menuButtonRef.current)
+        }
+
+        const menuElement = document.getElementById('mobile-navigation')
+        if (menuElement) {
+          const menuFocusable = menuElement.querySelectorAll(
+            'a[href], [tabindex]:not([tabindex="-1"])'
+          )
+          focusableElements.push(...Array.from(menuFocusable))
+        }
+
+        if (focusableElements.length === 0) return
+
+        const firstElement = focusableElements[0]
+        const lastElement = focusableElements[focusableElements.length - 1]
+
+        if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault()
+          lastElement.focus()
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault()
+          firstElement.focus()
+        }
       }
     },
     [isMenuOpen, handleCloseMenu]
   )
 
-  const handleFocusTrap = useCallback(event => {
-    if (event.key === 'Tab') {
-      const focusableElements = []
-
-      if (menuButtonRef.current) {
-        focusableElements.push(menuButtonRef.current)
-      }
-
-      const menuElement = document.getElementById('mobile-navigation')
-      if (menuElement) {
-        const menuFocusable = menuElement.querySelectorAll(
-          'a[href], [tabindex]:not([tabindex="-1"])'
-        )
-        focusableElements.push(...Array.from(menuFocusable))
-      }
-
-      if (focusableElements.length === 0) return
-
-      const firstElement = focusableElements[0]
-      const lastElement = focusableElements[focusableElements.length - 1]
-
-      if (event.shiftKey && document.activeElement === firstElement) {
-        event.preventDefault()
-        lastElement.focus()
-      } else if (!event.shiftKey && document.activeElement === lastElement) {
-        event.preventDefault()
-        firstElement.focus()
-      }
-    }
-  }, [])
-
   useEffect(() => {
     if (isMenuOpen) {
-      document.addEventListener('keydown', handleKeyDown)
-      document.addEventListener('keydown', handleFocusTrap)
+      document.addEventListener('keydown', handleMenuKeyDown)
 
       if (menuButtonRef.current) {
         menuButtonRef.current.focus()
       }
 
       return () => {
-        document.removeEventListener('keydown', handleKeyDown)
-        document.removeEventListener('keydown', handleFocusTrap)
+        document.removeEventListener('keydown', handleMenuKeyDown)
       }
     }
-  }, [isMenuOpen, handleKeyDown, handleFocusTrap])
+  }, [isMenuOpen, handleMenuKeyDown])
 
   const renderExternalLink = item => (
     <NavLink
