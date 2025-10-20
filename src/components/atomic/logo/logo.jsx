@@ -27,8 +27,6 @@ const Logo = ({
           alt={LOGO_CONFIG.ARIA_LABELS.IMAGE}
           className={styles.logoImage}
           loading='eager'
-          width='50'
-          height='50'
           decoding='sync'
         />
         <div className={styles.logoText} aria-hidden='true'>

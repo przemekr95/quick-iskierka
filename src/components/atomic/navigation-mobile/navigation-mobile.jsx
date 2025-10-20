@@ -16,7 +16,6 @@ const NavigationMobile = ({
   showLogo = true,
 }) => {
   const menuButtonRef = useRef(null)
-  const firstMenuItemRef = useRef(null)
 
   const handleToggleMenu = () => {
     toggleMenu()
@@ -46,49 +45,52 @@ const NavigationMobile = ({
 
       const handleFocusTrap = event => {
         if (event.key === 'Tab') {
-          const menuElement = document.getElementById('mobile-navigation')
-          if (!menuElement) return
+          const focusableElements = []
 
-          const focusableElements = menuElement.querySelectorAll(
-            'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
-          )
+          if (menuButtonRef.current) {
+            focusableElements.push(menuButtonRef.current)
+          }
+
+          const menuElement = document.getElementById('mobile-navigation')
+          if (menuElement) {
+            const menuFocusable = menuElement.querySelectorAll(
+              'a[href], [tabindex]:not([tabindex="-1"])'
+            )
+            focusableElements.push(...Array.from(menuFocusable))
+          }
+
+          if (focusableElements.length === 0) return
+
           const firstElement = focusableElements[0]
           const lastElement = focusableElements[focusableElements.length - 1]
 
           if (event.shiftKey && document.activeElement === firstElement) {
             event.preventDefault()
-            lastElement?.focus()
+            lastElement.focus()
           } else if (
             !event.shiftKey &&
             document.activeElement === lastElement
           ) {
             event.preventDefault()
-            firstElement?.focus()
+            firstElement.focus()
           }
         }
       }
 
       document.addEventListener('keydown', handleFocusTrap)
 
-      const timer = setTimeout(() => {
-        if (firstMenuItemRef.current) {
-          firstMenuItemRef.current.focus()
-        }
-      }, 150)
+      if (menuButtonRef.current) {
+        menuButtonRef.current.focus()
+      }
 
       return () => {
         document.removeEventListener('keydown', handleKeyDown)
         document.removeEventListener('keydown', handleFocusTrap)
-        clearTimeout(timer)
       }
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
     }
   }, [isMenuOpen, handleKeyDown])
 
-  const renderExternalLink = (item, isFirst = false) => (
+  const renderExternalLink = item => (
     <NavLink
       key={item.href}
       href={item.href}
@@ -97,7 +99,6 @@ const NavigationMobile = ({
       className={styles.mobileNavLink}
       aria-label={`${item.label} - otwiera w nowej karcie`}
       rel='noopener noreferrer'
-      ref={isFirst ? firstMenuItemRef : null}
     >
       <svg
         className={styles.socialIcon}
@@ -113,14 +114,13 @@ const NavigationMobile = ({
     </NavLink>
   )
 
-  const renderInternalLink = (item, isFirst = false) => (
+  const renderInternalLink = item => (
     <NavLink
       key={item.path}
       to={item.path}
       className={styles.mobileNavLink}
       isActive={isActiveLink(item.path)}
       aria-current={isActiveLink(item.path) ? 'page' : undefined}
-      ref={isFirst ? firstMenuItemRef : null}
     >
       {item.label}
     </NavLink>
@@ -171,8 +171,8 @@ const NavigationMobile = ({
               {LEFT_NAVIGATION.map(item => (
                 <li key={item.href || item.path} role='listitem'>
                   {item.type === 'external'
-                    ? renderExternalLink(item, false)
-                    : renderInternalLink(item, false)}
+                    ? renderExternalLink(item)
+                    : renderInternalLink(item)}
                 </li>
               ))}
             </ul>
@@ -180,14 +180,13 @@ const NavigationMobile = ({
 
           <section className={styles.mainSection}>
             <ul className={styles.mainNavList} role='list'>
-              {RIGHT_NAVIGATION.map((item, index) => (
+              {RIGHT_NAVIGATION.map(item => (
                 <li key={item.path} role='listitem'>
                   <NavLink
                     to={item.path}
                     className={styles.mobileNavLink}
                     isActive={isActiveLink(item.path)}
                     aria-current={isActiveLink(item.path) ? 'page' : undefined}
-                    ref={index === 0 ? firstMenuItemRef : null}
                   >
                     {item.label}
                   </NavLink>
