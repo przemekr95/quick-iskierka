@@ -10,7 +10,6 @@ export const HEADER_CONFIG = {
 export const HEADER_THEMES = {
   TRANSPARENT: 'transparent',
   SCROLLED: 'scrolled',
-  FILLED: 'filled',
 }
 
 export const LOGO_CONFIG = {
@@ -20,7 +19,6 @@ export const LOGO_CONFIG = {
   CLUB_INFO: {
     NAME: 'MUKS Iskierka',
     CITY: 'Tarnów',
-    FULL_NAME: 'MUKS Iskierka Tarnów',
   },
   ARIA_LABELS: {
     LINK: 'Iskierka - strona główna',
@@ -28,7 +26,6 @@ export const LOGO_CONFIG = {
   },
   VARIANTS: {
     DEFAULT: 'default',
-    COMPACT: 'compact',
     MOBILE: 'mobile',
     TRANSPARENT: 'transparent',
   },

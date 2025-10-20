@@ -9,6 +9,8 @@ import {
 import { LOGO_CONFIG } from '../../../constants/header'
 import styles from './navigation-mobile.module.scss'
 
+const MENU_CLOSE_FOCUS_DELAY = 100
+
 const NavigationMobile = ({
   isActiveLink,
   isMenuOpen,
@@ -27,7 +29,7 @@ const NavigationMobile = ({
       if (menuButtonRef.current) {
         menuButtonRef.current.focus()
       }
-    }, 100)
+    }, MENU_CLOSE_FOCUS_DELAY)
   }, [toggleMenu])
 
   const handleMenuKeyDown = useCallback(

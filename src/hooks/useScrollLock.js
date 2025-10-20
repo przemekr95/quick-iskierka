@@ -32,10 +32,12 @@ export const useScrollLock = isLocked => {
       window.scrollTo(0, scrollYRef.current)
     }
 
+    const currentlyLocked = isLocked
+
     wasLockedRef.current = isLocked
 
     return () => {
-      if (wasLockedRef.current && body.classList.contains('scroll-lock')) {
+      if (currentlyLocked && body.classList.contains('scroll-lock')) {
         body.classList.remove('scroll-lock')
         html.classList.remove('scroll-lock')
         body.style.overflow = originalBodyOverflowRef.current

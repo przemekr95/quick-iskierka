@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { HEADER_THEMES } from '../../../constants/header'
 import styles from './nav-link.module.scss'
 
 const NavLink = ({
@@ -65,7 +66,7 @@ NavLink.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   activeClassName: PropTypes.string,
-  theme: PropTypes.oneOf(['transparent', 'scrolled']),
+  theme: PropTypes.oneOf(Object.values(HEADER_THEMES)),
   isActive: PropTypes.bool,
   external: PropTypes.bool,
   target: PropTypes.oneOf(['_blank', '_self', '_parent', '_top']),
