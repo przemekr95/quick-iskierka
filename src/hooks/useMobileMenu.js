@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import { useScrollLock } from './useScrollLock'
 
 /**
  * Custom hook for managing mobile menu state and behavior
@@ -9,39 +10,25 @@ export const useMobileMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
 
-  // Close menu when route changes
+  useScrollLock(isMenuOpen)
+
   useEffect(() => {
     setIsMenuOpen(false)
   }, [location])
 
-  // Close menu when clicking outside
   useEffect(() => {
-    const handleClickOutside = event => {
-      // Only check if menu is open and click is outside header
-      if (isMenuOpen && !event.target.closest('[data-header]')) {
-        setIsMenuOpen(false)
+    if (isMenuOpen) {
+      const preventTouch = e => {
+        const menu = document.getElementById('mobile-navigation')
+        if (!menu || !menu.contains(e.target)) {
+          e.preventDefault()
+        }
       }
-    }
+      document.addEventListener('touchmove', preventTouch, { passive: false })
 
-    if (isMenuOpen) {
-      document.addEventListener('click', handleClickOutside)
-      return () => document.removeEventListener('click', handleClickOutside)
-    }
-  }, [isMenuOpen])
-
-  // Prevent scrolling when menu is open on mobile
-  useEffect(() => {
-    const body = document.body
-    const originalOverflow = body.style.overflow
-
-    if (isMenuOpen) {
-      body.style.overflow = 'hidden'
-    } else {
-      body.style.overflow = originalOverflow || 'unset'
-    }
-
-    return () => {
-      body.style.overflow = originalOverflow || 'unset'
+      return () => {
+        document.removeEventListener('touchmove', preventTouch)
+      }
     }
   }, [isMenuOpen])
 

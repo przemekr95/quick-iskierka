@@ -1,0 +1,121 @@
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+
+.logo {
+  flex-shrink: 0;
+}
+
+.logoLink {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: $spacing-4;
+  transition: all 0.3s ease;
+  color: $color-surface;
+
+  &:hover,
+  &:focus,
+  &:visited,
+  &:active {
+    color: $color-surface;
+  }
+
+  &:focus {
+    outline: $spacing-1 solid rgba($color-surface, 0.5);
+    outline-offset: $spacing-1;
+    border-radius: $spacing-2;
+  }
+}
+
+.logoImage {
+  height: $spacing-12;
+  width: auto;
+  transition: all 0.3s ease;
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: $line-sm;
+}
+
+.clubName {
+  font-size: $font-lg;
+  font-weight: $font-weight-bold;
+  font-family: $font-family-primary;
+  color: $color-surface;
+  transition: all 0.3s ease;
+}
+
+.cityName {
+  font-size: $font-sm;
+  font-weight: $font-weight-regular;
+  font-family: $font-family-primary;
+  color: $color-surface;
+  transition: all 0.3s ease;
+}
+
+.logo.compact {
+  .logoImage {
+    height: $spacing-10;
+  }
+
+  .clubName {
+    font-size: $font-md;
+  }
+
+  .cityName {
+    font-size: $font-xs;
+  }
+}
+
+.logo.mobile {
+  .logoText {
+    font-size: $font-lg;
+  }
+}
+
+.logo.transparent {
+  .logoImage {
+    filter: drop-shadow(0 $spacing-1 $spacing-2 rgba($color-text, 0.3));
+  }
+
+  .clubName,
+  .cityName {
+    color: $color-surface !important;
+    text-shadow: 0 $spacing-1 $spacing-2 rgba($color-text, 0.3);
+  }
+}
+
+@media (max-width: 768px) {
+  .logoText {
+    font-size: $font-lg;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoLink {
+    gap: $spacing-3;
+  }
+
+  .logoImage {
+    height: $spacing-10;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logoLink,
+  .logoImage,
+  .clubName,
+  .cityName {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .logoLink {
+    &:focus {
+      outline: $spacing-1 solid $color-surface;
+      outline-offset: $spacing-2;
+    }
+  }
+}

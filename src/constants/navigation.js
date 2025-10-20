@@ -1,8 +1,6 @@
-// TODO
-
 export const LEFT_NAVIGATION = [
   {
-    href: 'https://facebook.com/iskierkatarnow',
+    href: 'https://www.facebook.com/MUKSIskierkaTarnow/',
     label: 'Aktualności',
     icon: 'facebook',
     target: '_blank',
