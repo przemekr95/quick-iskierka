@@ -36,19 +36,12 @@ const HeroSection = ({
         className={styles.heroBackground}
         style={{ backgroundImage: `url(${backgroundImage})` }}
         aria-hidden='true'
-        role='img'
-        aria-label={HERO_CONFIG.ARIA_LABELS.BACKGROUND}
       />
 
       <div className={styles.heroContent}>
         <div className={styles.heroText}>
           <h1 className={styles.heroTitle}>{title}</h1>
-          <p
-            className={styles.heroSubtitle}
-            aria-label={HERO_CONFIG.ARIA_LABELS.SUBTITLE}
-          >
-            {subtitle}
-          </p>
+          <p className={styles.heroSubtitle}>{subtitle}</p>
           {(primaryButton || secondaryButton) && (
             <div
               className={styles.heroActions}
@@ -61,10 +54,7 @@ const HeroSection = ({
                   onClick={handlePrimaryAction}
                   type={primaryButton.type || 'button'}
                   disabled={primaryButton.disabled}
-                  aria-label={
-                    primaryButton.ariaLabel ||
-                    `${HERO_CONFIG.ARIA_LABELS.PRIMARY_BUTTON}: ${primaryButton.text}`
-                  }
+                  aria-label={primaryButton.ariaLabel}
                 >
                   {primaryButton.text}
                 </button>
@@ -75,10 +65,7 @@ const HeroSection = ({
                   onClick={handleSecondaryAction}
                   type={secondaryButton.type || 'button'}
                   disabled={secondaryButton.disabled}
-                  aria-label={
-                    secondaryButton.ariaLabel ||
-                    `${HERO_CONFIG.ARIA_LABELS.SECONDARY_BUTTON}: ${secondaryButton.text}`
-                  }
+                  aria-label={secondaryButton.ariaLabel}
                 >
                   {secondaryButton.text}
                 </button>
