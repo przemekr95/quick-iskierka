@@ -1,11 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  childrenPropType,
-  buttonVariantPropType,
-  sizePropType,
-  classNamePropType,
-} from '../../../utils/propTypes'
 import styles from './button.module.scss'
 
 // TODO
@@ -43,20 +37,21 @@ const Button = ({
 }
 
 Button.propTypes = {
-  /** Button content */
-  children: childrenPropType.isRequired,
-  /** Click handler function */
+  children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
-  /** Button style variant */
-  variant: buttonVariantPropType,
-  /** Button size */
-  size: sizePropType,
-  /** Whether button is disabled */
+  variant: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'outline',
+    'ghost',
+    'danger',
+    'success',
+    'warning',
+  ]),
+  size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
   disabled: PropTypes.bool,
-  /** HTML button type */
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
-  /** Additional CSS classes */
-  className: classNamePropType,
+  className: PropTypes.string,
 }
 
 Button.defaultProps = {
