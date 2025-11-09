@@ -36,8 +36,6 @@ const Home = () => {
     <div className={styles.homePage}>
       <HeroSection
         backgroundImage={HERO_IMAGE}
-        title='MUKS Iskierka Tarnów'
-        subtitle='Pasja • Determinacja • Siatkówka'
         primaryButton={{
           text: 'Poznaj Klub',
           onClick: handleLearnMore,
