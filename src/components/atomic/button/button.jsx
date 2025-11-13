@@ -15,12 +15,6 @@ const Button = ({
   variant = 'primary',
   ...props
 }) => {
-  const handleClick = event => {
-    if (!disabled && onClick) {
-      onClick(event)
-    }
-  }
-
   const buttonClasses = [
     styles.button,
     styles[variant],
@@ -37,7 +31,7 @@ const Button = ({
       aria-label={ariaLabel}
       className={buttonClasses}
       disabled={disabled}
-      onClick={handleClick}
+      onClick={onClick}
       type={type}
       {...props}
     >
