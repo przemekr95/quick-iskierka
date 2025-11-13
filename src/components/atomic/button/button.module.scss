@@ -1,0 +1,159 @@
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+
+// Base Button Styles
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-family-primary;
+  font-weight: $font-weight-medium;
+  border-radius: $spacing-3;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  border: none;
+  text-decoration: none;
+  user-select: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  &:not(:disabled) {
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// Variant Styles
+.primary {
+  background: rgba($color-surface, 0.95);
+  color: $color-primary;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+  &:focus-visible {
+    outline: 3px solid $color-surface;
+    outline-offset: 3px;
+  }
+
+  &:not(:disabled):hover {
+    background: $color-surface;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.secondary {
+  background: rgba($color-primary, 0.95);
+  color: $color-surface;
+  border: 2px solid transparent;
+
+  &:focus-visible {
+    outline: 3px solid $color-primary;
+    outline-offset: 3px;
+  }
+
+  &:not(:disabled):hover {
+    background: $color-primary;
+    box-shadow: 0 4px 20px rgba($color-primary, 0.3);
+  }
+}
+
+.outline {
+  background: transparent;
+  color: $color-surface;
+  border: 2px solid rgba($color-surface, 0.6);
+
+  &:focus-visible {
+    outline: 3px solid $color-surface;
+    outline-offset: 3px;
+  }
+
+  &:not(:disabled):hover {
+    background: rgba($color-surface, 0.1);
+    border-color: $color-surface;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+  }
+}
+
+// Size Styles
+.small {
+  padding: $spacing-2 $spacing-4;
+  font-size: $font-sm;
+  min-height: $spacing-8;
+  min-width: $spacing-16;
+}
+
+.medium {
+  padding: $spacing-3 $spacing-6;
+  font-size: $font-md;
+  min-height: $spacing-10;
+  min-width: $spacing-20;
+}
+
+.large {
+  padding: $spacing-4 $spacing-8;
+  font-size: $font-lg;
+  min-height: $spacing-12;
+  min-width: $spacing-56;
+}
+
+.xlarge {
+  padding: $spacing-5 $spacing-10;
+  font-size: $font-xl;
+  min-height: $spacing-12;
+  min-width: $spacing-64;
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .large,
+  .xlarge {
+    width: 100%;
+    max-width: $spacing-64 + $spacing-8;
+  }
+}
+
+@media (max-width: 480px) {
+  .button {
+    min-width: auto;
+  }
+}
+
+// Accessibility
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+
+    &:not(:disabled) {
+      &:hover,
+      &:active {
+        transform: none;
+      }
+    }
+  }
+}
+
+@media (prefers-contrast: high) {
+  .primary {
+    border: 2px solid $color-primary;
+  }
+
+  .secondary {
+    border: 3px solid $color-surface;
+  }
+
+  .outline {
+    border-width: 3px;
+  }
+}

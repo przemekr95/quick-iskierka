@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
+import Button from '../../atomic/button/button'
 import styles from './content-section.module.scss'
 
 // TODO
@@ -39,13 +40,13 @@ const ContentSection = ({
             <h2 className={styles.title}>{title}</h2>
             <h3 className={styles.subtitle}>{subtitle}</h3>
             <p className={styles.content}>{content}</p>
-            <button
-              className={styles.ctaButton}
+            <Button
+              variant='secondary'
+              size='large'
               onClick={handleButtonClick}
-              type='button'
             >
               {buttonText}
-            </button>
+            </Button>
           </div>
         </div>
         <div className={styles.imageContent}>

@@ -2,16 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './button.module.scss'
 
-// TODO
-
 const Button = ({
+  ariaControls,
+  ariaExpanded,
+  ariaLabel,
   children,
-  onClick,
-  variant = 'primary',
-  size = 'medium',
-  disabled = false,
-  type = 'button',
   className = '',
+  disabled = false,
+  onClick,
+  size = 'medium',
+  type = 'button',
+  variant = 'primary',
   ...props
 }) => {
   const buttonClasses = [
@@ -25,10 +26,13 @@ const Button = ({
 
   return (
     <button
-      type={type}
+      aria-controls={ariaControls}
+      aria-expanded={ariaExpanded}
+      aria-label={ariaLabel}
       className={buttonClasses}
-      onClick={onClick}
       disabled={disabled}
+      onClick={onClick}
+      type={type}
       {...props}
     >
       {children}
@@ -37,30 +41,28 @@ const Button = ({
 }
 
 Button.propTypes = {
+  ariaControls: PropTypes.string,
+  ariaExpanded: PropTypes.bool,
+  ariaLabel: PropTypes.string,
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func,
-  variant: PropTypes.oneOf([
-    'primary',
-    'secondary',
-    'outline',
-    'ghost',
-    'danger',
-    'success',
-    'warning',
-  ]),
-  size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
-  disabled: PropTypes.bool,
-  type: PropTypes.oneOf(['button', 'submit', 'reset']),
   className: PropTypes.string,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
+  variant: PropTypes.oneOf(['primary', 'secondary', 'outline']),
 }
 
 Button.defaultProps = {
-  onClick: undefined,
-  variant: 'primary',
-  size: 'medium',
-  disabled: false,
-  type: 'button',
+  ariaControls: undefined,
+  ariaExpanded: undefined,
+  ariaLabel: undefined,
   className: '',
+  disabled: false,
+  onClick: undefined,
+  size: 'medium',
+  type: 'button',
+  variant: 'primary',
 }
 
 export default Button

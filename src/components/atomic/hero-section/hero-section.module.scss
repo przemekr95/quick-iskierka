@@ -67,80 +67,6 @@
   align-items: center;
 }
 
-.primaryButton {
-  padding: $spacing-4 $spacing-8;
-  font-family: $font-family-primary;
-  font-weight: $font-weight-medium;
-  font-size: $font-lg;
-  border-radius: $spacing-3;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-  width: $spacing-56;
-  border: none;
-  background: rgba($color-surface, 0.95);
-  color: $color-primary;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-
-  &:hover {
-    background: $color-surface;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-  }
-
-  &:active {
-    transform: translateY(-1px);
-  }
-
-  &:focus-visible {
-    outline: 3px solid rgba($color-surface, 0.8);
-    outline-offset: 3px;
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-  }
-}
-
-.secondaryButton {
-  padding: $spacing-4 $spacing-8;
-  font-family: $font-family-primary;
-  font-weight: $font-weight-medium;
-  font-size: $font-lg;
-  border-radius: $spacing-3;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-  width: $spacing-56;
-  background: transparent;
-  color: $color-surface;
-  border: 2px solid rgba($color-surface, 0.6);
-
-  &:hover {
-    background: rgba($color-surface, 0.1);
-    border-color: $color-surface;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
-  }
-
-  &:active {
-    transform: translateY(-1px);
-  }
-
-  &:focus-visible {
-    outline: 3px solid rgba($color-surface, 0.8);
-    outline-offset: 3px;
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-  }
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -162,12 +88,6 @@
     gap: $spacing-3;
   }
 
-  .primaryButton,
-  .secondaryButton {
-    width: 100%;
-    max-width: $spacing-64 + $spacing-8;
-  }
-
   .heroTitle {
     margin-bottom: $spacing-3;
   }
@@ -187,16 +107,6 @@
   .heroText {
     animation: none;
   }
-
-  .primaryButton:hover,
-  .secondaryButton:hover {
-    transform: none;
-  }
-
-  .primaryButton,
-  .secondaryButton {
-    transition: none;
-  }
 }
 
 @media (prefers-contrast: high) {
@@ -204,18 +114,8 @@
     background: rgba(0, 0, 0, 0.8);
   }
 
-  .primaryButton {
-    border: 2px solid $color-primary;
-    background: $color-surface;
-  }
-
-  .secondaryButton {
-    border: 3px solid $color-surface;
-    background: rgba($color-surface, 0.1);
-  }
-
   .heroTitle,
   .heroSubtitle {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
   }
 }
