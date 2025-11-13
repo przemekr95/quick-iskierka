@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { HERO_CONFIG } from '../../../constants/hero'
+import Button from '../button/button'
 import styles from './hero-section.module.scss'
 
 const HeroSection = ({
@@ -49,26 +50,28 @@ const HeroSection = ({
               role='group'
             >
               {primaryButton && (
-                <button
-                  className={styles.primaryButton}
-                  onClick={handlePrimaryAction}
-                  type={primaryButton.type || 'button'}
+                <Button
+                  ariaLabel={primaryButton.ariaLabel}
                   disabled={primaryButton.disabled}
-                  aria-label={primaryButton.ariaLabel}
+                  onClick={handlePrimaryAction}
+                  size='large'
+                  type={primaryButton.type || 'button'}
+                  variant='primary'
                 >
                   {primaryButton.text}
-                </button>
+                </Button>
               )}
               {secondaryButton && (
-                <button
-                  className={styles.secondaryButton}
-                  onClick={handleSecondaryAction}
-                  type={secondaryButton.type || 'button'}
+                <Button
+                  ariaLabel={secondaryButton.ariaLabel}
                   disabled={secondaryButton.disabled}
-                  aria-label={secondaryButton.ariaLabel}
+                  onClick={handleSecondaryAction}
+                  size='large'
+                  type={secondaryButton.type || 'button'}
+                  variant='outline'
                 >
                   {secondaryButton.text}
-                </button>
+                </Button>
               )}
             </div>
           )}
@@ -80,32 +83,32 @@ const HeroSection = ({
 
 HeroSection.propTypes = {
   backgroundImage: PropTypes.string,
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
+  className: PropTypes.string,
   primaryButton: PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
-    disabled: PropTypes.bool,
-    type: PropTypes.oneOf(['button', 'submit', 'reset']),
     ariaLabel: PropTypes.string,
+    disabled: PropTypes.bool,
+    onClick: PropTypes.func.isRequired,
+    text: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['button', 'submit', 'reset']),
   }),
   secondaryButton: PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
-    disabled: PropTypes.bool,
-    type: PropTypes.oneOf(['button', 'submit', 'reset']),
     ariaLabel: PropTypes.string,
+    disabled: PropTypes.bool,
+    onClick: PropTypes.func.isRequired,
+    text: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['button', 'submit', 'reset']),
   }),
-  className: PropTypes.string,
+  subtitle: PropTypes.string,
+  title: PropTypes.string,
 }
 
 HeroSection.defaultProps = {
   backgroundImage: HERO_CONFIG.DEFAULT_BACKGROUND_IMAGE,
-  title: HERO_CONFIG.CONTENT.TITLE,
-  subtitle: HERO_CONFIG.CONTENT.SUBTITLE,
+  className: '',
   primaryButton: null,
   secondaryButton: null,
-  className: '',
+  subtitle: HERO_CONFIG.CONTENT.SUBTITLE,
+  title: HERO_CONFIG.CONTENT.TITLE,
 }
 
 export default HeroSection
