@@ -4,19 +4,18 @@ import { useNavigate } from 'react-router-dom'
 import Button from '../../atomic/button/button'
 import styles from './content-section.module.scss'
 
-// TODO
-
 const ContentSection = ({
-  id,
-  title,
-  subtitle,
-  content,
-  buttonText,
   buttonLink,
-  imageUrl,
+  buttonText,
+  className = '',
+  content,
+  id,
   imageAlt,
   imagePosition = 'right',
-  className = '',
+  imageUrl,
+  subtitle,
+  title,
+  ...props
 }) => {
   const navigate = useNavigate()
 
@@ -33,7 +32,7 @@ const ContentSection = ({
     .join(' ')
 
   return (
-    <section className={sectionClasses} id={id}>
+    <section aria-label={title} className={sectionClasses} id={id} {...props}>
       <div className={styles.container}>
         <div className={styles.textContent}>
           <div className={styles.textWrapper}>
@@ -41,21 +40,16 @@ const ContentSection = ({
             <h3 className={styles.subtitle}>{subtitle}</h3>
             <p className={styles.content}>{content}</p>
             <Button
-              variant='secondary'
-              size='large'
               onClick={handleButtonClick}
+              size='large'
+              variant='secondary'
             >
               {buttonText}
             </Button>
           </div>
         </div>
         <div className={styles.imageContent}>
-          <div
-            className={styles.imageWrapper}
-            style={{ backgroundImage: `url(${imageUrl})` }}
-            role='img'
-            aria-label={imageAlt}
-          />
+          <img alt={imageAlt} className={styles.imageWrapper} src={imageUrl} />
         </div>
       </div>
     </section>
@@ -63,21 +57,16 @@ const ContentSection = ({
 }
 
 ContentSection.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  buttonText: PropTypes.string.isRequired,
   buttonLink: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
-  imageAlt: PropTypes.string.isRequired,
-  imagePosition: PropTypes.oneOf(['left', 'right']),
+  buttonText: PropTypes.string.isRequired,
   className: PropTypes.string,
-}
-
-ContentSection.defaultProps = {
-  imagePosition: 'right',
-  className: '',
+  content: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  imageAlt: PropTypes.string.isRequired,
+  imagePosition: PropTypes.oneOf(['left', 'right']).isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 }
 
 export default ContentSection

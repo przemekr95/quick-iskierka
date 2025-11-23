@@ -1,22 +1,9 @@
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+
 .homeSections {
   width: 100%;
-  margin: 0;
-  padding: 0;
 
-  // Alternate background colors for visual separation
-  & > section:nth-child(odd) {
-    background-color: #ffffff;
+  & > section {
+    background-color: $color-surface;
   }
-
-  & > section:nth-child(even) {
-    background-color: #f8f9fa;
-  }
-}
-
-// Ensure seamless transitions between sections - no gaps at all
-.homeSections section {
-  margin: 0;
-  border: none;
-  padding: 0;
-  display: block;
 }
