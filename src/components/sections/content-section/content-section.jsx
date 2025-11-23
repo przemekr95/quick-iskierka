@@ -59,7 +59,7 @@ const ContentSection = ({
 ContentSection.propTypes = {
   buttonLink: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   content: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   imageAlt: PropTypes.string.isRequired,
