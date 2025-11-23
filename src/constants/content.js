@@ -5,30 +5,30 @@ export const HOME_SECTIONS = [
     title: 'O Klubie',
     subtitle: 'Poznaj naszą historię',
     content:
-      'MUKS Iskierka Tarnów to klub z wieloletnią tradycją w siatkówce. Działamy od lat, rozwijając młode talenty i promując sport w naszym regionie. Nasze drużyny regularnie odnoszą sukcesy w rozgrywkach lokalnych i regionalnych.',
+      'Międzyszkolny Uczniowski Klub Sportowy Iskierka Tarnów to ponad 29 lat tradycji! Założony 22 czerwca 1994 roku, dziś dzięki przychylności władz Miasta Tarnowa nasz klub prężnie rozwija się szczególnie pod kątem siatkarskim. Łączy nas pasja do sportu i realizujemy rządowy program KLUB — edycja 2025.',
     buttonText: 'Dowiedz się więcej',
     buttonLink: '/klub',
-    imageAlt: 'Zdjęcie przedstawiające klub siatkarski',
+    imageUrl: '/images/backgrounds/home-1.jpg',
   },
   {
     id: 'team',
     title: 'Nasza Drużyna',
     subtitle: 'Poznaj zawodników',
     content:
-      'Składamy się z doświadczonych zawodników oraz młodych talentów, którzy wspólnie tworzą silną drużynę. Każdy z naszych graczy wnosi unikalny wkład w sukces zespołu. Treningi odbywają się regularnie pod okiem wykwalifikowanych trenerów.',
+      'Prowadzimy szkolenie w różnych grupach rocznikowych dzieci, młodzieży oraz dorosłych, począwszy od mini siatkówki, poprzez młodzików, kadetów i juniorów, aż po grupę seniorów. Wszystkie grupy szkoleniowe są zgłoszone do oficjalnych rozgrywek MZPS. Zapraszamy do kibicowania naszym zawodnikom!',
     buttonText: 'Zobacz drużynę',
     buttonLink: '/druzyna',
-    imageAlt: 'Zdjęcie drużyny siatkarskiej',
+    imageUrl: '/images/backgrounds/home-2.jpg',
   },
   {
     id: 'contact',
     title: 'Dołącz do Nas',
     subtitle: 'Rozpocznij swoją przygodę',
     content:
-      'Zapraszamy wszystkich zainteresowanych siatkówką do dołączenia do naszego klubu. Oferujemy treningi dla różnych grup wiekowych i poziomów zaawansowania. Skontaktuj się z nami, aby umówić się na pierwszy trening.',
+      'Zachęcamy wszystkich do współtworzenia naszej społeczności, dla której liczy się sport i rywalizacja. MPEC Tarnów wspiera rozwój i pasje sportowe młodzieży w Tarnowie! Od 2024 roku MPEC Tarnów jest partnerem młodzieżowych sekcji siatkówki MUKS Iskierka Tarnów. Zapraszamy do kontaktu!',
     buttonText: 'Skontaktuj się',
     buttonLink: '/kontakt',
-    imageAlt: 'Zdjęcie treningu siatkówki',
+    imageUrl: '/images/backgrounds/home-3.jpg',
   },
 ]
 
