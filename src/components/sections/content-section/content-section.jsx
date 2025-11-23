@@ -10,6 +10,7 @@ const ContentSection = ({
   className = '',
   content,
   id,
+  imageAlt,
   imagePosition = 'right',
   imageUrl,
   subtitle,
@@ -48,11 +49,7 @@ const ContentSection = ({
           </div>
         </div>
         <div className={styles.imageContent}>
-          <div
-            aria-hidden='true'
-            className={styles.imageWrapper}
-            style={{ backgroundImage: `url(${imageUrl})` }}
-          />
+          <img alt={imageAlt} className={styles.imageWrapper} src={imageUrl} />
         </div>
       </div>
     </section>
@@ -62,10 +59,11 @@ const ContentSection = ({
 ContentSection.propTypes = {
   buttonLink: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
-  className: PropTypes.string,
+  className: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  imagePosition: PropTypes.oneOf(['left', 'right']),
+  imageAlt: PropTypes.string.isRequired,
+  imagePosition: PropTypes.oneOf(['left', 'right']).isRequired,
   imageUrl: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

@@ -16,6 +16,7 @@ const HomeSections = () => {
             buttonText={section.buttonText}
             content={section.content}
             id={section.id}
+            imageAlt={section.imageAlt}
             imagePosition={imagePosition}
             imageUrl={section.imageUrl}
             subtitle={section.subtitle}

@@ -8,7 +8,8 @@ export const HOME_SECTIONS = [
       'Międzyszkolny Uczniowski Klub Sportowy Iskierka Tarnów to ponad 29 lat tradycji! Założony 22 czerwca 1994 roku, dziś dzięki przychylności władz Miasta Tarnowa nasz klub prężnie rozwija się szczególnie pod kątem siatkarskim. Łączy nas pasja do sportu i realizujemy rządowy program KLUB — edycja 2025.',
     buttonText: 'Dowiedz się więcej',
     buttonLink: '/klub',
-    imageUrl: '/images/backgrounds/home-1.jpg',
+    imageUrl: '/images/backgrounds/home-2.jpg',
+    imageAlt: 'Zawodnicy MUKS Iskierka Tarnów podczas meczu siatkówki',
   },
   {
     id: 'team',
@@ -18,7 +19,8 @@ export const HOME_SECTIONS = [
       'Prowadzimy szkolenie w różnych grupach rocznikowych dzieci, młodzieży oraz dorosłych, począwszy od mini siatkówki, poprzez młodzików, kadetów i juniorów, aż po grupę seniorów. Wszystkie grupy szkoleniowe są zgłoszone do oficjalnych rozgrywek MZPS. Zapraszamy do kibicowania naszym zawodnikom!',
     buttonText: 'Zobacz drużynę',
     buttonLink: '/druzyna',
-    imageUrl: '/images/backgrounds/home-2.jpg',
+    imageUrl: '/images/backgrounds/home-1.jpg',
+    imageAlt: 'Zawodnicy MUKS Iskierka Tarnów podczas meczu siatkówki',
   },
   {
     id: 'contact',
@@ -29,6 +31,7 @@ export const HOME_SECTIONS = [
     buttonText: 'Skontaktuj się',
     buttonLink: '/kontakt',
     imageUrl: '/images/backgrounds/home-3.jpg',
+    imageAlt: 'Zawodnicy MUKS Iskierka Tarnów podczas meczu siatkówki',
   },
 ]
 
