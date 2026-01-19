@@ -29,22 +29,44 @@ const Club = () => {
       setContent(data)
     } catch (err) {
       const defaultMessage =
-        'Wystąpił nieoczekiwany błąd podczas ładowania treści strony.'
+        'Wystąpił problem z połączeniem z serwerem podczas ładowania treści strony.'
 
-      let message = defaultMessage
+      let message = null
+
+      // Prefer Error.message when available
       if (err instanceof Error && typeof err.message === 'string') {
         const trimmed = err.message.trim()
         if (trimmed) {
           message = trimmed
         }
       } else if (typeof err === 'string') {
+        // Handle plain string errors
         const trimmed = err.trim()
         if (trimmed) {
           message = trimmed
         }
+      } else if (err && typeof err === 'object') {
+        // Handle common network / HTTP-like error shapes
+        if ('statusText' in err && typeof err.statusText === 'string') {
+          const trimmed = err.statusText.trim()
+          if (trimmed) {
+            message = trimmed
+          }
+        }
+
+        if (!message && 'status' in err && typeof err.status === 'number') {
+          message = `Żądanie nie powiodło się (status ${err.status}).`
+        }
+
+        if (!message && typeof err.toString === 'function') {
+          const str = err.toString().trim()
+          if (str && str !== '[object Object]') {
+            message = str
+          }
+        }
       }
 
-      setError(message)
+      setError(message || defaultMessage)
     } finally {
       setLoading(false)
     }
