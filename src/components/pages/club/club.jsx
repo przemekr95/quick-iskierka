@@ -66,6 +66,12 @@ const Club = () => {
     fetchContent()
   }, [fetchContent])
 
+  useEffect(() => {
+    if (content?.trainings?.groups) {
+      setSelectedGroupIndex(0)
+    }
+  }, [content?.trainings?.groups])
+
   const handleRetry = fetchContent
 
   if (loading) {
