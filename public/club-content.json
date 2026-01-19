@@ -5,7 +5,8 @@
   },
   "about": {
     "description": "Międzyszkolny Uczniowski Klub Sportowy Iskierka Tarnów, został założony 22 czerwca 1994 roku przez grupę miłośników aktywnego spędzania czasu wolnego – nauczycieli Szkoły Podstawowej nr 14 w Tarnowie. Klub wpisany jest do ewidencji stowarzyszeń sportowych m. Tarnowa pod numerem WSP.4221.2.1.2015 Pierwszym miejscem jego działalności była Szkoła Podstawowa nr 14 przy ul. Krzyskiej 118 w Tarnowie, gdzie prowadzona była sekcja szermierki. Na przestrzeni kolejnych lat w Klubie powstawała sekcja piłki siatkowej chłopców, jednak w wyniku ogromnego zainteresowania piłką siatkową władze MUKS Iskierki Tarnów podjęły strategiczną decyzję o skupieniu się na szkoleniu młodych adeptów tylko i wyłącznie tej dyscypliny sportu. MUKS Iskierka Tarnów od kilku lat prowadzi szkolenie we wszystkich grupach rocznikowych dzieci oraz młodzieży (chłopcy), począwszy od mini siatkówki, poprzez młodzików, kadetów aż po juniorów. Wszystkie grupy młodzieżowe są zgłaszone do oficjalnych rozgrywek MZPS. Dodatkowo w 2012 roku w Klubie powstała drużyna męska seniorów, która obecnie występuje w I lidze MZPS. Poza działalnością szkoleniową, MUKS Iskierka Tarnów angażuje się również w organizację różnorodnych imprez sportowych, obozów jak i akcji charytatywnych.",
-    "teamImageUrl": "/images/backgrounds/team.jpg"
+    "teamImageUrl": "/images/backgrounds/team.jpg",
+    "teamImageAlt": "Drużyna MUKS Iskierka"
   },
   "board": {
     "title": "Zarząd",
@@ -32,6 +33,10 @@
   "trainings": {
     "title": "Terminarz treningów",
     "subtitle": "Aktualne grupy i czas treningów",
+    "groupLabel": "Grupy treningowe",
+    "scheduleLabel": "Harmonogram",
+    "noScheduleMessage": "Brak dostępnych terminów",
+    "noGroupsMessage": "Brak grup treningowych",
     "groups": [
       {
         "name": "Minisiatkówka",
@@ -152,6 +157,7 @@
   },
   "downloads": {
     "title": "Do pobrania",
+    "subtitle": "Dokumenty i materiały klubowe",
     "items": [
       {
         "label": "Statut",

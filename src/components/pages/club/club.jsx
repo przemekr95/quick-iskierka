@@ -14,6 +14,34 @@ const Club = () => {
   const [error, setError] = useState(null)
   const [selectedGroupIndex, setSelectedGroupIndex] = useState(0)
 
+  const fetchContent = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+
+      const response = await fetch('/club-content.json')
+
+      if (!response.ok) {
+        throw new Error('Nie udało się pobrać treści strony')
+      }
+
+      const data = await response.json()
+      setContent(data)
+    } catch (err) {
+      const defaultMessage =
+        'Wystąpił nieoczekiwany błąd podczas ładowania treści strony.'
+
+      const message =
+        err?.message?.trim() ||
+        (typeof err === 'string' ? err.trim() : '') ||
+        defaultMessage
+
+      setError(message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const safeGroupIndex = useMemo(() => {
     if (!content?.trainings?.groups?.length) return 0
     return Math.min(
@@ -27,41 +55,11 @@ const Club = () => {
   }, [content?.trainings?.groups, safeGroupIndex])
 
   useEffect(() => {
-    const fetchContent = async () => {
-      try {
-        setLoading(true)
-        setError(null)
-
-        const response = await fetch('/club-content.json')
-
-        if (!response.ok) {
-          throw new Error('Nie udało się pobrać treści strony')
-        }
-
-        const data = await response.json()
-        setContent(data)
-      } catch (err) {
-        const defaultMessage =
-          'Wystąpił nieoczekiwany błąd podczas ładowania treści strony.'
-        
-        const message =
-          err?.message?.trim() ||
-          (typeof err === 'string' ? err.trim() : '') ||
-          defaultMessage
-        
-        setError(message)
-      } finally {
-        setLoading(false)
-      }
-    }
-
     fetchContent()
   }, [])
 
   const handleRetry = () => {
-    setContent(null)
-    setLoading(true)
-    setError(null)
+    fetchContent()
   }
 
   if (loading) {
@@ -98,7 +96,7 @@ const Club = () => {
           {content.about.teamImageUrl && (
             <div className={styles.aboutImageWrapper}>
               <img
-                alt='Drużyna MUKS Iskierka'
+                alt={content.about.teamImageAlt || content.hero.title}
                 className={styles.aboutImage}
                 loading='lazy'
                 src={content.about.teamImageUrl}
@@ -130,7 +128,7 @@ const Club = () => {
             <div className={styles.trainingsWrapper}>
               <div className={styles.trainingsSection}>
                 <h3 className={styles.trainingsSectionTitle}>
-                  Grupy treningowe
+                  {content.trainings.groupLabel}
                 </h3>
                 <ul className={styles.trainingList}>
                   {content.trainings.groups.map((group, index) => (
@@ -152,7 +150,8 @@ const Club = () => {
 
               <div className={styles.trainingsSection}>
                 <h3 className={styles.trainingsSectionTitle}>
-                  Harmonogram: {selectedGroup?.name || ''}
+                  {content.trainings.scheduleLabel}
+                  {selectedGroup?.name ? `: ${selectedGroup.name}` : ''}
                 </h3>
                 {selectedGroup?.schedule && selectedGroup.schedule.length > 0 ? (
                   <ul className={styles.scheduleList}>
@@ -167,19 +166,19 @@ const Club = () => {
                   </ul>
                 ) : (
                   <p className={styles.noSchedule}>
-                    {selectedGroup?.details || 'Brak dostępnych terminów'}
+                    {selectedGroup?.details || content.trainings.noScheduleMessage}
                   </p>
                 )}
               </div>
             </div>
           ) : (
-            <p className={styles.noSchedule}>Brak grup treningowych</p>
+            <p className={styles.noSchedule}>{content.trainings.noGroupsMessage}</p>
           )}
         </ClubSection>
 
         <div className={styles.cardBox}>
           <ClubSection
-            subtitle='Dokumenty i materiały klubowe'
+            subtitle={content.downloads.subtitle}
             title={content.downloads.title}
           >
             <ul className={styles.downloadsList}>
