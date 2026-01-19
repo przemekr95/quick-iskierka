@@ -10,7 +10,6 @@ const DownloadLink = ({ label, url }) => {
         download
         href={url}
         rel='noopener noreferrer'
-        target='_blank'
       >
         {label}
       </a>

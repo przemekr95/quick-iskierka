@@ -94,9 +94,9 @@ const Club = () => {
           title={content.board.title}
         >
           <div className={styles.boardGrid}>
-            {content.board.members.map(member => (
+            {content.board.members.map((member, index) => (
               <BoardMemberCard
-                key={member.name}
+                key={`${member.name}-${member.role}-${index}`}
                 name={member.name}
                 role={member.role}
               />
@@ -118,7 +118,7 @@ const Club = () => {
                   {content.trainings.groups.map((group, index) => (
                     <TrainingGroupBadge
                       isActive={selectedGroupIndex === index}
-                      key={group.name}
+                      key={`${group.name}-${index}`}
                       name={group.name}
                       onClick={() => setSelectedGroupIndex(index)}
                       onKeyDown={e => {
@@ -152,10 +152,10 @@ const Club = () => {
                   return selectedGroup?.schedule &&
                     selectedGroup.schedule.length > 0 ? (
                     <ul className={styles.scheduleList}>
-                      {selectedGroup.schedule.map(session => (
+                      {selectedGroup.schedule.map((session, sessionIndex) => (
                         <ScheduleItem
                           day={session.day}
-                          key={session.day}
+                          key={`${session.day}-${session.time}-${session.location}-${sessionIndex}`}
                           location={session.location}
                           time={session.time}
                         />
@@ -180,9 +180,9 @@ const Club = () => {
             title={content.downloads.title}
           >
             <ul className={styles.downloadsList}>
-              {content.downloads.items.map(item => (
+              {content.downloads.items.map((item, index) => (
                 <DownloadLink
-                  key={item.url}
+                  key={`${item.url}-${item.label}-${index}`}
                   label={item.label}
                   url={item.url}
                 />
