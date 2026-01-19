@@ -155,7 +155,7 @@ const Club = () => {
                 </h3>
                 {selectedGroup?.schedule && selectedGroup.schedule.length > 0 ? (
                   <ul className={styles.scheduleList}>
-                    {selectedGroup.schedule.map((session, sessionIndex) => (
+                    {selectedGroup.schedule.map(session => (
                       <ScheduleItem
                         day={session.day}
                         key={`${session.day}-${session.time}-${session.location}`}
@@ -182,7 +182,7 @@ const Club = () => {
             title={content.downloads.title}
           >
             <ul className={styles.downloadsList}>
-              {content.downloads.items.map((item, index) => (
+              {content.downloads.items.map(item => (
                 <DownloadLink
                   key={item.url}
                   label={item.label}
