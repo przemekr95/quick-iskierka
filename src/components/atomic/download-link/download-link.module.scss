@@ -1,0 +1,35 @@
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+
+.item {
+  background: $color-surface;
+  border-radius: $spacing-3;
+  border: 1px solid rgba($color-text, 0.05);
+  padding: $spacing-4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-3;
+  transition: all 0.3s ease;
+  list-style: none;
+
+  &:hover {
+    border-color: rgba($color-primary, 0.2);
+    box-shadow: 0 $spacing-2 $spacing-6 rgba($color-primary, 0.08);
+  }
+}
+
+.link {
+  color: $color-primary;
+  text-decoration: none;
+  font-weight: $font-weight-semibold;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+.icon {
+  font-size: $font-xl;
+  color: $color-primary;
+}

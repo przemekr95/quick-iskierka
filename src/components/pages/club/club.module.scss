@@ -1,0 +1,190 @@
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+
+$header-height: 80px;
+
+.clubPage {
+  background: linear-gradient(180deg, rgba($color-primary, 0.05), $color-neutral 35%);
+  padding: calc(#{$header-height} + #{$spacing-6}) 0 $spacing-12;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-6;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-8;
+}
+
+.container > section {
+  scroll-margin-top: calc(#{$header-height} + #{$spacing-2});
+}
+
+.cardBox {
+  background: $color-surface;
+  border: 1px solid rgba($color-text, 0.08);
+  border-radius: $spacing-5;
+  padding: $spacing-10;
+}
+
+.aboutHeader {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+  margin-bottom: $spacing-6;
+  text-align: left;
+}
+
+.aboutTitle {
+  margin: 0;
+  font-size: clamp($font-2xl, 3vw, $font-3xl);
+  font-weight: $font-weight-bold;
+  color: $color-text;
+  line-height: 1.1;
+}
+
+.aboutSubtitle {
+  margin: 0;
+  font-size: $font-lg;
+  color: $color-secondary;
+  line-height: $line-md;
+}
+
+.aboutContent {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  color: $color-text;
+  line-height: $line-lg;
+}
+
+.aboutImageWrapper {
+  margin-top: $spacing-6;
+  border-radius: $spacing-4;
+  overflow: hidden;
+  border: 1px solid rgba($color-text, 0.06);
+  box-shadow: inset 0 1px 0 rgba($color-surface, 0.6);
+}
+
+.aboutImage {
+  width: 100%;
+  height: clamp(200px, 40vw, 360px);
+  object-fit: cover;
+  object-position: 35% 35%;
+  display: block;
+}
+
+.paragraph {
+  margin: 0;
+  color: $color-text;
+  line-height: $line-lg;
+}
+
+.boardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-5;
+}
+
+.trainingsWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: $spacing-6;
+  border-top: 1px solid rgba($color-text, 0.08);
+  padding-top: $spacing-4;
+}
+
+.trainingsSection {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+}
+
+.trainingsSectionTitle {
+  margin: 0;
+  font-size: $font-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-text;
+  line-height: $line-sm;
+}
+
+.trainingList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: $spacing-4;
+}
+
+.scheduleList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-4;
+}
+
+.noSchedule {
+  margin: 0;
+  font-size: $font-md;
+  color: $color-secondary;
+  line-height: $line-md;
+  text-align: center;
+  padding: $spacing-4;
+  background: rgba($color-secondary, 0.05);
+  border-radius: $spacing-3;
+}
+
+.downloadsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: $spacing-4;
+}
+
+@media (max-width: 1024px) {
+  .cardBox {
+    padding: $spacing-8;
+  }
+
+  .aboutTitle {
+    font-size: clamp($font-xl, 4vw, $font-3xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .clubPage {
+    padding: calc(#{$header-height} + #{$spacing-4}) 0 $spacing-10;
+  }
+
+  .container {
+    padding: 0 $spacing-4;
+    gap: $spacing-6;
+  }
+
+  .aboutImage {
+    height: clamp(180px, 50vw, 260px);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 $spacing-3;
+  }
+
+  .cardBox {
+    padding: $spacing-6;
+  }
+
+  .aboutTitle {
+    font-size: $font-2xl;
+  }
+
+  .aboutSubtitle {
+    font-size: $font-md;
+  }
+}
