@@ -11,7 +11,7 @@ const TrainingGroupBadge = ({ name, isActive, onClick, onKeyDown }) => {
       onKeyDown={onKeyDown}
       type='button'
     >
-      <p className={styles.name}>{name}</p>
+      <span className={styles.name}>{name}</span>
     </button>
   )
 }
@@ -20,7 +20,11 @@ TrainingGroupBadge.propTypes = {
   name: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
-  onKeyDown: PropTypes.func.isRequired,
+  onKeyDown: PropTypes.func,
+}
+
+TrainingGroupBadge.defaultProps = {
+  onKeyDown: () => {},
 }
 
 export default TrainingGroupBadge

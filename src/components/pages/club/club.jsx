@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, useMemo } from 'react'
 import LoadingSpinner from '../../atomic/loading-spinner/loading-spinner'
 import ErrorMessage from '../../atomic/error-message/error-message'
 import ClubSection from '../../sections/club/club-section'
@@ -13,6 +13,18 @@ const Club = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [selectedGroupIndex, setSelectedGroupIndex] = useState(0)
+
+  const safeGroupIndex = useMemo(() => {
+    if (!content?.trainings?.groups?.length) return 0
+    return Math.min(
+      Math.max(0, selectedGroupIndex),
+      content.trainings.groups.length - 1
+    )
+  }, [content?.trainings?.groups?.length, selectedGroupIndex])
+
+  const selectedGroup = useMemo(() => {
+    return content?.trainings?.groups?.[safeGroupIndex] || null
+  }, [content?.trainings?.groups, safeGroupIndex])
 
   const fetchContent = useCallback(async () => {
     try {
@@ -31,11 +43,19 @@ const Club = () => {
       const defaultMessage =
         'Wystąpił nieoczekiwany błąd podczas ładowania treści strony.'
       let message = defaultMessage
-      if (err instanceof Error && err.message) {
-        message = err.message
-      } else if (typeof err === 'string' && err.trim()) {
-        message = err
+      
+      if (err instanceof Error) {
+        const trimmed = (err.message || '').trim()
+        if (trimmed) {
+          message = trimmed
+        }
+      } else if (typeof err === 'string') {
+        const trimmed = err.trim()
+        if (trimmed) {
+          message = trimmed
+        }
       }
+      
       setError(message)
     } finally {
       setLoading(false)
@@ -134,39 +154,24 @@ const Club = () => {
 
               <div className={styles.trainingsSection}>
                 <h3 className={styles.trainingsSectionTitle}>
-                  Harmonogram:{' '}
-                  {content.trainings.groups[
-                    Math.min(
-                      selectedGroupIndex,
-                      content.trainings.groups.length - 1
-                    )
-                  ]?.name || ''}
+                  Harmonogram: {selectedGroup?.name || ''}
                 </h3>
-                {(() => {
-                  const safeIndex = Math.min(
-                    Math.max(0, selectedGroupIndex),
-                    content.trainings.groups.length - 1
-                  )
-                  const selectedGroup = content.trainings.groups[safeIndex]
-
-                  return selectedGroup?.schedule &&
-                    selectedGroup.schedule.length > 0 ? (
-                    <ul className={styles.scheduleList}>
-                      {selectedGroup.schedule.map((session, sessionIndex) => (
-                        <ScheduleItem
-                          day={session.day}
-                          key={`${session.day}-${session.time}-${session.location}-${sessionIndex}`}
-                          location={session.location}
-                          time={session.time}
-                        />
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className={styles.noSchedule}>
-                      {selectedGroup?.details || 'Brak dostępnych terminów'}
-                    </p>
-                  )
-                })()}
+                {selectedGroup?.schedule && selectedGroup.schedule.length > 0 ? (
+                  <ul className={styles.scheduleList}>
+                    {selectedGroup.schedule.map((session, sessionIndex) => (
+                      <ScheduleItem
+                        day={session.day}
+                        key={`${session.day}-${session.time}-${session.location}-${sessionIndex}`}
+                        location={session.location}
+                        time={session.time}
+                      />
+                    ))}
+                  </ul>
+                ) : (
+                  <p className={styles.noSchedule}>
+                    {selectedGroup?.details || 'Brak dostępnych terminów'}
+                  </p>
+                )}
               </div>
             </div>
           ) : (
