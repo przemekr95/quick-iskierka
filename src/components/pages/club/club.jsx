@@ -134,7 +134,7 @@ const Club = () => {
                   {content.trainings.groups.map((group, index) => (
                     <TrainingGroupBadge
                       isActive={selectedGroupIndex === index}
-                      key={`${group.name}-${index}`}
+                      key={group.name}
                       name={group.name}
                       onClick={() => setSelectedGroupIndex(index)}
                       onKeyDown={e => {
@@ -158,7 +158,7 @@ const Club = () => {
                     {selectedGroup.schedule.map((session, sessionIndex) => (
                       <ScheduleItem
                         day={session.day}
-                        key={`${session.day}-${session.time}-${session.location}-${sessionIndex}`}
+                        key={`${session.day}-${session.time}-${session.location}`}
                         location={session.location}
                         time={session.time}
                       />
@@ -184,7 +184,7 @@ const Club = () => {
             <ul className={styles.downloadsList}>
               {content.downloads.items.map((item, index) => (
                 <DownloadLink
-                  key={`${item.url}-${item.label}-${index}`}
+                  key={item.url}
                   label={item.label}
                   url={item.url}
                 />
