@@ -13,7 +13,7 @@ import styles from './home.module.scss'
 // TODO
 
 const Home = () => {
-  const { schedule, loading, error } = useSchedule()
+  const { loading, error } = useSchedule()
   const navigate = useNavigate()
 
   const handleLearnMore = () => {
@@ -51,29 +51,6 @@ const Home = () => {
 
       {/* Sponsors Carousel */}
       <SponsorsCarousel sponsors={SPONSORS_DATA} />
-
-      {/* Schedule Section */}
-      <section className={styles.scheduleSection}>
-        <div className={styles.container}>
-          <h2>Najbliższe mecze</h2>
-          {schedule && schedule.length > 0 ? (
-            <div className={styles.scheduleList}>
-              {schedule.slice(0, 3).map((match, index) => (
-                <div key={index} className={styles.matchItem}>
-                  <p>{match.title || 'Mecz'}</p>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className={styles.noMatches}>
-              <p>
-                Brak zaplanowanych meczów. Śledź nasze social media po najnowsze
-                informacje!
-              </p>
-            </div>
-          )}
-        </div>
-      </section>
     </div>
   )
 }

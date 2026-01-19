@@ -1,0 +1,41 @@
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+
+.header {
+  margin-bottom: $spacing-6;
+  text-align: left;
+}
+
+.title {
+  margin: 0 0 $spacing-2 0;
+  font-size: $font-2xl;
+  font-weight: $font-weight-bold;
+  color: $color-text;
+  line-height: $line-sm;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: $font-md;
+  color: $color-secondary;
+  line-height: $line-md;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  color: $color-text;
+  line-height: $line-lg;
+  margin-top: $spacing-5;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: $font-xl;
+  }
+
+  .subtitle {
+    font-size: $font-md;
+  }
+}
+

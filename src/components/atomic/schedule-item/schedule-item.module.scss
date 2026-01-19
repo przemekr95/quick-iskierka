@@ -1,0 +1,59 @@
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+
+.item {
+  background: $color-surface;
+  border: 1px solid rgba($color-text, 0.05);
+  border-radius: $spacing-3;
+  padding: $spacing-4;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+  transition: all 0.3s ease;
+  list-style: none;
+
+  &:hover {
+    border-color: rgba($color-primary, 0.2);
+    box-shadow: 0 $spacing-2 $spacing-6 rgba($color-primary, 0.08);
+    transform: translateY(-2px);
+  }
+}
+
+.day {
+  font-size: $font-lg;
+  font-weight: $font-weight-semibold;
+  color: $color-primary;
+  line-height: $line-sm;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-1;
+}
+
+.time {
+  margin: 0;
+  font-size: $font-md;
+  color: $color-text;
+  font-weight: $font-weight-medium;
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+  line-height: $line-md;
+}
+
+.location {
+  margin: 0;
+  font-size: $font-sm;
+  color: $color-secondary;
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+  line-height: $line-md;
+}
+
+.icon {
+  display: inline-flex;
+  font-size: $font-md;
+  flex-shrink: 0;
+}

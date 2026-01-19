@@ -1,0 +1,36 @@
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+
+.badge {
+  background: rgba($color-primary, 0.08);
+  border: 1px solid rgba($color-primary, 0.2);
+  border-radius: $spacing-3;
+  padding: $spacing-3;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  list-style: none;
+
+  &:hover {
+    background: rgba($color-primary, 0.12);
+    border-color: rgba($color-primary, 0.35);
+    transform: translateY(-2px);
+  }
+
+  &.badgeActive {
+    background: $color-primary;
+    border-color: $color-primary;
+    color: white;
+
+    & .name {
+      color: white;
+    }
+  }
+}
+
+.name {
+  margin: 0;
+  font-size: $font-md;
+  font-weight: $font-weight-medium;
+  color: $color-text;
+  line-height: $line-md;
+}

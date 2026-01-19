@@ -1,0 +1,194 @@
+{
+  "hero": {
+    "title": "MUKS Iskierka Tarnów",
+    "subtitle": "Poznaj historię, zarząd i ofertę treningową klubu"
+  },
+  "about": {
+    "description": "Międzyszkolny Uczniowski Klub Sportowy Iskierka Tarnów, został założony 22 czerwca 1994 roku przez grupę miłośników aktywnego spędzania czasu wolnego – nauczycieli Szkoły Podstawowej nr 14 w Tarnowie. Klub wpisany jest do ewidencji stowarzyszeń sportowych m. Tarnowa pod numerem WSP.4221.2.1.2015 Pierwszym miejscem jego działalności była Szkoła Podstawowa nr 14 przy ul. Krzyskiej 118 w Tarnowie, gdzie prowadzona była sekcja szermierki. Na przestrzeni kolejnych lat w Klubie powstawała sekcja piłki siatkowej chłopców, jednak w wyniku ogromnego zainteresowania piłką siatkową władze MUKS Iskierki Tarnów podjęły strategiczną decyzję o skupieniu się na szkoleniu młodych adeptów tylko i wyłącznie tej dyscypliny sportu. MUKS Iskierka Tarnów od kilku lat prowadzi szkolenie we wszystkich grupach rocznikowych dzieci oraz młodzieży (chłopcy), począwszy od mini siatkówki, poprzez młodzików, kadetów aż po juniorów. Wszystkie grupy młodzieżowe są zgłaszone do oficjalnych rozgrywek MZPS. Dodatkowo w 2012 roku w Klubie powstała drużyna męska seniorów, która obecnie występuje w I lidze MZPS. Poza działalnością szkoleniową, MUKS Iskierka Tarnów angażuje się również w organizację różnorodnych imprez sportowych, obozów jak i akcji charytatywnych.",
+    "teamImageUrl": "/images/backgrounds/team.jpg"
+  },
+  "board": {
+    "title": "Zarząd",
+    "subtitle": "Ludzie, którzy prowadzą klub",
+    "members": [
+      {
+        "role": "Prezes Klubu",
+        "name": "Andrzej Łoś"
+      },
+      {
+        "role": "Wiceprezes Klubu",
+        "name": "Sebastian Mruk"
+      },
+      {
+        "role": "Sekretarz Klubu",
+        "name": "Dariusz Kuta"
+      },
+      {
+        "role": "Pełnomocnik Zarządu",
+        "name": "Bożena Janiec"
+      }
+    ]
+  },
+  "trainings": {
+    "title": "Terminarz treningów",
+    "subtitle": "Aktualne grupy i czas treningów",
+    "groups": [
+      {
+        "name": "Minisiatkówka",
+        "details": "Dla dzieci w wieku 7-10 lat",
+        "schedule": [
+          {
+            "day": "Poniedziałek",
+            "time": "16:30–18:00",
+            "location": "SP14, ul. Krzyska 118"
+          },
+          {
+            "day": "Wtorek",
+            "time": "16:30–18:00",
+            "location": "SP14, ul. Krzyska 118"
+          },
+          {
+            "day": "Czwartek",
+            "time": "17:00–18:30",
+            "location": "SP14, ul. Krzyska 118"
+          }
+        ]
+      },
+      {
+        "name": "Młodzik",
+        "details": "Dla dzieci w wieku 11-12 lat",
+        "schedule": [
+          {
+            "day": "Poniedziałek",
+            "time": "18:00–19:30",
+            "location": "SP14, ul. Krzyska 118"
+          },
+          {
+            "day": "Wtorek",
+            "time": "19:00–21:00",
+            "location": "TOSiR, ul. Krupnicza 8a"
+          },
+          {
+            "day": "Czwartek",
+            "time": "19:00–21:00",
+            "location": "TOSiR, ul. Krupnicza 8a"
+          },
+          {
+            "day": "Piątek",
+            "time": "18:00–19:30",
+            "location": "SP14, ul. Krzyska 118"
+          }
+        ]
+      },
+      {
+        "name": "Kadet",
+        "details": "Dla dzieci w wieku 13-14 lat",
+        "schedule": [
+          {
+            "day": "Poniedziałek",
+            "time": "18:00–19:30",
+            "location": "SP14, ul. Krzyska 118"
+          },
+          {
+            "day": "Wtorek",
+            "time": "19:00–21:00",
+            "location": "TOSiR, ul. Krupnicza 8a"
+          },
+          {
+            "day": "Czwartek",
+            "time": "19:00–21:00",
+            "location": "TOSiR, ul. Krupnicza 8a"
+          },
+          {
+            "day": "Piątek",
+            "time": "18:00–19:30",
+            "location": "SP14, ul. Krzyska 118"
+          }
+        ]
+      },
+      {
+        "name": "Junior",
+        "details": "Dla młodzieży w wieku 15-17 lat",
+        "schedule": [
+          {
+            "day": "Poniedziałek",
+            "time": "20:00–21:30",
+            "location": "MDS, ul. Traugutta 5a"
+          },
+          {
+            "day": "Środa",
+            "time": "20:00–21:30",
+            "location": "MDS, ul. Traugutta 5a"
+          },
+          {
+            "day": "Piątek",
+            "time": "20:00–21:30",
+            "location": "MDS, ul. Traugutta 5a"
+          }
+        ]
+      },
+      {
+        "name": "Senior",
+        "details": "Dla dorosłych zawodników",
+        "schedule": [
+          {
+            "day": "Poniedziałek",
+            "time": "20:00–21:30",
+            "location": "MDS, ul. Traugutta 5a"
+          },
+          {
+            "day": "Środa",
+            "time": "20:00–21:30",
+            "location": "MDS, ul. Traugutta 5a"
+          },
+          {
+            "day": "Piątek",
+            "time": "20:00–22:00",
+            "location": "MDS, ul. Traugutta 5a"
+          }
+        ]
+      }
+    ]
+  },
+  "downloads": {
+    "title": "Do pobrania",
+    "items": [
+      {
+        "label": "Statut",
+        "url": "/assets/statutMuksIskierkaTarnów.pdf"
+      },
+      {
+        "label": "Regulamin (prawa i obowiązki)",
+        "url": "/assets/prawaIObowiązki.pdf"
+      },
+      {
+        "label": "Regulamin składek członkowskich",
+        "url": "/assets/RegulaminSkladekCzlonkowskich.pdf"
+      },
+      {
+        "label": "Deklaracja członkowska",
+        "url": "/assets/deklaracjaCzłonkowska.docx"
+      },
+      {
+        "label": "Oświadczenie zawodnika",
+        "url": "/assets/oświadczenieZawodnika.docx"
+      },
+      {
+        "label": "Logo klubu",
+        "url": "/assets/iskierkaLogo.png"
+      },
+      {
+        "label": "Standardy ochrony małoletnich",
+        "url": "/assets/StandardyOchronyMaloletnich.pdf"
+      },
+      {
+        "label": "Standardy ochrony małoletnich (wersja skrócona)",
+        "url": "/assets/STANDARDYOCHRONYMALOLETNICH-wersjaskrocona.pdf"
+      },
+      {
+        "label": "Standardy ochrony małoletnich (wersja pełna)",
+        "url": "/assets/STANDARDYOCHRONYMALOLETNICH-wersjapelna.pdf"
+      }
+    ]
+  }
+}
