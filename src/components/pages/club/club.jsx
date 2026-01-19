@@ -28,7 +28,15 @@ const Club = () => {
       const data = await response.json()
       setContent(data)
     } catch (err) {
-      setError(err.message)
+      const defaultMessage =
+        'Wystąpił nieoczekiwany błąd podczas ładowania treści strony.'
+      let message = defaultMessage
+      if (err instanceof Error && err.message) {
+        message = err.message
+      } else if (typeof err === 'string' && err.trim()) {
+        message = err
+      }
+      setError(message)
     } finally {
       setLoading(false)
     }
@@ -100,52 +108,70 @@ const Club = () => {
           subtitle={content.trainings.subtitle}
           title={content.trainings.title}
         >
-          <div className={styles.trainingsWrapper}>
-            <div className={styles.trainingsSection}>
-              <h3 className={styles.trainingsSectionTitle}>Grupy treningowe</h3>
-              <ul className={styles.trainingList}>
-                {content.trainings.groups.map((group, index) => (
-                  <TrainingGroupBadge
-                    isActive={selectedGroupIndex === index}
-                    key={group.name}
-                    name={group.name}
-                    onClick={() => setSelectedGroupIndex(index)}
-                    onKeyDown={e => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        setSelectedGroupIndex(index)
-                      }
-                    }}
-                  />
-                ))}
-              </ul>
-            </div>
-
-            <div className={styles.trainingsSection}>
-              <h3 className={styles.trainingsSectionTitle}>
-                Harmonogram: {content.trainings.groups[selectedGroupIndex].name}
-              </h3>
-              {content.trainings.groups[selectedGroupIndex].schedule &&
-              content.trainings.groups[selectedGroupIndex].schedule.length >
-                0 ? (
-                <ul className={styles.scheduleList}>
-                  {content.trainings.groups[selectedGroupIndex].schedule.map(
-                    session => (
-                      <ScheduleItem
-                        day={session.day}
-                        key={session.day}
-                        location={session.location}
-                        time={session.time}
-                      />
-                    )
-                  )}
+          {content.trainings.groups && content.trainings.groups.length > 0 ? (
+            <div className={styles.trainingsWrapper}>
+              <div className={styles.trainingsSection}>
+                <h3 className={styles.trainingsSectionTitle}>
+                  Grupy treningowe
+                </h3>
+                <ul className={styles.trainingList}>
+                  {content.trainings.groups.map((group, index) => (
+                    <TrainingGroupBadge
+                      isActive={selectedGroupIndex === index}
+                      key={group.name}
+                      name={group.name}
+                      onClick={() => setSelectedGroupIndex(index)}
+                      onKeyDown={e => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault()
+                          setSelectedGroupIndex(index)
+                        }
+                      }}
+                    />
+                  ))}
                 </ul>
-              ) : (
-                <p className={styles.noSchedule}>
-                  {content.trainings.groups[selectedGroupIndex].details}
-                </p>
-              )}
+              </div>
+
+              <div className={styles.trainingsSection}>
+                <h3 className={styles.trainingsSectionTitle}>
+                  Harmonogram:{' '}
+                  {content.trainings.groups[
+                    Math.min(
+                      selectedGroupIndex,
+                      content.trainings.groups.length - 1
+                    )
+                  ]?.name || ''}
+                </h3>
+                {(() => {
+                  const safeIndex = Math.min(
+                    Math.max(0, selectedGroupIndex),
+                    content.trainings.groups.length - 1
+                  )
+                  const selectedGroup = content.trainings.groups[safeIndex]
+
+                  return selectedGroup?.schedule &&
+                    selectedGroup.schedule.length > 0 ? (
+                    <ul className={styles.scheduleList}>
+                      {selectedGroup.schedule.map(session => (
+                        <ScheduleItem
+                          day={session.day}
+                          key={session.day}
+                          location={session.location}
+                          time={session.time}
+                        />
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className={styles.noSchedule}>
+                      {selectedGroup?.details || 'Brak dostępnych terminów'}
+                    </p>
+                  )
+                })()}
+              </div>
             </div>
-          </div>
+          ) : (
+            <p className={styles.noSchedule}>Brak grup treningowych</p>
+          )}
         </ClubSection>
 
         <div className={styles.cardBox}>

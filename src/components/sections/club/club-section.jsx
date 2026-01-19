@@ -4,9 +4,11 @@ import styles from './club-section.module.scss'
 
 const ClubSection = ({ title, subtitle, children }) => {
   return (
-    <section aria-label={title} className={styles.header}>
-      {title && <h2 className={styles.title}>{title}</h2>}
-      {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+    <section aria-label={title}>
+      <div className={styles.header}>
+        {title && <h2 className={styles.title}>{title}</h2>}
+        {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+      </div>
       <div className={styles.content}>{children}</div>
     </section>
   )

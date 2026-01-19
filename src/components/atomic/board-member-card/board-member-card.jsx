@@ -3,11 +3,15 @@ import PropTypes from 'prop-types'
 import styles from './board-member-card.module.scss'
 
 const BoardMemberCard = ({ name, role }) => {
-  const initials = name
-    .split(' ')
-    .map(word => word[0])
-    .join('')
-    .toUpperCase()
+  const initials =
+    typeof name === 'string'
+      ? name
+          .split(' ')
+          .filter(word => word && word.length > 0)
+          .map(word => word[0])
+          .join('')
+          .toUpperCase()
+      : ''
 
   return (
     <div className={styles.card}>

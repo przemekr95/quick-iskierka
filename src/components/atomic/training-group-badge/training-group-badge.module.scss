@@ -8,7 +8,8 @@
   text-align: center;
   transition: all 0.3s ease;
   cursor: pointer;
-  list-style: none;
+  width: 100%;
+  font-family: inherit;
 
   &:hover {
     background: rgba($color-primary, 0.12);

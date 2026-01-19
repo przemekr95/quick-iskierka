@@ -8,11 +8,15 @@ const ScheduleItem = ({ day, time, location }) => {
       <div className={styles.day}>{day}</div>
       <div className={styles.details}>
         <p className={styles.time}>
-          <span className={styles.icon}>🕐</span>
+          <span aria-label='Godzina' className={styles.icon} role='img'>
+            🕐
+          </span>
           {time}
         </p>
         <p className={styles.location}>
-          <span className={styles.icon}>📍</span>
+          <span aria-label='Lokalizacja' className={styles.icon} role='img'>
+            📍
+          </span>
           {location}
         </p>
       </div>

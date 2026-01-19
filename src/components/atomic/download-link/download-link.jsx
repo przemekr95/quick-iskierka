@@ -7,6 +7,7 @@ const DownloadLink = ({ label, url }) => {
     <li className={styles.item}>
       <a
         className={styles.link}
+        download
         href={url}
         rel='noopener noreferrer'
         target='_blank'

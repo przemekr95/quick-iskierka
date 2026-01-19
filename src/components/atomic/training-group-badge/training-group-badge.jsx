@@ -4,15 +4,14 @@ import styles from './training-group-badge.module.scss'
 
 const TrainingGroupBadge = ({ name, isActive, onClick, onKeyDown }) => {
   return (
-    <li
+    <button
       className={`${styles.badge} ${isActive ? styles.badgeActive : ''}`}
       onClick={onClick}
       onKeyDown={onKeyDown}
-      role='button'
-      tabIndex={0}
+      type='button'
     >
       <p className={styles.name}>{name}</p>
-    </li>
+    </button>
   )
 }
 
