@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import LoadingSpinner from '../../atomic/loading-spinner/loading-spinner'
 import ErrorMessage from '../../atomic/error-message/error-message'
 import ClubSection from '../../sections/club/club-section'
@@ -26,45 +26,43 @@ const Club = () => {
     return content?.trainings?.groups?.[safeGroupIndex] || null
   }, [content?.trainings?.groups, safeGroupIndex])
 
-  const fetchContent = useCallback(async () => {
-    try {
-      setLoading(true)
-      setError(null)
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        setLoading(true)
+        setError(null)
 
-      const response = await fetch('/club-content.json')
+        const response = await fetch('/club-content.json')
 
-      if (!response.ok) {
-        throw new Error('Nie udało się pobrać treści strony')
-      }
-
-      const data = await response.json()
-      setContent(data)
-    } catch (err) {
-      const defaultMessage =
-        'Wystąpił nieoczekiwany błąd podczas ładowania treści strony.'
-      let message = defaultMessage
-      
-      if (err instanceof Error) {
-        const trimmed = (err.message || '').trim()
-        if (trimmed) {
-          message = trimmed
+        if (!response.ok) {
+          throw new Error('Nie udało się pobrać treści strony')
         }
-      } else if (typeof err === 'string') {
-        const trimmed = err.trim()
-        if (trimmed) {
-          message = trimmed
-        }
+
+        const data = await response.json()
+        setContent(data)
+      } catch (err) {
+        const defaultMessage =
+          'Wystąpił nieoczekiwany błąd podczas ładowania treści strony.'
+        
+        const message =
+          err?.message?.trim() ||
+          (typeof err === 'string' ? err.trim() : '') ||
+          defaultMessage
+        
+        setError(message)
+      } finally {
+        setLoading(false)
       }
-      
-      setError(message)
-    } finally {
-      setLoading(false)
     }
+
+    fetchContent()
   }, [])
 
-  useEffect(() => {
-    fetchContent()
-  }, [fetchContent])
+  const handleRetry = () => {
+    setContent(null)
+    setLoading(true)
+    setError(null)
+  }
 
   if (loading) {
     return <LoadingSpinner message='Ładowanie strony klubu...' />
@@ -75,7 +73,7 @@ const Club = () => {
       <ErrorMessage
         message={`Błąd: ${error}`}
         showRetry={true}
-        onRetry={fetchContent}
+        onRetry={handleRetry}
       />
     )
   }
@@ -114,9 +112,9 @@ const Club = () => {
           title={content.board.title}
         >
           <div className={styles.boardGrid}>
-            {content.board.members.map((member, index) => (
+            {content.board.members.map(member => (
               <BoardMemberCard
-                key={`${member.name}-${member.role}-${index}`}
+                key={`${member.name}-${member.role}`}
                 name={member.name}
                 role={member.role}
               />
