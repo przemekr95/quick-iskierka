@@ -31,10 +31,18 @@ const Club = () => {
       const defaultMessage =
         'Wystąpił nieoczekiwany błąd podczas ładowania treści strony.'
 
-      const message =
-        err?.message?.trim() ||
-        (typeof err === 'string' ? err.trim() : '') ||
-        defaultMessage
+      let message = defaultMessage
+      if (err instanceof Error && typeof err.message === 'string') {
+        const trimmed = err.message.trim()
+        if (trimmed) {
+          message = trimmed
+        }
+      } else if (typeof err === 'string') {
+        const trimmed = err.trim()
+        if (trimmed) {
+          message = trimmed
+        }
+      }
 
       setError(message)
     } finally {

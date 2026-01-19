@@ -24,8 +24,4 @@ TrainingGroupBadge.propTypes = {
   onKeyDown: PropTypes.func,
 }
 
-TrainingGroupBadge.defaultProps = {
-  onKeyDown: () => {},
-}
-
 export default TrainingGroupBadge
