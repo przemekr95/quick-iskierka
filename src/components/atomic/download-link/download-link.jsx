@@ -4,12 +4,11 @@ import styles from './download-link.module.scss'
 
 const DownloadLink = ({ label, url }) => {
   const getDownloadFilename = () => {
-    if (!label) return 'download'
-    const trimmed = label.trim()
-    const sanitized = trimmed
-      .replace(/[/\\?%*:|"<>]/g, '')
-      .replace(/\s+/g, '_')
-    return sanitized || 'download'
+    if (!url) return 'download'
+    const urlObj = new URL(url, window.location.origin)
+    const pathname = urlObj.pathname
+    const filename = pathname.split('/').pop()
+    return filename || label?.trim() || 'download'
   }
 
   return (

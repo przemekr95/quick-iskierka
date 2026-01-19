@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo, useCallback } from 'react'
 import LoadingSpinner from '../../atomic/loading-spinner/loading-spinner'
 import ErrorMessage from '../../atomic/error-message/error-message'
 import ClubSection from '../../sections/club/club-section'
@@ -14,7 +14,7 @@ const Club = () => {
   const [error, setError] = useState(null)
   const [selectedGroupIndex, setSelectedGroupIndex] = useState(0)
 
-  const fetchContent = async () => {
+  const fetchContent = useCallback(async () => {
     try {
       setLoading(true)
       setError(null)
@@ -48,7 +48,7 @@ const Club = () => {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
 
   const safeGroupIndex = useMemo(() => {
     if (!content?.trainings?.groups?.length) return 0
@@ -64,11 +64,9 @@ const Club = () => {
 
   useEffect(() => {
     fetchContent()
-  }, [])
+  }, [fetchContent])
 
-  const handleRetry = () => {
-    fetchContent()
-  }
+  const handleRetry = fetchContent
 
   if (loading) {
     return <LoadingSpinner message='Ładowanie strony klubu...' />
@@ -145,12 +143,6 @@ const Club = () => {
                       key={group.name}
                       name={group.name}
                       onClick={() => setSelectedGroupIndex(index)}
-                      onKeyDown={e => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault()
-                          setSelectedGroupIndex(index)
-                        }
-                      }}
                     />
                   ))}
                 </ul>
