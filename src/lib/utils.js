@@ -4,13 +4,15 @@
  * @returns {string} - First two initials in uppercase
  */
 export const getInitials = name => {
-  if (typeof name !== 'string') return ''
+  if (typeof name !== 'string') return '?'
 
-  return name
+  const initials = name
     .split(' ')
     .filter(word => word && word.length > 0)
     .slice(0, 2)
     .map(word => word[0])
     .join('')
     .toUpperCase()
+
+  return initials || '?'
 }

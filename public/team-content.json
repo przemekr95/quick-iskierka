@@ -26,7 +26,9 @@
       }
     ]
   },
-  "players": [
+  "players": {
+    "title": "Kadra",
+    "items": [
     {
       "name": "Jan Banaś",
       "position": "Rozgrywający",
@@ -187,5 +189,6 @@
       "position": "Libero",
       "category": "seniorzy"
     }
-  ]
+    ]
+  }
 }

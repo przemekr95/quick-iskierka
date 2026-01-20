@@ -74,7 +74,15 @@ $header-height: 80px;
   gap: $spacing-5;
 }
 
-@media (max-width: 768px) {
+.noPlayersMessage {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: $color-secondary;
+  padding: $spacing-6;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
   .playersGrid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: $spacing-4;

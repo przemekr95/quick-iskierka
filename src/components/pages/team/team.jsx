@@ -54,12 +54,12 @@ const Team = () => {
   }, [fetchContent])
 
   const filteredPlayers = useMemo(() => {
-    if (!content?.players) return []
-    if (selectedCategory === 'all') return content.players
-    return content.players.filter(
+    if (!content?.players?.items) return []
+    if (selectedCategory === 'all') return content.players.items
+    return content.players.items.filter(
       player => player.category === selectedCategory
     )
-  }, [content?.players, selectedCategory])
+  }, [content?.players?.items, selectedCategory])
 
   const handleRetry = fetchContent
 
@@ -103,33 +103,41 @@ const Team = () => {
         <ClubSection title={content.categories.label}>
           <div className={styles.categoriesWrapper}>
             <ul className={styles.categoryList}>
-              <TrainingGroupBadge
-                isActive={selectedCategory === 'all'}
-                key='all'
-                name={content.categories.all}
-                onClick={() => setSelectedCategory('all')}
-              />
-              {content.categories.groups.map(category => (
+              <li>
                 <TrainingGroupBadge
-                  isActive={selectedCategory === category.id}
-                  key={category.id}
-                  name={category.name}
-                  onClick={() => setSelectedCategory(category.id)}
+                  isActive={selectedCategory === 'all'}
+                  name={content.categories.all}
+                  onClick={() => setSelectedCategory('all')}
                 />
+              </li>
+              {content.categories.groups.map(category => (
+                <li key={category.id}>
+                  <TrainingGroupBadge
+                    isActive={selectedCategory === category.id}
+                    name={category.name}
+                    onClick={() => setSelectedCategory(category.id)}
+                  />
+                </li>
               ))}
             </ul>
           </div>
         </ClubSection>
 
-        <ClubSection title='Kadra'>
+        <ClubSection subtitle={content.players?.subtitle} title={content.players?.title ?? 'Kadra'}>
           <div className={styles.playersGrid}>
-            {filteredPlayers.map(player => (
-              <PlayerCard
-                key={player.name}
-                name={player.name}
-                position={player.position}
-              />
-            ))}
+            {filteredPlayers.length === 0 ? (
+              <p className={styles.noPlayersMessage}>
+                Brak zawodników dla wybranej kategorii.
+              </p>
+            ) : (
+              filteredPlayers.map(player => (
+                <PlayerCard
+                  key={`${player.name}-${player.category}`}
+                  name={player.name}
+                  position={player.position}
+                />
+              ))
+            )}
           </div>
         </ClubSection>
       </div>

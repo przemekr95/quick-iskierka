@@ -8,7 +8,7 @@ const PlayerCard = ({ name, position }) => {
 
   return (
     <div className={styles.card}>
-      <div className={styles.avatar} title={name}>
+      <div aria-label={name} className={styles.avatar} title={name}>
         {initials}
       </div>
       <div className={styles.info}>
