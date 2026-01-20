@@ -30,18 +30,10 @@ const Team = () => {
       const defaultMessage =
         'Wystąpił nieoczekiwany błąd podczas ładowania treści strony.'
 
-      let message = defaultMessage
-      if (err instanceof Error && typeof err.message === 'string') {
-        const trimmed = err.message.trim()
-        if (trimmed) {
-          message = trimmed
-        }
-      } else if (typeof err === 'string') {
-        const trimmed = err.trim()
-        if (trimmed) {
-          message = trimmed
-        }
-      }
+      const message =
+        err && typeof err.message === 'string' && err.message?.trim()
+          ? err.message.trim()
+          : defaultMessage
 
       setError(message)
     } finally {
@@ -123,16 +115,16 @@ const Team = () => {
           </div>
         </ClubSection>
 
-        <ClubSection subtitle={content.players?.subtitle} title={content.players?.title ?? 'Kadra'}>
+        <ClubSection subtitle={content.players?.subtitle} title={content.players?.title}>
           <div className={styles.playersGrid}>
             {filteredPlayers.length === 0 ? (
               <p className={styles.noPlayersMessage}>
                 Brak zawodników dla wybranej kategorii.
               </p>
             ) : (
-              filteredPlayers.map(player => (
+              filteredPlayers.map((player, index) => (
                 <PlayerCard
-                  key={`${player.name}-${player.category}`}
+                  key={`${player.name}-${player.category}-${index}`}
                   name={player.name}
                   position={player.position}
                 />
