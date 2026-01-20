@@ -4,7 +4,7 @@
  * @returns {string} - First two initials in uppercase
  */
 export const getInitials = name => {
-  if (typeof name !== 'string') return '?'
+  if (typeof name !== 'string' || !name.trim()) return '?'
 
   const initials = name
     .split(' ')

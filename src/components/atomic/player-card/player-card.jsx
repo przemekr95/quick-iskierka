@@ -12,8 +12,8 @@ const PlayerCard = ({ name, position }) => {
         {initials}
       </div>
       <div className={styles.info}>
-        <p className={styles.name}>{name}</p>
         <p className={styles.position}>{position}</p>
+        <p className={styles.name}>{name}</p>
       </div>
     </div>
   )
