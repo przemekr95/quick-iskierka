@@ -1,10 +1,138 @@
-import React from 'react'
+import React, { useEffect, useState, useCallback, useMemo } from 'react'
+import LoadingSpinner from '../../atomic/loading-spinner/loading-spinner'
+import ErrorMessage from '../../atomic/error-message/error-message'
+import ClubSection from '../../sections/club/club-section'
+import PlayerCard from '../../atomic/player-card/player-card'
+import BoardMemberCard from '../../atomic/board-member-card/board-member-card'
+import TrainingGroupBadge from '../../atomic/training-group-badge/training-group-badge'
+import styles from './team.module.scss'
 
 const Team = () => {
+  const [content, setContent] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [selectedCategory, setSelectedCategory] = useState('all')
+
+  const fetchContent = useCallback(async () => {
+    try {
+      setLoading(true)
+      setError(null)
+
+      const response = await fetch('/team-content.json')
+
+      if (!response.ok) {
+        throw new Error('Nie udało się pobrać treści strony')
+      }
+
+      const data = await response.json()
+      setContent(data)
+    } catch (err) {
+      const defaultMessage =
+        'Wystąpił nieoczekiwany błąd podczas ładowania treści strony.'
+
+      let message = defaultMessage
+      if (err instanceof Error && typeof err.message === 'string') {
+        const trimmed = err.message.trim()
+        if (trimmed) {
+          message = trimmed
+        }
+      } else if (typeof err === 'string') {
+        const trimmed = err.trim()
+        if (trimmed) {
+          message = trimmed
+        }
+      }
+
+      setError(message)
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchContent()
+  }, [fetchContent])
+
+  const filteredPlayers = useMemo(() => {
+    if (!content?.players) return []
+    if (selectedCategory === 'all') return content.players
+    return content.players.filter(
+      player => player.category === selectedCategory
+    )
+  }, [content?.players, selectedCategory])
+
+  const handleRetry = fetchContent
+
+  if (loading) {
+    return <LoadingSpinner message='Ładowanie strony drużyny...' />
+  }
+
+  if (error) {
+    return (
+      <ErrorMessage
+        message={`Błąd: ${error}`}
+        showRetry={true}
+        onRetry={handleRetry}
+      />
+    )
+  }
+
+  if (!content) {
+    return null
+  }
+
   return (
-    <div>
-      <h1>Drużyna</h1>
-      <p>Strona drużyny działa!</p>
+    <div className={styles.teamPage}>
+      <div className={styles.container}>
+        <section aria-label={content.hero.title}>
+          <div className={styles.header}>
+            <h1 className={styles.title}>{content.hero.title}</h1>
+            <p className={styles.subtitle}>{content.hero.subtitle}</p>
+          </div>
+        </section>
+
+        <ClubSection title={content.coach.title}>
+          <div className={styles.coachCard}>
+            <BoardMemberCard
+              name={content.coach.name}
+              role={content.coach.role}
+            />
+          </div>
+        </ClubSection>
+
+        <ClubSection title={content.categories.label}>
+          <div className={styles.categoriesWrapper}>
+            <ul className={styles.categoryList}>
+              <TrainingGroupBadge
+                isActive={selectedCategory === 'all'}
+                key='all'
+                name={content.categories.all}
+                onClick={() => setSelectedCategory('all')}
+              />
+              {content.categories.groups.map(category => (
+                <TrainingGroupBadge
+                  isActive={selectedCategory === category.id}
+                  key={category.id}
+                  name={category.name}
+                  onClick={() => setSelectedCategory(category.id)}
+                />
+              ))}
+            </ul>
+          </div>
+        </ClubSection>
+
+        <ClubSection title='Kadra'>
+          <div className={styles.playersGrid}>
+            {filteredPlayers.map(player => (
+              <PlayerCard
+                key={player.name}
+                name={player.name}
+                position={player.position}
+              />
+            ))}
+          </div>
+        </ClubSection>
+      </div>
     </div>
   )
 }

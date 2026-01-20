@@ -1,0 +1,191 @@
+{
+  "hero": {
+    "title": "Drużyna",
+    "subtitle": "Poznaj naszych zawodników i trenerów"
+  },
+  "coach": {
+    "title": "Trener",
+    "name": "Andrzej Łoś",
+    "role": "Trener"
+  },
+  "categories": {
+    "label": "Kategorie",
+    "all": "Wszyscy",
+    "groups": [
+      {
+        "id": "kadeci",
+        "name": "Kadeci"
+      },
+      {
+        "id": "juniorzy",
+        "name": "Juniorzy"
+      },
+      {
+        "id": "seniorzy",
+        "name": "Seniorzy"
+      }
+    ]
+  },
+  "players": [
+    {
+      "name": "Jan Banaś",
+      "position": "Rozgrywający",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Paweł Budzyński",
+      "position": "Środkowy",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Karol Czarnecki",
+      "position": "Środkowy",
+      "category": "seniorzy"
+    },
+    {
+      "name": "Bartosz Dychus",
+      "position": "Atakujący",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Szymon Kocowicz",
+      "position": "Przyjmujący",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Szymon Gargaś",
+      "position": "Przyjmujący",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Kacper Gdowski",
+      "position": "Środkowy",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Dawid Gromniak",
+      "position": "Środkowy",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Jakub Kobis",
+      "position": "Przyjmujący",
+      "category": "seniorzy"
+    },
+    {
+      "name": "Michał Kuczek",
+      "position": "Rozgrywający",
+      "category": "seniorzy"
+    },
+    {
+      "name": "Adrian Lachowicz",
+      "position": "Środkowy",
+      "category": "seniorzy"
+    },
+    {
+      "name": "Igor Łoś",
+      "position": "Rozgrywający",
+      "category": "kadeci"
+    },
+    {
+      "name": "Krystian Matyjasik",
+      "position": "Przyjmujący",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Gabriel Miłkowski",
+      "position": "Przyjmujący",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Filip Molak",
+      "position": "Atakujący",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Piotr Półkoszek",
+      "position": "Atakujący",
+      "category": "seniorzy"
+    },
+    {
+      "name": "Wojciech Rubacha",
+      "position": "Atakujący",
+      "category": "seniorzy"
+    },
+    {
+      "name": "Przemysław Rura",
+      "position": "Przyjmujący",
+      "category": "seniorzy"
+    },
+    {
+      "name": "Szymon Rybski",
+      "position": "Przyjmujący",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Bartłomiej Skawiński",
+      "position": "Rozgrywający",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Mateusz Skowron",
+      "position": "Przyjmujący",
+      "category": "seniorzy"
+    },
+    {
+      "name": "Radosław Skrzypek",
+      "position": "Przyjmujący",
+      "category": "seniorzy"
+    },
+    {
+      "name": "Mateusz Soboń",
+      "position": "Środkowy",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Sławomir Sorys",
+      "position": "Libero",
+      "category": "seniorzy"
+    },
+    {
+      "name": "Przemysław Szarkowicz",
+      "position": "Środkowy",
+      "category": "kadeci"
+    },
+    {
+      "name": "Błażej Świder",
+      "position": "Przyjmujący",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Wiktor Tutaj",
+      "position": "Przyjmujący",
+      "category": "kadeci"
+    },
+    {
+      "name": "Damian Tymoszuk",
+      "position": "Przyjmujący",
+      "category": "kadeci"
+    },
+    {
+      "name": "Marcel Witek",
+      "position": "Libero",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Tomasz Wrona",
+      "position": "Przyjmujący",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Mateusz Zabawa",
+      "position": "Rozgrywający",
+      "category": "kadeci"
+    },
+    {
+      "name": "Nikodem Zacharek",
+      "position": "Libero",
+      "category": "seniorzy"
+    }
+  ]
+}

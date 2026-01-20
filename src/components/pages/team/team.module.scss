@@ -1,0 +1,82 @@
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+
+$header-height: 80px;
+
+.teamPage {
+  background: linear-gradient(180deg, rgba($color-primary, 0.05), $color-neutral 35%);
+  padding: calc(#{$header-height} + #{$spacing-6}) 0 $spacing-12;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-6;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-8;
+}
+
+.container > section {
+  scroll-margin-top: calc(#{$header-height} + #{$spacing-2});
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+  margin-bottom: $spacing-6;
+  text-align: left;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp($font-2xl, 3vw, $font-3xl);
+  font-weight: $font-weight-bold;
+  color: $color-text;
+  line-height: 1.1;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: $font-lg;
+  color: $color-secondary;
+  line-height: $line-md;
+}
+
+.coachCard {
+  display: flex;
+  justify-content: center;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.categoriesWrapper {
+  border-top: 1px solid rgba($color-text, 0.08);
+  padding-top: $spacing-4;
+}
+
+.categoryList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-3;
+
+  @media (min-width: 768px) {
+    flex-wrap: nowrap;
+  }
+}
+
+.playersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $spacing-5;
+}
+
+@media (max-width: 768px) {
+  .playersGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: $spacing-4;
+  }
+}
