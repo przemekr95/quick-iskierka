@@ -1,7 +1,7 @@
 /**
  * Generates initials from a full name
  * @param {string} name - Full name
- * @returns {string} - First two initials in uppercase
+ * @returns {string} - Initials from the first two words in uppercase
  */
 export const getInitials = name => {
   if (typeof name !== 'string' || !name.trim()) return '?'
