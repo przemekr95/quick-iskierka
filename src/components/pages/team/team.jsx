@@ -31,7 +31,7 @@ const Team = () => {
         'Wystąpił nieoczekiwany błąd podczas ładowania treści strony.'
 
       const message =
-        err && typeof err.message === 'string' && err.message?.trim()
+        err && typeof err.message === 'string' && err.message.trim()
           ? err.message.trim()
           : defaultMessage
 
@@ -102,7 +102,7 @@ const Team = () => {
                   onClick={() => setSelectedCategory('all')}
                 />
               </li>
-              {content.categories.groups.map(category => (
+              {content.categories.groups?.map(category => (
                 <li key={category.id}>
                   <TrainingGroupBadge
                     isActive={selectedCategory === category.id}
