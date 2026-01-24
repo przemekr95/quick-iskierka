@@ -1,3 +1,12 @@
+/**
+ * Normalizes different error shapes into a user-facing message.
+ * Supports Error instances, plain strings, HTTP-like objects (status, statusText), and generic objects.
+ * Falls back to the provided defaultMessage or a generic message.
+ * @param {unknown} err - Caught error from fetch/JSON parsing or custom throw.
+ * @param {Object} [options]
+ * @param {string} [options.defaultMessage] - Message used when no better detail is available.
+ * @returns {string} - Human-readable error message.
+ */
 export const normalizeError = (err, { defaultMessage } = {}) => {
   const fallback =
     defaultMessage || 'Wystąpił nieoczekiwany błąd podczas wykonywania żądania.'
@@ -40,6 +49,15 @@ export const normalizeError = (err, { defaultMessage } = {}) => {
   return message || fallback
 }
 
+/**
+ * Fetches JSON and throws enriched errors with status and statusText when response is not ok.
+ * Also wraps JSON parsing failures with a descriptive error.
+ * @param {string} url - Endpoint to fetch.
+ * @param {Object} [options]
+ * @param {string} [options.defaultErrorMessage] - Message used when response.ok is false.
+ * @returns {Promise<any>} - Parsed JSON payload.
+ * @throws {Error} - With status/statusText when HTTP not ok, or cause when JSON parse fails.
+ */
 export const fetchJson = async (url, { defaultErrorMessage } = {}) => {
   const response = await fetch(url)
 
