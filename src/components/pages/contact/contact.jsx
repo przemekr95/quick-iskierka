@@ -24,21 +24,42 @@ const Contact = () => {
       const defaultMessage =
         'Wystąpił problem z połączeniem z serwerem podczas ładowania treści strony.'
 
-      let message = defaultMessage
+      let message = null
 
+      // Prefer Error.message when available
       if (err instanceof Error && typeof err.message === 'string') {
         const trimmed = err.message.trim()
         if (trimmed) {
           message = trimmed
         }
       } else if (typeof err === 'string') {
+        // Handle plain string errors
         const trimmed = err.trim()
         if (trimmed) {
           message = trimmed
         }
+      } else if (err && typeof err === 'object') {
+        // Handle common network / HTTP-like error shapes
+        if ('statusText' in err && typeof err.statusText === 'string') {
+          const trimmed = err.statusText.trim()
+          if (trimmed) {
+            message = trimmed
+          }
+        }
+
+        if (!message && 'status' in err && typeof err.status === 'number') {
+          message = `Żądanie nie powiodło się (status ${err.status}).`
+        }
+
+        if (!message && typeof err.toString === 'function') {
+          const str = err.toString().trim()
+          if (str && str !== '[object Object]') {
+            message = str
+          }
+        }
       }
 
-      setError(message)
+      setError(message || defaultMessage)
     } finally {
       setLoading(false)
     }
@@ -110,8 +131,11 @@ const Contact = () => {
                   {address?.subtitle || 'Nasza siedziba'}
                 </p>
                 <div className={styles.infoGroup}>
-                  {(address?.lines || []).map(line => (
-                    <p key={line} className={styles.infoText}>
+                  {(address?.lines || []).map((line, index) => (
+                    <p
+                      key={`address-line-${index}`}
+                      className={styles.infoText}
+                    >
                       {line}
                     </p>
                   ))}
@@ -155,20 +179,22 @@ const Contact = () => {
                     </a>
                   </div>
                   <div className={styles.contactItem}>
-                    <svg
-                      className={styles.smallIcon}
-                      viewBox='0 0 24 24'
-                      fill='none'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      aria-hidden='true'
-                    >
-                      <path d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z' />
-                      <polyline points='22,6 12,13 2,6' />
-                    </svg>
-                    <span className={styles.label}>Email</span>
+                    <span className={styles.label}>
+                      <svg
+                        className={styles.smallIcon}
+                        viewBox='0 0 24 24'
+                        fill='none'
+                        stroke='currentColor'
+                        strokeWidth='2'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        aria-hidden='true'
+                      >
+                        <path d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z' />
+                        <polyline points='22,6 12,13 2,6' />
+                      </svg>
+                      Email
+                    </span>
                     <a
                       href={contact?.emailHref || 'mailto:andlos@tlen.pl'}
                       className={styles.link}
@@ -223,20 +249,29 @@ const Contact = () => {
                     </span>
                   </div>
                   <div className={styles.dataItem}>
-                    <svg
-                      className={styles.smallIcon}
-                      viewBox='0 0 24 24'
-                      fill='none'
-                      stroke='currentColor'
-                      strokeWidth='2'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      aria-hidden='true'
-                    >
-                      <rect x='1' y='4' width='22' height='16' rx='2' ry='2' />
-                      <line x1='1' y1='10' x2='23' y2='10' />
-                    </svg>
-                    <span className={styles.label}>Konto bankowe</span>
+                    <span className={styles.label}>
+                      <svg
+                        className={styles.smallIcon}
+                        viewBox='0 0 24 24'
+                        fill='none'
+                        stroke='currentColor'
+                        strokeWidth='2'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        aria-hidden='true'
+                      >
+                        <rect
+                          x='1'
+                          y='4'
+                          width='22'
+                          height='16'
+                          rx='2'
+                          ry='2'
+                        />
+                        <line x1='1' y1='10' x2='23' y2='10' />
+                      </svg>
+                      Konto bankowe
+                    </span>
                     <span className={styles.value}>
                       {data?.bank || '96 1160 2202 0000 0000 2839 6311'}
                     </span>

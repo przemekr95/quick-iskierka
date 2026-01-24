@@ -195,7 +195,7 @@ $header-height: 80px;
   color: $color-text;
   font-weight: $font-weight-medium;
   font-family: 'Courier New', monospace;
-  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 .link {
