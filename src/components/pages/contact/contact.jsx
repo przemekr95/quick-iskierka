@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import LoadingSpinner from '../../atomic/loading-spinner/loading-spinner'
 import ErrorMessage from '../../atomic/error-message/error-message'
+import { fetchJson, normalizeError } from '../../../lib/http'
 import styles from './contact.module.scss'
 
 const Contact = () => {
@@ -13,22 +14,15 @@ const Contact = () => {
       setLoading(true)
       setError(null)
 
-      const response = await fetch('/contact-content.json')
-      if (!response.ok) {
-        throw new Error('Nie udało się pobrać danych kontaktowych')
-      }
-
-      const data = await response.json()
+      const data = await fetchJson('/contact-content.json', {
+        defaultErrorMessage: 'Nie udało się pobrać danych kontaktowych',
+      })
       setContent(data)
     } catch (err) {
-      const defaultMessage =
-        'Wystąpił nieoczekiwany błąd podczas ładowania treści strony.'
-
-      const message =
-        err && typeof err.message === 'string' && err.message.trim()
-          ? err.message.trim()
-          : defaultMessage
-
+      const message = normalizeError(err, {
+        defaultMessage:
+          'Wystąpił nieoczekiwany błąd podczas ładowania treści strony.',
+      })
       setError(message)
     } finally {
       setLoading(false)
@@ -62,7 +56,9 @@ const Contact = () => {
   return (
     <div className={styles.contactPage}>
       <div className={styles.container}>
-        <section aria-label={hero?.title || 'Kontakt z klubem MUKS Iskierka Tarnów'}>
+        <section
+          aria-label={hero?.title || 'Kontakt z klubem MUKS Iskierka Tarnów'}
+        >
           <div className={styles.header}>
             <h1 className={styles.title}>
               {hero?.title || 'Skontaktuj się z nami'}

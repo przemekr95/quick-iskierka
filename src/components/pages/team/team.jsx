@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react'
 import LoadingSpinner from '../../atomic/loading-spinner/loading-spinner'
 import ErrorMessage from '../../atomic/error-message/error-message'
+import { fetchJson, normalizeError } from '../../../lib/http'
 import ClubSection from '../../sections/club/club-section'
 import PlayerCard from '../../atomic/player-card/player-card'
 import BoardMemberCard from '../../atomic/board-member-card/board-member-card'
@@ -18,23 +19,15 @@ const Team = () => {
       setLoading(true)
       setError(null)
 
-      const response = await fetch('/team-content.json')
-
-      if (!response.ok) {
-        throw new Error('Nie udało się pobrać treści strony')
-      }
-
-      const data = await response.json()
+      const data = await fetchJson('/team-content.json', {
+        defaultErrorMessage: 'Nie udało się pobrać treści strony',
+      })
       setContent(data)
     } catch (err) {
-      const defaultMessage =
-        'Wystąpił nieoczekiwany błąd podczas ładowania treści strony.'
-
-      const message =
-        err && typeof err.message === 'string' && err.message.trim()
-          ? err.message.trim()
-          : defaultMessage
-
+      const message = normalizeError(err, {
+        defaultMessage:
+          'Wystąpił nieoczekiwany błąd podczas ładowania treści strony.',
+      })
       setError(message)
     } finally {
       setLoading(false)
