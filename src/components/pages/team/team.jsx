@@ -115,7 +115,10 @@ const Team = () => {
           </div>
         </ClubSection>
 
-        <ClubSection subtitle={content.players?.subtitle} title={content.players?.title}>
+        <ClubSection
+          subtitle={content.players?.subtitle}
+          title={content.players?.title}
+        >
           <div className={styles.playersGrid}>
             {filteredPlayers.length === 0 ? (
               <p className={styles.noPlayersMessage}>

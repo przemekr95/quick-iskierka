@@ -181,7 +181,8 @@ const Club = () => {
                   {content.trainings.scheduleLabel}
                   {selectedGroup?.name ? `: ${selectedGroup.name}` : ''}
                 </h3>
-                {selectedGroup?.schedule && selectedGroup.schedule.length > 0 ? (
+                {selectedGroup?.schedule &&
+                selectedGroup.schedule.length > 0 ? (
                   <ul className={styles.scheduleList}>
                     {selectedGroup.schedule.map(session => (
                       <ScheduleItem
@@ -194,13 +195,16 @@ const Club = () => {
                   </ul>
                 ) : (
                   <p className={styles.noSchedule}>
-                    {selectedGroup?.details || content.trainings.noScheduleMessage}
+                    {selectedGroup?.details ||
+                      content.trainings.noScheduleMessage}
                   </p>
                 )}
               </div>
             </div>
           ) : (
-            <p className={styles.noSchedule}>{content.trainings.noGroupsMessage}</p>
+            <p className={styles.noSchedule}>
+              {content.trainings.noGroupsMessage}
+            </p>
           )}
         </ClubSection>
 

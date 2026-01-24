@@ -1,0 +1,29 @@
+{
+  "hero": {
+    "title": "Skontaktuj się z nami",
+    "subtitle": "Masz pytania? Chcesz dołączyć do naszego klubu? Skontaktuj się z nami!"
+  },
+  "address": {
+    "title": "Adres",
+    "subtitle": "Nasza siedziba",
+    "lines": [
+      "ul. Krzyska 118",
+      "33-103 Tarnów"
+    ]
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Zadzwoń lub napisz",
+    "phone": "605 721 423",
+    "phoneHref": "tel:+48605721423",
+    "email": "andlos@tlen.pl",
+    "emailHref": "mailto:andlos@tlen.pl"
+  },
+  "data": {
+    "title": "Dane",
+    "subtitle": "Informacje organizacyjne",
+    "nip": "873-26-11-598",
+    "regon": "850509910",
+    "bank": "96 1160 2202 0000 0000 2839 6311"
+  }
+}

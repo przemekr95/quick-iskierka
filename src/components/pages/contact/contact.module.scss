@@ -1,0 +1,291 @@
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+
+$header-height: 80px;
+
+.contactPage {
+  background: linear-gradient(180deg, rgba($color-primary, 0.05), $color-neutral 35%);
+  padding: calc(#{$header-height} + #{$spacing-6}) 0 $spacing-12;
+  min-height: calc(100vh - #{$header-height});
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-6;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-8;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-4;
+}
+
+.title {
+  margin: 0 0 $spacing-3 0;
+  font-size: clamp($font-2xl, 3vw, $font-3xl);
+  font-weight: $font-weight-bold;
+  color: $color-text;
+  line-height: 1.1;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: $font-lg;
+  color: $color-secondary;
+  line-height: $line-md;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: $spacing-6;
+  margin-top: $spacing-6;
+}
+
+.contactCard {
+  background: $color-surface;
+  border: 1px solid rgba($color-text, 0.08);
+  border-radius: $spacing-5;
+  padding: $spacing-8;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-5;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $color-primary, $color-secondary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba($color-text, 0.12);
+    border-color: rgba($color-primary, 0.2);
+
+    &::before {
+      transform: scaleX(1);
+    }
+
+    .iconWrapper {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, $color-primary, $color-secondary);
+      
+      .icon {
+        transform: rotate(5deg);
+        color: $color-surface;
+      }
+    }
+  }
+}
+
+.iconWrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: $spacing-4;
+  background: rgba($color-primary, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  color: $color-primary;
+  transition: all 0.3s ease;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: $font-xl;
+  font-weight: $font-weight-bold;
+  color: $color-text;
+  line-height: 1.2;
+}
+
+.cardSubtitle {
+  margin: 0;
+  font-size: $font-sm;
+  color: $color-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: $font-weight-semibold;
+}
+
+.infoGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  margin-top: $spacing-2;
+}
+
+.infoText {
+  margin: 0;
+  font-size: $font-lg;
+  color: $color-text;
+  line-height: $line-lg;
+  font-weight: $font-weight-medium;
+  padding-left: $spacing-3;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: $color-primary;
+  }
+}
+
+.contactItem,
+.dataItem {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+  padding: $spacing-3;
+  background: rgba($color-text, 0.02);
+  border-radius: $spacing-2;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba($color-primary, 0.05);
+    border-left-color: $color-primary;
+  }
+}
+
+.label {
+  font-size: $font-xs;
+  color: $color-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: $font-weight-semibold;
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+}
+
+.value {
+  font-size: $font-md;
+  color: $color-text;
+  font-weight: $font-weight-medium;
+  font-family: 'Courier New', monospace;
+  word-break: break-all;
+}
+
+.link {
+  font-size: $font-md;
+  color: $color-primary;
+  text-decoration: none;
+  font-weight: $font-weight-semibold;
+  transition: all 0.2s ease;
+  width: fit-content;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: $color-secondary;
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: $color-secondary;
+
+    &::after {
+      width: 100%;
+    }
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+.smallIcon {
+  width: 16px;
+  height: 16px;
+  color: $color-secondary;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .contactPage {
+    padding: calc(#{$header-height} + #{$spacing-4}) 0 $spacing-8;
+  }
+
+  .container {
+    padding: 0 $spacing-4;
+  }
+
+  .title {
+    font-size: $font-xl;
+  }
+
+  .subtitle {
+    font-size: $font-md;
+  }
+
+  .contentGrid {
+    grid-template-columns: 1fr;
+    gap: $spacing-5;
+  }
+
+  .contactCard {
+    padding: $spacing-6;
+  }
+
+  .iconWrapper {
+    width: 56px;
+    height: 56px;
+  }
+
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .cardTitle {
+    font-size: $font-lg;
+  }
+
+  .infoText {
+    font-size: $font-md;
+  }
+
+  .value,
+  .link {
+    font-size: $font-sm;
+  }
+}
