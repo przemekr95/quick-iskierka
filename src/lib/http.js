@@ -59,7 +59,20 @@ export const normalizeError = (err, { defaultMessage } = {}) => {
  * @throws {Error} - With status/statusText when HTTP not ok, or cause when JSON parse fails.
  */
 export const fetchJson = async (url, { defaultErrorMessage } = {}) => {
-  const response = await fetch(url)
+  let response
+
+  try {
+    response = await fetch(url)
+  } catch (err) {
+    const error = new Error(
+      defaultErrorMessage ||
+        'Wystąpił błąd sieci podczas komunikacji z serwerem'
+    )
+    error.cause = err
+    error.status = 0
+    error.statusText = 'Błąd połączenia z siecią'
+    throw error
+  }
 
   if (!response.ok) {
     const error = new Error(

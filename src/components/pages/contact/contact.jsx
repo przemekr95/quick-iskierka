@@ -33,6 +33,8 @@ const Contact = () => {
     fetchContent()
   }, [fetchContent])
 
+  const handleRetry = fetchContent
+
   if (loading) {
     return <LoadingSpinner message='Ładowanie danych kontaktowych...' />
   }
@@ -42,7 +44,7 @@ const Contact = () => {
       <ErrorMessage
         message={`Błąd: ${error}`}
         showRetry={true}
-        onRetry={fetchContent}
+        onRetry={handleRetry}
       />
     )
   }
@@ -99,7 +101,7 @@ const Contact = () => {
                 <div className={styles.infoGroup}>
                   {(address?.lines || []).map((line, index) => (
                     <p
-                      key={`address-line-${index}`}
+                      key={`address-line-${index}-${line}`}
                       className={styles.infoText}
                     >
                       {line}
