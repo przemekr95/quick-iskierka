@@ -62,7 +62,7 @@ const Contact = () => {
   return (
     <div className={styles.contactPage}>
       <div className={styles.container}>
-        <section aria-label='Kontakt z klubem MUKS Iskierka Tarnów'>
+        <section aria-label={hero?.title || 'Kontakt z klubem MUKS Iskierka Tarnów'}>
           <div className={styles.header}>
             <h1 className={styles.title}>
               {hero?.title || 'Skontaktuj się z nami'}
