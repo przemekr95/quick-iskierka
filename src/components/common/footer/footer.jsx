@@ -7,11 +7,9 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <div className={styles.bottom}>
-          <p>
-            © {currentYear} MUKS Iskierka Tarnów. Wszystkie prawa zastrzeżone.
-          </p>
-        </div>
+        <p className={styles.bottom}>
+          © {currentYear} MUKS Iskierka Tarnów. Wszystkie prawa zastrzeżone.
+        </p>
       </div>
     </footer>
   )
