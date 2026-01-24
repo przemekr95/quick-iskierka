@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react'
 import LoadingSpinner from '../../atomic/loading-spinner/loading-spinner'
 import ErrorMessage from '../../atomic/error-message/error-message'
+import { fetchJson, normalizeError } from '../../../lib/http'
 import ClubSection from '../../sections/club/club-section'
 import BoardMemberCard from '../../atomic/board-member-card/board-member-card'
 import TrainingGroupBadge from '../../atomic/training-group-badge/training-group-badge'
@@ -19,54 +20,16 @@ const Club = () => {
       setLoading(true)
       setError(null)
 
-      const response = await fetch('/club-content.json')
-
-      if (!response.ok) {
-        throw new Error('Nie udało się pobrać treści strony')
-      }
-
-      const data = await response.json()
+      const data = await fetchJson('/club-content.json', {
+        defaultErrorMessage: 'Nie udało się pobrać treści strony',
+      })
       setContent(data)
     } catch (err) {
-      const defaultMessage =
-        'Wystąpił problem z połączeniem z serwerem podczas ładowania treści strony.'
-
-      let message = null
-
-      // Prefer Error.message when available
-      if (err instanceof Error && typeof err.message === 'string') {
-        const trimmed = err.message.trim()
-        if (trimmed) {
-          message = trimmed
-        }
-      } else if (typeof err === 'string') {
-        // Handle plain string errors
-        const trimmed = err.trim()
-        if (trimmed) {
-          message = trimmed
-        }
-      } else if (err && typeof err === 'object') {
-        // Handle common network / HTTP-like error shapes
-        if ('statusText' in err && typeof err.statusText === 'string') {
-          const trimmed = err.statusText.trim()
-          if (trimmed) {
-            message = trimmed
-          }
-        }
-
-        if (!message && 'status' in err && typeof err.status === 'number') {
-          message = `Żądanie nie powiodło się (status ${err.status}).`
-        }
-
-        if (!message && typeof err.toString === 'function') {
-          const str = err.toString().trim()
-          if (str && str !== '[object Object]') {
-            message = str
-          }
-        }
-      }
-
-      setError(message || defaultMessage)
+      const message = normalizeError(err, {
+        defaultMessage:
+          'Wystąpił problem z połączeniem z serwerem podczas ładowania treści strony.',
+      })
+      setError(message)
     } finally {
       setLoading(false)
     }
@@ -181,7 +144,8 @@ const Club = () => {
                   {content.trainings.scheduleLabel}
                   {selectedGroup?.name ? `: ${selectedGroup.name}` : ''}
                 </h3>
-                {selectedGroup?.schedule && selectedGroup.schedule.length > 0 ? (
+                {selectedGroup?.schedule &&
+                selectedGroup.schedule.length > 0 ? (
                   <ul className={styles.scheduleList}>
                     {selectedGroup.schedule.map(session => (
                       <ScheduleItem
@@ -194,13 +158,16 @@ const Club = () => {
                   </ul>
                 ) : (
                   <p className={styles.noSchedule}>
-                    {selectedGroup?.details || content.trainings.noScheduleMessage}
+                    {selectedGroup?.details ||
+                      content.trainings.noScheduleMessage}
                   </p>
                 )}
               </div>
             </div>
           ) : (
-            <p className={styles.noSchedule}>{content.trainings.noGroupsMessage}</p>
+            <p className={styles.noSchedule}>
+              {content.trainings.noGroupsMessage}
+            </p>
           )}
         </ClubSection>
 

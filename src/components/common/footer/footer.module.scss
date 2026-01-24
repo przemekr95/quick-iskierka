@@ -1,21 +1,37 @@
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+
 .footer {
-  background-color: #333;
-  color: #fff;
+  background: linear-gradient(135deg, rgba($color-primary, 0.95), rgba($color-secondary, 0.9));
+  color: $color-surface;
   margin-top: auto;
+  box-shadow: inset 0 1px 0 rgba($color-surface, 0.12);
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1rem 1rem;
+  padding: $spacing-6 $spacing-5 $spacing-5;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3;
+  text-align: center;
 }
 
 .bottom {
-  text-align: center;
-
   p {
     margin: 0;
-    color: #ccc;
-    font-size: 0.9rem;
+    color: rgba($color-surface, 0.85);
+    font-size: $font-sm;
+    line-height: $line-md;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: $spacing-5 $spacing-4 $spacing-4;
+  }
+
+  .bottom p {
+    font-size: $font-xs;
   }
 }

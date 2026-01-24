@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import styles from './club-section.module.scss'
 
 const ClubSection = ({ title, subtitle, children }) => {
-  const ariaLabel = subtitle && subtitle.trim() ? `${title} - ${subtitle}` : title
-  
+  const ariaLabel =
+    subtitle && subtitle.trim() ? `${title} - ${subtitle}` : title
+
   return (
     <section aria-label={ariaLabel}>
       <div className={styles.header}>
