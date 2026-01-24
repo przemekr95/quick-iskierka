@@ -100,10 +100,7 @@ const Contact = () => {
                 </p>
                 <div className={styles.infoGroup}>
                   {(address?.lines || []).map((line, index) => (
-                    <p
-                      key={`address-line-${index}-${line}`}
-                      className={styles.infoText}
-                    >
+                    <p key={index} className={styles.infoText}>
                       {line}
                     </p>
                   ))}
