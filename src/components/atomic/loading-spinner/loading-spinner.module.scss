@@ -1,41 +1,55 @@
-.loadingContainer {
+@use '~@przemekr95/quick-design-tokens/dist/scss/pr-iskierka/variables' as *;
+
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  min-height: 200px;
+  padding: $spacing-8;
+  min-height: 60vh;
+
+  @media (max-width: 768px) {
+    min-height: 50vh;
+    padding: $spacing-6;
+  }
 }
 
 .spinner {
-  border: 3px solid rgba(0, 102, 204, 0.2);
-  border-top: 3px solid #0066cc;
+  border: 3px solid rgba($color-primary, 0.15);
+  border-top-color: $color-primary;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 0.8s linear infinite;
 }
 
 .spinner.small {
-  width: 20px;
-  height: 20px;
+  width: $spacing-8;
+  height: $spacing-8;
   border-width: 2px;
 }
 
 .spinner.medium {
-  width: 40px;
-  height: 40px;
+  width: $spacing-12;
+  height: $spacing-12;
+  border-width: 3px;
 }
 
 .spinner.large {
-  width: 60px;
-  height: 60px;
+  width: $spacing-16;
+  height: $spacing-16;
   border-width: 4px;
 }
 
-.loadingMessage {
-  margin-top: 1rem;
-  color: #666;
-  font-size: 1rem;
-  font-weight: 500;
+.message {
+  margin-top: $spacing-4;
+  color: $color-text;
+  font-size: $font-md;
+  font-weight: $font-weight-medium;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: $font-sm;
+    margin-top: $spacing-3;
+  }
 }
 
 @keyframes spin {
