@@ -2,15 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './card.scss'
 
-// TODO
-
 const Card = ({
   children,
-  title,
-  subtitle,
+  className = '',
   image,
   imageAlt = '',
-  className = '',
+  subtitle,
+  title,
   variant = 'default',
   ...props
 }) => {
@@ -36,30 +34,13 @@ const Card = ({
 }
 
 Card.propTypes = {
-  /** Card content */
   children: PropTypes.node,
-  /** Card title */
-  title: PropTypes.string,
-  /** Card subtitle */
-  subtitle: PropTypes.string,
-  /** Image source URL */
-  image: PropTypes.string,
-  /** Image alt text for accessibility */
-  imageAlt: PropTypes.string,
-  /** Additional CSS classes */
   className: PropTypes.string,
-  /** Card style variant */
+  image: PropTypes.string,
+  imageAlt: PropTypes.string,
+  subtitle: PropTypes.string,
+  title: PropTypes.string,
   variant: PropTypes.oneOf(['default', 'highlighted', 'compact']),
-}
-
-Card.defaultProps = {
-  children: null,
-  title: '',
-  subtitle: '',
-  image: '',
-  imageAlt: '',
-  className: '',
-  variant: 'default',
 }
 
 export default Card
