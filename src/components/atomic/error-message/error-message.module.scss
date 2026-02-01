@@ -102,13 +102,12 @@
 
 .retryButton {
   align-self: flex-start;
-  background: $color-primary !important;
-  color: $color-surface !important;
-  border: none !important;
+  background: $color-primary;
+  color: $color-surface;
+  border: none;
 
   &:hover {
-    background: rgba($color-primary, 0.9) !important;
-    transform: translateY(-2px);
+    background: rgba($color-primary, 0.9);
   }
 }
 
