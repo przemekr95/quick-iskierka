@@ -7,8 +7,6 @@ import HomeSections from '../../sections/home-sections/home-sections'
 import SponsorsCarousel from '../../sections/sponsors-carousel/sponsors-carousel'
 import styles from './home.module.scss'
 
-// TODO
-
 const Home = () => {
   const navigate = useNavigate()
 
@@ -34,24 +32,11 @@ const Home = () => {
         }}
       />
 
-      {/* Content Sections */}
       <HomeSections />
 
-      {/* Sponsors Carousel */}
       <SponsorsCarousel sponsors={SPONSORS_DATA} />
     </div>
   )
-}
-
-// Home component doesn't receive props but we add PropTypes for future extensibility
-Home.propTypes = {
-  // Future props can be added here
-  // initialData: PropTypes.object,
-  // theme: PropTypes.oneOf(['light', 'dark']),
-}
-
-Home.defaultProps = {
-  // Default props can be added here in the future
 }
 
 export default Home
