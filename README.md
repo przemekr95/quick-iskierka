@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# MUKS Iskierka Tarnów — Official Club Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Modern, responsive website for the MUKS Iskierka Tarnów volleyball club built with React.
 
-## Available Scripts
+## Tech Stack
 
-In the project directory, you can run:
+- React 18 + React Router
+- SCSS modules + design tokens (@przemekr95/quick-design-tokens)
+- ESLint + Prettier
 
-### `npm start`
+## Requirements
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Node.js 18+ (LTS recommended)
+- npm 9+
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Environment
 
-### `npm test`
+If you need runtime configuration, copy env.example to .env and fill in the values.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Scripts
 
-### `npm run build`
+- npm start — start development server
+- npm run build — create production build in build
+- npm run lint — run ESLint
+- npm run format — format with Prettier
+- npm run analyze — build and serve build locally
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Content Management
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Static content is stored in JSON files under public:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- public/club-content.json — club page content
+- public/team-content.json — team page content
+- public/contact-content.json — contact page content
 
-### `npm run eject`
+## SEO & Metadata
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Page titles are generated dynamically from routes. Global metadata can be adjusted in public/index.html.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Deployment
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. Update homepage in package.json to match the target domain.
+2. Run npm run build.
+3. Upload the build directory to your hosting provider.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Recommended Hosting
 
-## Learn More
+- Static hosting (Netlify, Vercel, Cloudflare Pages)
+- Classic FTP hosting (upload build as root)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Quality & Formatting
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- ESLint config: .eslintrc.json
+- Prettier config: .prettierrc
 
-### Code Splitting
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT

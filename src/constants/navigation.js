@@ -62,6 +62,6 @@ export const getPageTitle = path => {
   if (!item) return 'MUKS Iskierka Tarnów'
 
   return item.path === '/'
-    ? 'MUKS Iskierka Tarnów - Klub Siatkarski'
+    ? 'MUKS Iskierka Tarnów'
     : `${item.label} - MUKS Iskierka Tarnów`
 }
