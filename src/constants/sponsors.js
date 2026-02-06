@@ -54,13 +54,13 @@ export const SPONSORS_DATA = [
     website: 'https://www.gppekologia.pl/',
   },
   {
-    id: 'reeko',
+    id: 'reeko-eco',
     name: 'Ponad wszystko chron środowisko',
     logo: '/images/sponsors/logo CMYK v2 cdr9 krzywe.png',
     website: 'https://www.reeko.pl/pl/',
   },
   {
-    id: 'reeko',
+    id: 'reeko-kontra',
     name: 'REEKO',
     logo: '/images/sponsors/REEKO logo akcji kontra.png',
     website: null,

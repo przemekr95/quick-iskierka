@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styles from './sponsors-carousel.module.scss'
 
-const SponsorsCarousel = ({ autoPlayDelay = 3000, sponsors }) => {
+const SponsorsCarousel = ({ autoPlayDelay = 3000, sponsors = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const intervalRef = useRef(null)
   const itemsPerView = 4
@@ -93,7 +93,7 @@ const SponsorsCarousel = ({ autoPlayDelay = 3000, sponsors }) => {
 }
 
 SponsorsCarousel.propTypes = {
-  autoPlayDelay: PropTypes.number.isRequired,
+  autoPlayDelay: PropTypes.number,
   sponsors: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

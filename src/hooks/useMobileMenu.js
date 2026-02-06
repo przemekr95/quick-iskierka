@@ -33,7 +33,7 @@ export const useMobileMenu = () => {
   }, [isMenuOpen])
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
+    setIsMenuOpen(prev => !prev)
   }
 
   const closeMenu = () => {
