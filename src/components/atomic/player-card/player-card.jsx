@@ -5,6 +5,7 @@ import styles from './player-card.module.scss'
 
 const PlayerCard = ({ name, position }) => {
   const initials = getInitials(name)
+  const hasPosition = Boolean(position?.trim())
 
   return (
     <div className={styles.card}>
@@ -12,7 +13,7 @@ const PlayerCard = ({ name, position }) => {
         {initials}
       </div>
       <div className={styles.info}>
-        <p className={styles.position}>{position}</p>
+        {hasPosition && <p className={styles.position}>{position}</p>}
         <p className={styles.name}>{name}</p>
       </div>
     </div>
@@ -21,7 +22,7 @@ const PlayerCard = ({ name, position }) => {
 
 PlayerCard.propTypes = {
   name: PropTypes.string.isRequired,
-  position: PropTypes.string.isRequired,
+  position: PropTypes.string,
 }
 
 export default PlayerCard

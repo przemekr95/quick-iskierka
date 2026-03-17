@@ -2,14 +2,81 @@ import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styles from './sponsors-carousel.module.scss'
 
+const getItemsPerView = () => {
+  if (typeof window === 'undefined') return 4
+
+  if (window.matchMedia('(max-width: 480px)').matches) return 1
+  if (window.matchMedia('(max-width: 768px)').matches) return 2
+  if (window.matchMedia('(max-width: 1024px)').matches) return 3
+
+  return 4
+}
+
 const SponsorsCarousel = ({ autoPlayDelay = 3000, sponsors = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [itemsPerView, setItemsPerView] = useState(getItemsPerView)
+  const [isAutoplayPausedByUser, setIsAutoplayPausedByUser] = useState(false)
   const intervalRef = useRef(null)
-  const itemsPerView = 4
+  const resumeTimeoutRef = useRef(null)
   const maxIndex = Math.max(0, sponsors.length - itemsPerView)
 
+  const pauseAutoplayTemporarily = () => {
+    setIsAutoplayPausedByUser(true)
+
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current)
+    }
+
+    resumeTimeoutRef.current = setTimeout(() => {
+      setIsAutoplayPausedByUser(false)
+      resumeTimeoutRef.current = null
+    }, autoPlayDelay * 2)
+  }
+
   useEffect(() => {
-    if (sponsors.length > itemsPerView) {
+    if (typeof window === 'undefined') return undefined
+
+    const mediaQueries = [
+      window.matchMedia('(max-width: 480px)'),
+      window.matchMedia('(max-width: 768px)'),
+      window.matchMedia('(max-width: 1024px)'),
+    ]
+
+    const handleMediaChange = () => {
+      setItemsPerView(getItemsPerView())
+    }
+
+    mediaQueries.forEach(mediaQuery => {
+      if (mediaQuery.addEventListener) {
+        mediaQuery.addEventListener('change', handleMediaChange)
+        return
+      }
+
+      mediaQuery.addListener(handleMediaChange)
+    })
+
+    return () => {
+      mediaQueries.forEach(mediaQuery => {
+        if (mediaQuery.removeEventListener) {
+          mediaQuery.removeEventListener('change', handleMediaChange)
+          return
+        }
+
+        mediaQuery.removeListener(handleMediaChange)
+      })
+    }
+  }, [])
+
+  useEffect(() => {
+    setCurrentIndex(previousIndex => Math.min(previousIndex, maxIndex))
+  }, [maxIndex])
+
+  useEffect(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current)
+    }
+
+    if (sponsors.length > itemsPerView && !isAutoplayPausedByUser) {
       intervalRef.current = setInterval(() => {
         setCurrentIndex(prev => (prev >= maxIndex ? 0 : prev + 1))
       }, autoPlayDelay)
@@ -18,13 +85,30 @@ const SponsorsCarousel = ({ autoPlayDelay = 3000, sponsors = [] }) => {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current)
     }
-  }, [sponsors.length, autoPlayDelay, maxIndex, itemsPerView])
+  }, [
+    sponsors.length,
+    autoPlayDelay,
+    maxIndex,
+    itemsPerView,
+    isAutoplayPausedByUser,
+  ])
+
+  useEffect(
+    () => () => {
+      if (resumeTimeoutRef.current) {
+        clearTimeout(resumeTimeoutRef.current)
+      }
+    },
+    []
+  )
 
   const goToPrevious = () => {
+    pauseAutoplayTemporarily()
     setCurrentIndex(prev => (prev === 0 ? maxIndex : prev - 1))
   }
 
   const goToNext = () => {
+    pauseAutoplayTemporarily()
     setCurrentIndex(prev => (prev >= maxIndex ? 0 : prev + 1))
   }
 
