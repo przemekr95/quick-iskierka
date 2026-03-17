@@ -46,9 +46,24 @@
       "category": "seniorzy"
     },
     {
+      "name": "Tymoteusz Drużkowski",
+      "position": "",
+      "category": "kadeci"
+    },
+    {
       "name": "Bartosz Dychus",
       "position": "Atakujący",
       "category": "juniorzy"
+    },
+    {
+      "name": "Kornel Dychus",
+      "position": "",
+      "category": "juniorzy"
+    },
+    {
+      "name": "Kamil Kaczmarczyk",
+      "position": "",
+      "category": "kadeci"
     },
     {
       "name": "Szymon Kocowicz",
@@ -81,9 +96,29 @@
       "category": "seniorzy"
     },
     {
+      "name": "Piotr Kuczek",
+      "position": "",
+      "category": "kadeci"
+    },
+    {
+      "name": "Szymon Kułaga",
+      "position": "",
+      "category": "kadeci"
+    },
+    {
       "name": "Adrian Lachowicz",
       "position": "Środkowy",
       "category": "seniorzy"
+    },
+    {
+      "name": "Patryk Ligęza",
+      "position": "",
+      "category": "kadeci"
+    },
+    {
+      "name": "Mikołaj Łaciak",
+      "position": "",
+      "category": "kadeci"
     },
     {
       "name": "Igor Łoś",
@@ -91,14 +126,29 @@
       "category": "kadeci"
     },
     {
+    "name": "Aleksander Małecki",
+    "position": "",
+    "category": "kadeci"
+    },
+    {
       "name": "Krystian Matyjasik",
       "position": "Przyjmujący",
       "category": "juniorzy"
     },
     {
+      "name": "Jerzy Mikulski",
+      "position": "",
+      "category": "kadeci"
+    },
+    {
       "name": "Gabriel Miłkowski",
       "position": "Przyjmujący",
       "category": "juniorzy"
+    },
+    {
+      "name": "Szymon Mleczko",
+      "position": "",
+      "category": "kadeci"
     },
     {
       "name": "Filip Molak",
@@ -149,6 +199,11 @@
       "name": "Sławomir Sorys",
       "position": "Libero",
       "category": "seniorzy"
+    },
+    {
+      "name": "Wojciech Sternal",
+      "position": "",
+      "category": "kadeci"
     },
     {
       "name": "Przemysław Szarkowicz",

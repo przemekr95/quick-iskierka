@@ -42,6 +42,12 @@ export const SPONSORS_DATA = [
     website: 'https://www.tw.tarnow.pl/',
   },
   {
+    id: 'tts',
+    name: 'TTS',
+    logo: '/images/sponsors/tts.png',
+    website: 'https://www.tss.tarnow.pl/',
+  },
+  {
     id: 'zmt',
     name: 'ZMT Tarnów',
     logo: '/images/sponsors/zmt.png',
