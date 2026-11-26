@@ -6,245 +6,400 @@
   "coach": {
     "title": "Trener",
     "name": "Andrzej Łoś",
-    "role": "Trener"
+    "role": "Trener",
+    "photo": "/images/players/andrzej-los.jpg"
   },
   "categories": {
     "label": "Kategorie",
     "all": "Wszyscy",
     "groups": [
       {
+        "id": "mlodzicy",
+        "name": "Młodzicy"
+      },
+      {
         "id": "kadeci",
         "name": "Kadeci"
       },
       {
         "id": "juniorzy",
-        "name": "Juniorzy"
+        "name": "Juniorzy",
+        "photo": "/images/players/juniorzy.jpg"
       },
       {
         "id": "seniorzy",
-        "name": "Seniorzy"
+        "name": "Seniorzy",
+        "photo": "/images/players/seniorzy.jpg"
       }
     ]
   },
   "players": {
     "title": "Kadra",
-    "subtitle": "Kadra na sezon 2024/2025",
+    "subtitle": "Kadra na sezon 2026/2027",
     "items": [
-    {
-      "name": "Jan Banaś",
-      "position": "Rozgrywający",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Paweł Budzyński",
-      "position": "Środkowy",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Karol Czarnecki",
-      "position": "Środkowy",
-      "category": "seniorzy"
-    },
-    {
-      "name": "Tymoteusz Drużkowski",
-      "position": "",
-      "category": "kadeci"
-    },
-    {
-      "name": "Bartosz Dychus",
-      "position": "Atakujący",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Kornel Dychus",
-      "position": "",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Kamil Kaczmarczyk",
-      "position": "",
-      "category": "kadeci"
-    },
-    {
-      "name": "Szymon Kocowicz",
-      "position": "Przyjmujący",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Szymon Gargaś",
-      "position": "Przyjmujący",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Kacper Gdowski",
-      "position": "Środkowy",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Dawid Gromniak",
-      "position": "Środkowy",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Jakub Kobis",
-      "position": "Przyjmujący",
-      "category": "seniorzy"
-    },
-    {
-      "name": "Michał Kuczek",
-      "position": "Rozgrywający",
-      "category": "seniorzy"
-    },
-    {
-      "name": "Piotr Kuczek",
-      "position": "",
-      "category": "kadeci"
-    },
-    {
-      "name": "Szymon Kułaga",
-      "position": "",
-      "category": "kadeci"
-    },
-    {
-      "name": "Adrian Lachowicz",
-      "position": "Środkowy",
-      "category": "seniorzy"
-    },
-    {
-      "name": "Patryk Ligęza",
-      "position": "",
-      "category": "kadeci"
-    },
-    {
-      "name": "Mikołaj Łaciak",
-      "position": "",
-      "category": "kadeci"
-    },
-    {
-      "name": "Igor Łoś",
-      "position": "Rozgrywający",
-      "category": "kadeci"
-    },
-    {
-    "name": "Aleksander Małecki",
-    "position": "",
-    "category": "kadeci"
-    },
-    {
-      "name": "Krystian Matyjasik",
-      "position": "Przyjmujący",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Jerzy Mikulski",
-      "position": "",
-      "category": "kadeci"
-    },
-    {
-      "name": "Gabriel Miłkowski",
-      "position": "Przyjmujący",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Szymon Mleczko",
-      "position": "",
-      "category": "kadeci"
-    },
-    {
-      "name": "Filip Molak",
-      "position": "Atakujący",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Piotr Półkoszek",
-      "position": "Atakujący",
-      "category": "seniorzy"
-    },
-    {
-      "name": "Wojciech Rubacha",
-      "position": "Atakujący",
-      "category": "seniorzy"
-    },
-    {
-      "name": "Przemysław Rura",
-      "position": "Przyjmujący",
-      "category": "seniorzy"
-    },
-    {
-      "name": "Szymon Rybski",
-      "position": "Przyjmujący",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Bartłomiej Skawiński",
-      "position": "Rozgrywający",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Mateusz Skowron",
-      "position": "Przyjmujący",
-      "category": "seniorzy"
-    },
-    {
-      "name": "Radosław Skrzypek",
-      "position": "Przyjmujący",
-      "category": "seniorzy"
-    },
-    {
-      "name": "Mateusz Soboń",
-      "position": "Środkowy",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Sławomir Sorys",
-      "position": "Libero",
-      "category": "seniorzy"
-    },
-    {
-      "name": "Wojciech Sternal",
-      "position": "",
-      "category": "kadeci"
-    },
-    {
-      "name": "Przemysław Szarkowicz",
-      "position": "Środkowy",
-      "category": "kadeci"
-    },
-    {
-      "name": "Błażej Świder",
-      "position": "Przyjmujący",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Wiktor Tutaj",
-      "position": "Przyjmujący",
-      "category": "kadeci"
-    },
-    {
-      "name": "Damian Tymoszuk",
-      "position": "Przyjmujący",
-      "category": "kadeci"
-    },
-    {
-      "name": "Marcel Witek",
-      "position": "Libero",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Tomasz Wrona",
-      "position": "Przyjmujący",
-      "category": "juniorzy"
-    },
-    {
-      "name": "Mateusz Zabawa",
-      "position": "Rozgrywający",
-      "category": "kadeci"
-    },
-    {
-      "name": "Nikodem Zacharek",
-      "position": "Libero",
-      "category": "seniorzy"
-    }
+      {
+        "name": "Franciszek Babisz",
+        "position": "Libero",
+        "categories": [
+          "mlodzicy"
+        ]
+      },
+      {
+        "name": "Filip Bańdur",
+        "position": "Środkowy",
+        "photo": "/images/players/filip-bandur.jpg",
+        "categories": [
+          "kadeci",
+          "juniorzy",
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Paweł Budziński",
+        "position": "Środkowy",
+        "photo": "/images/players/pawel-budzinski.jpg",
+        "categories": [
+          "juniorzy",
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Sebastian Chrabąszcz",
+        "position": "Środkowy",
+        "categories": [
+          "kadeci"
+        ]
+      },
+      {
+        "name": "Michał Cierpich",
+        "position": "Przyjmujący",
+        "categories": [
+          "mlodzicy"
+        ]
+      },
+      {
+        "name": "Tymoteusz Drużkowski",
+        "position": "Przyjmujący",
+        "categories": [
+          "juniorzy",
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Franciszek Fior",
+        "position": "Środkowy",
+        "categories": [
+          "mlodzicy"
+        ]
+      },
+      {
+        "name": "Szymon Gargaś",
+        "position": "Przyjmujący",
+        "categories": [
+          "juniorzy",
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Aleksander Gąsior",
+        "position": "Przyjmujący",
+        "categories": [
+          "mlodzicy"
+        ]
+      },
+      {
+        "name": "Kacper Gdowski",
+        "position": "Środkowy",
+        "categories": [
+          "juniorzy"
+        ]
+      },
+      {
+        "name": "Kamil Hojsak",
+        "position": "Przyjmujący",
+        "categories": [
+          "mlodzicy"
+        ]
+      },
+      {
+        "name": "Franciszek Jamro",
+        "position": "Środkowy",
+        "categories": [
+          "kadeci"
+        ]
+      },
+      {
+        "name": "Kamil Kaczmarczyk",
+        "position": "Przyjmujący",
+        "photo": "/images/players/kamil-kaczmarczyk.jpg",
+        "categories": [
+          "kadeci",
+          "juniorzy",
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Szymon Kocowicz",
+        "position": "Atakujący",
+        "photo": "/images/players/szymon-kocowicz.jpg",
+        "categories": [
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Albert Król",
+        "position": "Przyjmujący",
+        "photo": "/images/players/albert-krol.jpg",
+        "categories": [
+          "mlodzicy",
+          "kadeci",
+          "juniorzy"
+        ]
+      },
+      {
+        "name": "Piotr Kuczek",
+        "position": "Rozgrywający",
+        "photo": "/images/players/piotr-kuczek.jpg",
+        "categories": [
+          "juniorzy",
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Michał Kuczek",
+        "position": "Rozgrywający",
+        "photo": "/images/players/michal-kuczek.jpg",
+        "categories": [
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Szymon Kułaga",
+        "position": "Atakujący",
+        "photo": "/images/players/szymon-kulaga.jpg",
+        "categories": [
+          "kadeci",
+          "juniorzy",
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Adrian Lachowicz",
+        "position": "Środkowy",
+        "categories": [
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Patryk Ligęza",
+        "position": "Środkowy",
+        "categories": [
+          "mlodzicy",
+          "kadeci"
+        ]
+      },
+      {
+        "name": "Mikołaj Łaciak",
+        "position": "Środkowy",
+        "photo": "/images/players/mikolaj-laciak.jpg",
+        "categories": [
+          "juniorzy",
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Igor Łoś",
+        "position": "Libero",
+        "photo": "/images/players/igor-los.jpg",
+        "categories": [
+          "kadeci",
+          "juniorzy",
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Aleksander Małecki",
+        "position": "Przyjmujący",
+        "categories": [
+          "kadeci",
+          "juniorzy"
+        ]
+      },
+      {
+        "name": "Nikodem Matug",
+        "position": "Atakujący",
+        "categories": [
+          "kadeci"
+        ]
+      },
+      {
+        "name": "Jerzy Mikulski",
+        "position": "Rozgrywający",
+        "photo": "/images/players/jerzy-mikulski.jpg",
+        "categories": [
+          "kadeci",
+          "juniorzy"
+        ]
+      },
+      {
+        "name": "Szymon Mleczko",
+        "position": "Libero",
+        "categories": [
+          "mlodzicy",
+          "kadeci",
+          "juniorzy"
+        ]
+      },
+      {
+        "name": "Antoni Olbracht",
+        "position": "Atakujący",
+        "categories": [
+          "kadeci"
+        ]
+      },
+      {
+        "name": "Sebastian Ortyl",
+        "position": "Atakujący",
+        "categories": [
+          "mlodzicy"
+        ]
+      },
+      {
+        "name": "Piotr Półkoszek",
+        "position": "Przyjmujący",
+        "photo": "/images/players/piotr-polkoszek.jpg",
+        "categories": [
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Stanisław Rak",
+        "position": "Przyjmujący",
+        "categories": [
+          "mlodzicy"
+        ]
+      },
+      {
+        "name": "Kazimierz Rusek",
+        "position": "Libero",
+        "categories": [
+          "mlodzicy"
+        ]
+      },
+      {
+        "name": "Franciszek Ryński",
+        "position": "Rozgrywający",
+        "categories": [
+          "kadeci"
+        ]
+      },
+      {
+        "name": "Norbert Sarkowicz",
+        "position": "Środkowy",
+        "categories": [
+          "kadeci",
+          "juniorzy"
+        ]
+      },
+      {
+        "name": "Adrian Sereda",
+        "position": "Przyjmujący",
+        "categories": [
+          "kadeci"
+        ]
+      },
+      {
+        "name": "Bartłomiej Skawiński",
+        "position": "Rozgrywający",
+        "photo": "/images/players/bartlomiej-skawinski.jpg",
+        "categories": [
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Mateusz Skowron",
+        "position": "Atakujący",
+        "photo": "/images/players/mateusz-skowron.jpg",
+        "categories": [
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Sławomir Sorys",
+        "position": "Przyjmujący",
+        "photo": "/images/players/slawomir-sorys.jpg",
+        "categories": [
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Marcel Stawarz",
+        "position": "Atakujący",
+        "categories": [
+          "mlodzicy"
+        ]
+      },
+      {
+        "name": "Wojciech Sternal",
+        "position": "Przyjmujący",
+        "categories": [
+          "juniorzy"
+        ]
+      },
+      {
+        "name": "Wiktor Szuba",
+        "position": "Rozgrywający",
+        "categories": [
+          "mlodzicy"
+        ]
+      },
+      {
+        "name": "Damian Tymoszuk",
+        "position": "Przyjmujący",
+        "categories": [
+          "juniorzy",
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Tomasz Wrona",
+        "position": "Przyjmujący",
+        "categories": [
+          "juniorzy",
+          "seniorzy"
+        ]
+      },
+      {
+        "name": "Szymon Wrona",
+        "position": "Przyjmujący",
+        "categories": [
+          "mlodzicy",
+          "kadeci"
+        ]
+      },
+      {
+        "name": "Szymon Zaszczudłowicz",
+        "position": "Rozgrywający",
+        "categories": [
+          "mlodzicy"
+        ]
+      },
+      {
+        "name": "Patryk Ziemierowski",
+        "position": "Środkowy",
+        "categories": [
+          "mlodzicy"
+        ]
+      },
+      {
+        "name": "Emil Ziobro",
+        "position": "Atakujący",
+        "categories": [
+          "kadeci",
+          "juniorzy",
+          "seniorzy"
+        ]
+      }
     ]
   }
 }

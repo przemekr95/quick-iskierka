@@ -6,7 +6,7 @@
   height: 100vh;
   min-height: $spacing-64;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   overflow: hidden;
   color: $color-surface;
@@ -32,7 +32,7 @@
   z-index: 3;
   width: 100%;
   max-width: $spacing-64 * 5;
-  padding: 0 $spacing-6;
+  padding: 0 $spacing-6 clamp($spacing-12, 10vh, $spacing-24);
   text-align: center;
 }
 
@@ -80,7 +80,7 @@
 
 @media (max-width: 768px) {
   .heroContent {
-    padding: 0 $spacing-4;
+    padding-inline: $spacing-4;
   }
 
   .heroActions {
@@ -99,7 +99,7 @@
 
 @media (max-width: 480px) {
   .heroContent {
-    padding: 0 $spacing-3;
+    padding-inline: $spacing-3;
   }
 }
 

@@ -4,7 +4,6 @@ import ErrorMessage from '../../atomic/error-message/error-message'
 import { fetchJson, normalizeError } from '../../../lib/http'
 import ClubSection from '../../sections/club/club-section'
 import PlayerCard from '../../atomic/player-card/player-card'
-import BoardMemberCard from '../../atomic/board-member-card/board-member-card'
 import TrainingGroupBadge from '../../atomic/training-group-badge/training-group-badge'
 import styles from './team.module.scss'
 
@@ -41,8 +40,8 @@ const Team = () => {
   const filteredPlayers = useMemo(() => {
     if (!content?.players?.items) return []
     if (selectedCategory === 'all') return content.players.items
-    return content.players.items.filter(
-      player => player.category === selectedCategory
+    return content.players.items.filter(player =>
+      player.categories?.includes(selectedCategory)
     )
   }, [content?.players?.items, selectedCategory])
 
@@ -66,6 +65,10 @@ const Team = () => {
     return null
   }
 
+  const selectedGroup = content.categories.groups?.find(
+    group => group.id === selectedCategory
+  )
+
   return (
     <div className={styles.teamPage}>
       <div className={styles.container}>
@@ -78,9 +81,10 @@ const Team = () => {
 
         <ClubSection title={content.coach.title}>
           <div className={styles.coachCard}>
-            <BoardMemberCard
+            <PlayerCard
               name={content.coach.name}
-              role={content.coach.role}
+              photo={content.coach.photo}
+              position={content.coach.role}
             />
           </div>
         </ClubSection>
@@ -112,6 +116,15 @@ const Team = () => {
           subtitle={content.players?.subtitle}
           title={content.players?.title}
         >
+          {selectedGroup?.photo && (
+            <figure className={styles.groupPhoto}>
+              <img
+                alt={`Drużyna: ${selectedGroup.name}`}
+                decoding='async'
+                src={selectedGroup.photo}
+              />
+            </figure>
+          )}
           <div className={styles.playersGrid}>
             {filteredPlayers.length === 0 ? (
               <p className={styles.noPlayersMessage}>
@@ -120,8 +133,9 @@ const Team = () => {
             ) : (
               filteredPlayers.map((player, index) => (
                 <PlayerCard
-                  key={`${player.name}-${player.category}-${index}`}
+                  key={`${player.name}-${index}`}
                   name={player.name}
+                  photo={player.photo}
                   position={player.position}
                 />
               ))
