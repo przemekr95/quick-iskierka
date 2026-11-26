@@ -5,7 +5,7 @@ export const HOME_SECTIONS = [
     title: 'O Klubie',
     subtitle: 'Poznaj naszą historię',
     content:
-      'Międzyszkolny Uczniowski Klub Sportowy Iskierka Tarnów to ponad 29 lat tradycji! Założony 22 czerwca 1994 roku, dziś dzięki przychylności władz Miasta Tarnowa nasz klub prężnie rozwija się szczególnie pod kątem siatkarskim. Łączy nas pasja do sportu i realizujemy rządowy program KLUB — edycja 2025.',
+      'Międzyszkolny Uczniowski Klub Sportowy Iskierka Tarnów to ponad 32 lata tradycji! Założony 22 czerwca 1994 roku, dziś dzięki przychylności władz Miasta Tarnowa nasz klub prężnie rozwija się szczególnie pod kątem siatkarskim. Łączy nas pasja do sportu i realizujemy rządowy program KLUB — edycja 2026.',
     buttonText: 'Dowiedz się więcej',
     buttonLink: '/klub',
     imageUrl: '/images/backgrounds/home-2.jpg',

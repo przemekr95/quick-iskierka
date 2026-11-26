@@ -68,9 +68,9 @@ $header-height: 80px;
 
 .aboutImage {
   width: 100%;
-  height: clamp(200px, 40vw, 360px);
+  height: clamp(240px, 50vw, 560px);
   object-fit: cover;
-  object-position: 35% 35%;
+  object-position: center top;
   display: block;
 }
 
@@ -167,7 +167,7 @@ $header-height: 80px;
   }
 
   .aboutImage {
-    height: clamp(180px, 50vw, 260px);
+    height: clamp(220px, 60vw, 340px);
   }
 }
 
