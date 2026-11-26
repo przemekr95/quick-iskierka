@@ -4,11 +4,9 @@
   background: $color-surface;
   border: 1px solid rgba($color-text, 0.05);
   border-radius: $spacing-3;
-  padding: $spacing-4;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: $spacing-3;
-  align-items: center;
   text-align: center;
   transition: all 0.3s ease;
 
@@ -18,25 +16,41 @@
   }
 }
 
-.avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, $color-primary, $color-secondary);
-  color: $color-surface;
+.media {
+  aspect-ratio: 2 / 3;
+  background: rgba($color-primary, 0.04);
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: $font-lg;
-  font-weight: $font-weight-bold;
-  box-shadow: 0 $spacing-2 $spacing-4 rgba($color-primary, 0.15);
+  background: linear-gradient(
+    180deg,
+    rgba($color-primary, 0.03),
+    rgba($color-primary, 0.09)
+  );
+  color: rgba($color-primary, 0.35);
+  font-size: $font-3xl;
+  font-weight: $font-weight-semibold;
+  letter-spacing: 0.06em;
+  user-select: none;
 }
 
 .info {
   display: flex;
   flex-direction: column;
   gap: $spacing-1;
-  width: 100%;
+  padding: $spacing-3 $spacing-4 $spacing-4;
 }
 
 .position {
